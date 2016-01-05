@@ -24,3 +24,9 @@ field string --fieldName userName
 field string --fieldName password
 exit
 // Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2559-01-05 20:55:50
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2559-01-05 22:06:22
+focus --class ~.domain.em.EMEmployee
+field reference --fieldName emPosition --type ~.domain.em.EMPosition --cardinality MANY_TO_ONE --joinColumnName emPosition --fetch LAZY 
+field reference --fieldName emTeam --type ~.domain.em.EMTeam --cardinality MANY_TO_ONE --joinColumnName emTeam --fetch LAZY 
+exit
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2559-01-05 22:14:42
