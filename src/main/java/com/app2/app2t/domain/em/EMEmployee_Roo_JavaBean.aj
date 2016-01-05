@@ -4,6 +4,8 @@
 package com.app2.app2t.domain.em;
 
 import com.app2.app2t.domain.em.EMEmployee;
+import com.app2.app2t.domain.em.EMPosition;
+import com.app2.app2t.domain.em.EMTeam;
 
 privileged aspect EMEmployee_Roo_JavaBean {
     
@@ -69,6 +71,22 @@ privileged aspect EMEmployee_Roo_JavaBean {
     
     public void EMEmployee.setPassword(String password) {
         this.password = password;
+    }
+    
+    public EMPosition EMEmployee.getEmPosition() {
+        return this.emPosition;
+    }
+    
+    public void EMEmployee.setEmPosition(EMPosition emPosition) {
+        this.emPosition = emPosition;
+    }
+    
+    public EMTeam EMEmployee.getEmTeam() {
+        return this.emTeam;
+    }
+    
+    public void EMEmployee.setEmTeam(EMTeam emTeam) {
+        this.emTeam = emTeam;
     }
     
 }

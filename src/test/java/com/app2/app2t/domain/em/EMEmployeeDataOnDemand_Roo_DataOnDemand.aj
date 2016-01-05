@@ -5,6 +5,8 @@ package com.app2.app2t.domain.em;
 
 import com.app2.app2t.domain.em.EMEmployee;
 import com.app2.app2t.domain.em.EMEmployeeDataOnDemand;
+import com.app2.app2t.domain.em.EMPositionDataOnDemand;
+import com.app2.app2t.domain.em.EMTeamDataOnDemand;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -15,6 +17,7 @@ import java.util.List;
 import java.util.Random;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 privileged aspect EMEmployeeDataOnDemand_Roo_DataOnDemand {
@@ -24,6 +27,12 @@ privileged aspect EMEmployeeDataOnDemand_Roo_DataOnDemand {
     private Random EMEmployeeDataOnDemand.rnd = new SecureRandom();
     
     private List<EMEmployee> EMEmployeeDataOnDemand.data;
+    
+    @Autowired
+    EMPositionDataOnDemand EMEmployeeDataOnDemand.eMPositionDataOnDemand;
+    
+    @Autowired
+    EMTeamDataOnDemand EMEmployeeDataOnDemand.eMTeamDataOnDemand;
     
     public EMEmployee EMEmployeeDataOnDemand.getNewTransientEMEmployee(int index) {
         EMEmployee obj = new EMEmployee();
