@@ -1,0 +1,26 @@
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2559-01-05 20:39:03
+project --topLevelPackage com.app2.app2t --projectName APP2TRACK --java 7
+persistence setup --provider HIBERNATE --database DERBY_EMBEDDED
+entity jpa --class ~base.BaseEntity --abstract --mappedSuperclass --activeRecord
+field string createdBy
+field string updatedBy
+field string status
+field date --fieldName createdDate --type java.util.Date --dateFormat SHORT --dateTimeFormatPattern "dd/MM/yyyy"
+field date --fieldName updatedDate --type java.util.Date --dateFormat SHORT --dateTimeFormatPattern "dd/MM/yyyy"
+entity jpa --class ~.domain.em.EMPosition --extends ~.base.BaseEntity --testAutomatically --inheritanceType TABLE_PER_CLASS
+field string --fieldName positionCode
+field string --fieldName positionName
+entity jpa --class ~.domain.em.EMTeam --extends ~.base.BaseEntity --testAutomatically --inheritanceType TABLE_PER_CLASS
+field string --fieldName teamCode
+field string --fieldName teamName
+entity jpa --class ~.domain.em.EMEmployee --extends ~.base.BaseEntity --testAutomatically --inheritanceType TABLE_PER_CLASS
+field string --fieldName empCode
+field string --fieldName empName
+field string --fieldName empFirstName
+field string --fieldName empLastName
+field string --fieldName empNickName
+field string --fieldName email
+field string --fieldName userName
+field string --fieldName password
+exit
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2559-01-05 20:55:50

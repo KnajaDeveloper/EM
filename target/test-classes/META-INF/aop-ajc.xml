@@ -1,0 +1,17 @@
+<aspectj>
+<aspects>
+<aspect name="com.app2.app2t.domain.em.EMTeamDataOnDemand_Roo_Configurable"/>
+<aspect name="com.app2.app2t.domain.em.EMPositionIntegrationTest_Roo_Configurable"/>
+<aspect name="com.app2.app2t.domain.em.EMTeamIntegrationTest_Roo_Configurable"/>
+<aspect name="com.app2.app2t.domain.em.EMEmployeeIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="com.app2.app2t.domain.em.EMPositionIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="com.app2.app2t.domain.em.EMTeamDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="com.app2.app2t.domain.em.EMPositionDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="com.app2.app2t.domain.em.EMTeamIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="com.app2.app2t.domain.em.EMEmployeeIntegrationTest_Roo_Configurable"/>
+<aspect name="com.app2.app2t.domain.em.EMEmployeeDataOnDemand_Roo_Configurable"/>
+<aspect name="com.app2.app2t.domain.em.EMPositionDataOnDemand_Roo_Configurable"/>
+<aspect name="com.app2.app2t.domain.em.EMEmployeeDataOnDemand_Roo_DataOnDemand"/>
+</aspects>
+</aspectj>
+
