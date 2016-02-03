@@ -30,3 +30,14 @@ field reference --fieldName emPosition --type ~.domain.em.EMPosition --cardinali
 field reference --fieldName emTeam --type ~.domain.em.EMTeam --cardinality MANY_TO_ONE --joinColumnName emTeam --fetch LAZY 
 exit
 // Spring Roo 1.2.5.RELEASE [rev 8341dc2] log closed at 2559-01-05 22:14:42
+// Spring Roo 1.3.1.RELEASE [rev f4f5256] log opened at 2016-02-03 22:03:05
+json all 
+json all --deepSerialize 
+web mvc setup
+web mvc all --package ~.web.em
+quit
+// Spring Roo 1.3.1.RELEASE [rev f4f5256] log closed at 2016-02-03 22:08:41
+// Spring Roo 1.3.1.RELEASE [rev f4f5256] log opened at 2016-02-03 22:13:04
+web mvc json all 
+quit
+// Spring Roo 1.3.1.RELEASE [rev f4f5256] log closed at 2016-02-03 22:13:36

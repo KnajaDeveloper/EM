@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_com_app2_app2t_domain_em_EMEmployee" modelAttribute="EMEmployee_" path="/ememployees" render="${empty dependencies}" z="kJpvEbwpVjrdT8v4s27e0F35ua0=">
+        <field:input field="createdBy" id="c_com_app2_app2t_domain_em_EMEmployee_createdBy" z="kOBQEH2pu/os23qLxGTrVDTSAJA="/>
+        <field:input field="updatedBy" id="c_com_app2_app2t_domain_em_EMEmployee_updatedBy" z="SYOGAuqfKIn5Sd/aA/Uqk3h+7Zs="/>
+        <field:input field="status" id="c_com_app2_app2t_domain_em_EMEmployee_status" z="+HMjPg73dtrlM90HgZPoeb2uEps="/>
+        <field:datetime dateTimePattern="${EMEmployee__createddate_date_format}" field="createdDate" id="c_com_app2_app2t_domain_em_EMEmployee_createdDate" z="gurA+7ayna5a8RGj2yIaq3HCyVk="/>
+        <field:datetime dateTimePattern="${EMEmployee__updateddate_date_format}" field="updatedDate" id="c_com_app2_app2t_domain_em_EMEmployee_updatedDate" z="wsxgk8oYg/XaqLeK1wDeoPs7rNA="/>
+        <field:input field="empCode" id="c_com_app2_app2t_domain_em_EMEmployee_empCode" z="dhWNa9I/HraSPCLBeyS//knRACU="/>
+        <field:input field="empName" id="c_com_app2_app2t_domain_em_EMEmployee_empName" z="jVobmRQLH9Nmt5WmXxtKkAu9Hkw="/>
+        <field:input field="empFirstName" id="c_com_app2_app2t_domain_em_EMEmployee_empFirstName" z="fK2In3SQd2p0DxYpV9wYlC7PYac="/>
+        <field:input field="empLastName" id="c_com_app2_app2t_domain_em_EMEmployee_empLastName" z="vw4KV0DCkMkEeud+qsPGC0lVg+M="/>
+        <field:input field="empNickName" id="c_com_app2_app2t_domain_em_EMEmployee_empNickName" z="icxbBk9KDw7oPXQSwFpdkSckyV8="/>
+        <field:input field="email" id="c_com_app2_app2t_domain_em_EMEmployee_email" validationMessageCode="field_invalid_email" z="h56YnLRKClFWxAEQlI7vyipFefQ="/>
+        <field:input field="userName" id="c_com_app2_app2t_domain_em_EMEmployee_userName" z="eieGdtF+qh/Js39Cum3xIF1kVIE="/>
+        <field:input field="password" id="c_com_app2_app2t_domain_em_EMEmployee_password" z="+OEwcxU374Yd25eKjEJHDd+CvW0="/>
+        <field:select field="emPosition" id="c_com_app2_app2t_domain_em_EMEmployee_emPosition" itemValue="id" items="${empositions}" path="/empositions" z="OONNiNOxNkTnwQ44EIfSKdwPYAE="/>
+        <field:select field="emTeam" id="c_com_app2_app2t_domain_em_EMEmployee_emTeam" itemValue="id" items="${emteams}" path="/emteams" z="e39HlWdcfUUM+5sCw1+gg0thRHo="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_app2_app2t_domain_em_EMEmployee" render="${not empty dependencies}" z="yjiBR3XnuqiHHAqcciqywGI9quU="/>
+</div>

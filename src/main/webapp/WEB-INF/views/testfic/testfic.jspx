@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:component="urn:jsptagdir:/WEB-INF/tags/component" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+
+    <c:set value="${pageContext.request.contextPath}" var="contextPath"/>
+    <c:set var="Test" scope="request"><spring:message code="testMessage"/></c:set>
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-sm-1">
+                <label>${Test}</label>
+            </div>
+            <div class="col-sm-11">
+                <input id="data" type="text" class="form-control" />
+            </div>
+        </div>
+    </div>
+
+</div>

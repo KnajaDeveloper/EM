@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" id="menu" version="2.0">
+    <!--<jsp:directive.page contentType="text/html;charset=UTF-8"/>-->
+    <!--<jsp:output omit-xml-declaration="yes"/>-->
+    <!--<menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">-->
+        <!--<menu:category id="c_emteam" z="sP3XdbNgvYhQB555aHsh8uxCW6A=">-->
+            <!--<menu:item id="i_emteam_new" messageCode="global_menu_new" url="/emteams?form" z="IV9AZk4ahGyKYFzbyiUKtMUqyiw="/>-->
+            <!--<menu:item id="i_emteam_list" messageCode="global_menu_list" url="/emteams?page=1&amp;size=${empty param.size ? 10 : param.size}" z="UKAdZlWFqAkBgRygtwR/MrYKNck="/>-->
+        <!--</menu:category>-->
+        <!--<menu:category id="c_emposition" z="68vxAqrQJB5/+bXdo6xH4gYqz7g=">-->
+            <!--<menu:item id="i_emposition_new" messageCode="global_menu_new" url="/empositions?form" z="XkT4pUom0NUtzOEUPDtMJFUNxXc="/>-->
+            <!--<menu:item id="i_emposition_list" messageCode="global_menu_list" url="/empositions?page=1&amp;size=${empty param.size ? 10 : param.size}" z="JupgK3hE6QxMuTTjHgWBGv7JE6M="/>-->
+        <!--</menu:category>-->
+        <!--<menu:category id="c_ememployee" z="oMVe8BXVlCdurMLkq1CBkedzVnM=">-->
+            <!--<menu:item id="i_ememployee_new" messageCode="global_menu_new" url="/ememployees?form" z="q/lUoGu4ev2mbxFpVdkb04vRZ1Q="/>-->
+            <!--<menu:item id="i_ememployee_list" messageCode="global_menu_list" url="/ememployees?page=1&amp;size=${empty param.size ? 10 : param.size}" z="ThxSAWCU825z865Wt7MvVpvZKb4="/>-->
+        <!--</menu:category>-->
+    <!--</menu:menu>-->
+</div>

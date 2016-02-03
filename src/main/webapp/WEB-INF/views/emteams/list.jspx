@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_app2_app2t_domain_em_EMTeam" items="${emteams}" z="jqAKPI/drh5MjpumgWgw5Vz/B9s=">
+        <table:table data="${emteams}" id="l_com_app2_app2t_domain_em_EMTeam" path="/emteams" z="yimVSHQCb99g42fooqXNXdgugUc=">
+            <table:column id="c_com_app2_app2t_domain_em_EMTeam_createdBy" property="createdBy" z="4o2h8tVjom3LQU0V5MgkvNQ5h8Y="/>
+            <table:column id="c_com_app2_app2t_domain_em_EMTeam_updatedBy" property="updatedBy" z="p0WY2YVSgtN0N2ux2zVv1OLmVXk="/>
+            <table:column id="c_com_app2_app2t_domain_em_EMTeam_status" property="status" z="ssGy6dZIt/Y2vrd7N1G2MP+ZCL0="/>
+            <table:column date="true" dateTimePattern="${EMTeam__createddate_date_format}" id="c_com_app2_app2t_domain_em_EMTeam_createdDate" property="createdDate" z="aCTWx8js/sCDZBAWKDlmJVk1niU="/>
+            <table:column date="true" dateTimePattern="${EMTeam__updateddate_date_format}" id="c_com_app2_app2t_domain_em_EMTeam_updatedDate" property="updatedDate" z="Y/p51+shOYbsXGds3nwDWdyXMcc="/>
+            <table:column id="c_com_app2_app2t_domain_em_EMTeam_teamCode" property="teamCode" z="z9T2HIC5zoz68f94WkFj/g4SIos="/>
+        </table:table>
+    </page:list>
+</div>
