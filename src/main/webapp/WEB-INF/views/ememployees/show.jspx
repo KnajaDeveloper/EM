@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_app2_app2t_domain_em_EMEmployee" object="${ememployee_}" path="/ememployees" z="LFeQFCivCoPZ8sxf5pB5MBwUoe0=">
+        <field:display field="createdBy" id="s_com_app2_app2t_domain_em_EMEmployee_createdBy" object="${ememployee_}" z="KbJliz4iWlelzVw489SjYap1gB8="/>
+        <field:display field="updatedBy" id="s_com_app2_app2t_domain_em_EMEmployee_updatedBy" object="${ememployee_}" z="7Xp+/X4NuAdGI7w1AWlFNQUb97U="/>
+        <field:display field="status" id="s_com_app2_app2t_domain_em_EMEmployee_status" object="${ememployee_}" z="lL+izZzltlm0tjJU7jBtfr3ptvQ="/>
+        <field:display date="true" dateTimePattern="${EMEmployee__createddate_date_format}" field="createdDate" id="s_com_app2_app2t_domain_em_EMEmployee_createdDate" object="${ememployee_}" z="UJBuAvStHAuKgb3Yh2nmvIyxS5c="/>
+        <field:display date="true" dateTimePattern="${EMEmployee__updateddate_date_format}" field="updatedDate" id="s_com_app2_app2t_domain_em_EMEmployee_updatedDate" object="${ememployee_}" z="rf7bsUwpZnfN7dbREvHhPADG/bM="/>
+        <field:display field="empCode" id="s_com_app2_app2t_domain_em_EMEmployee_empCode" object="${ememployee_}" z="BgSIr24ebYJRISQl/B/FK90sPa4="/>
+        <field:display field="empName" id="s_com_app2_app2t_domain_em_EMEmployee_empName" object="${ememployee_}" z="zMuTV6X915sGCifnR7he5ZuueJY="/>
+        <field:display field="empFirstName" id="s_com_app2_app2t_domain_em_EMEmployee_empFirstName" object="${ememployee_}" z="MIP5k88GTgv0KVYdCyDKAThFNUE="/>
+        <field:display field="empLastName" id="s_com_app2_app2t_domain_em_EMEmployee_empLastName" object="${ememployee_}" z="YOKw2Rv/Jipu62gBKpqfn9a5fVo="/>
+        <field:display field="empNickName" id="s_com_app2_app2t_domain_em_EMEmployee_empNickName" object="${ememployee_}" z="BgjYHPVgUGJrXXhRJ426SkRdBUY="/>
+        <field:display field="email" id="s_com_app2_app2t_domain_em_EMEmployee_email" object="${ememployee_}" z="nVQ6g45j617UDshYIFJRpcbhjIc="/>
+        <field:display field="userName" id="s_com_app2_app2t_domain_em_EMEmployee_userName" object="${ememployee_}" z="fkOdAWgzdlFgiFqne0cfWdP/8kc="/>
+        <field:display field="password" id="s_com_app2_app2t_domain_em_EMEmployee_password" object="${ememployee_}" z="i8+Kzrpz06mkGrcuzty5cIiNvcg="/>
+        <field:display field="emPosition" id="s_com_app2_app2t_domain_em_EMEmployee_emPosition" object="${ememployee_}" z="fhaUFIH6d6iN0WPMC6tsLEPI4Vk="/>
+        <field:display field="emTeam" id="s_com_app2_app2t_domain_em_EMEmployee_emTeam" object="${ememployee_}" z="RZYBgg1PZ0zga1SyLFQpvTFJVBU="/>
+    </page:show>
+</div>

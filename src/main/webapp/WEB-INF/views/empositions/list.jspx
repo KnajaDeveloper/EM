@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_app2_app2t_domain_em_EMPosition" items="${empositions}" z="eYs1i1DBXt03uECOx9+7rIjVekE=">
+        <table:table data="${empositions}" id="l_com_app2_app2t_domain_em_EMPosition" path="/empositions" z="xyb1vodzd17lo+cELF5slysdt5o=">
+            <table:column id="c_com_app2_app2t_domain_em_EMPosition_createdBy" property="createdBy" z="LYyL56TCu0U/ksb3lJLqujJLQAU="/>
+            <table:column id="c_com_app2_app2t_domain_em_EMPosition_updatedBy" property="updatedBy" z="f5F64iNN/3C8dbZONhDrLCNhxHk="/>
+            <table:column id="c_com_app2_app2t_domain_em_EMPosition_status" property="status" z="g2ReGsKdg2CuksOSrD18d1DwaEQ="/>
+            <table:column date="true" dateTimePattern="${EMPosition__createddate_date_format}" id="c_com_app2_app2t_domain_em_EMPosition_createdDate" property="createdDate" z="SSVnxeQrpkn6o9X84ml6E3ghXoU="/>
+            <table:column date="true" dateTimePattern="${EMPosition__updateddate_date_format}" id="c_com_app2_app2t_domain_em_EMPosition_updatedDate" property="updatedDate" z="3g0/iETMCn+dngESlcSj+B+FOz4="/>
+            <table:column id="c_com_app2_app2t_domain_em_EMPosition_positionCode" property="positionCode" z="9YlWajr3IoP3ID+tPA77CCoJPC8="/>
+        </table:table>
+    </page:list>
+</div>

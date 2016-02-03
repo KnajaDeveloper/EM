@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_app2_app2t_domain_em_EMPosition" object="${emposition_}" path="/empositions" z="hRswgNXHcvEF46WNRs9oRjmP4nc=">
+        <field:display field="createdBy" id="s_com_app2_app2t_domain_em_EMPosition_createdBy" object="${emposition_}" z="qk5gLpPPibAweK/CZn1ayze7IUs="/>
+        <field:display field="updatedBy" id="s_com_app2_app2t_domain_em_EMPosition_updatedBy" object="${emposition_}" z="/g76AjxOqP+wiYbBxoPqWCHVQ7E="/>
+        <field:display field="status" id="s_com_app2_app2t_domain_em_EMPosition_status" object="${emposition_}" z="/9SDG2rYWlLYEa+DWlc1D0ozKLM="/>
+        <field:display date="true" dateTimePattern="${EMPosition__createddate_date_format}" field="createdDate" id="s_com_app2_app2t_domain_em_EMPosition_createdDate" object="${emposition_}" z="1klEt8rVPxg70f5HFVyvpogc5sc="/>
+        <field:display date="true" dateTimePattern="${EMPosition__updateddate_date_format}" field="updatedDate" id="s_com_app2_app2t_domain_em_EMPosition_updatedDate" object="${emposition_}" z="Ak3NoQ3rRSzYos1jN2RBXdNDV00="/>
+        <field:display field="positionCode" id="s_com_app2_app2t_domain_em_EMPosition_positionCode" object="${emposition_}" z="lCPJhsswddYs/3RkS1FM9iEHN7I="/>
+        <field:display field="positionName" id="s_com_app2_app2t_domain_em_EMPosition_positionName" object="${emposition_}" z="sv190gA36IZfeotaLDCSiNLcnpo="/>
+    </page:show>
+</div>

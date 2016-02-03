@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_app2_app2t_domain_em_EMTeam" modelAttribute="EMTeam_" path="/emteams" versionField="Version" z="7yfjOesS7460PlnDFcdqm/ZOam4=">
+        <field:input field="createdBy" id="c_com_app2_app2t_domain_em_EMTeam_createdBy" z="DLmBHyuv5s+hMDcWm7caW3m1Z6E="/>
+        <field:input field="updatedBy" id="c_com_app2_app2t_domain_em_EMTeam_updatedBy" z="9jp0b//+NqswFLEgvqijrlcpnh8="/>
+        <field:input field="status" id="c_com_app2_app2t_domain_em_EMTeam_status" z="YlprtBb0etCAjS27bp8f9cSl8dU="/>
+        <field:datetime dateTimePattern="${EMTeam__createddate_date_format}" field="createdDate" id="c_com_app2_app2t_domain_em_EMTeam_createdDate" z="RNloeRlHtsKCDIWxb8oi5vQv73g="/>
+        <field:datetime dateTimePattern="${EMTeam__updateddate_date_format}" field="updatedDate" id="c_com_app2_app2t_domain_em_EMTeam_updatedDate" z="9SttIu9/S/LdU4VIL56+Ws58gAs="/>
+        <field:input field="teamCode" id="c_com_app2_app2t_domain_em_EMTeam_teamCode" z="rRPpFrO9HoBZdtat19kLQK5xUvM="/>
+        <field:input field="teamName" id="c_com_app2_app2t_domain_em_EMTeam_teamName" z="xNhVjdkyyYhmIJlgp68GOL3Wyig="/>
+    </form:update>
+</div>
