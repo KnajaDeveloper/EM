@@ -4,12 +4,12 @@
     <jsp:output omit-xml-declaration="yes"/>
 
     <c:set value="${pageContext.request.contextPath}" var="contextPath"/>
-    <c:set var="Test" scope="request"><spring:message code="testMessage"/></c:set>
+    <c:set var="EMP_CODE" scope="request"><spring:message code="L0001"/></c:set>
 
     <div class="form-horizontal">
         <div class="form-group">
             <div class="col-sm-1">
-                <label>${Test}</label>
+                <label>${EMP_CODE}</label>
             </div>
             <div class="col-sm-11">
                 <input id="data" type="text" class="form-control" />
