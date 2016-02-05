@@ -20,10 +20,10 @@ import org.springframework.web.util.WebUtils;
 privileged aspect EMTeamController_Custom_Controller {
     
    
-     @RequestMapping(value = "/addTheam", produces = "text/html")
+     @RequestMapping(value = "/addTeam", produces = "text/html")
     public String EMTeamController.addTheam( Model uiModel) {
        
-        return "emteams/addTheam";
+        return "emteams/addTeam";
     }
 
 }
