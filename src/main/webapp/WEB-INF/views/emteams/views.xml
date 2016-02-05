@@ -14,8 +14,8 @@
         <put-attribute name="body" value="/WEB-INF/views/emteams/update.jspx"/>
     </definition>
 
-<definition extends="default" name="emteams/addTheam">
-        <put-attribute name="body" value="/WEB-INF/views/emteams/addTheam.jspx"/>
+<definition extends="default" name="emteams/addTeam">
+        <put-attribute name="body" value="/WEB-INF/views/emteams/addTeam.jspx"/>
     </definition>
 
 </tiles-definitions>
