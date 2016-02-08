@@ -1,0 +1,31 @@
+<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+
+    <jsp:directive.attribute name="id" type="java.lang.String" required="true" rtexprvalue="true"/>
+
+    <c:set var="CENTRAL_LABEL_DISPLAYING" scope="request"><spring:message code="LB0200"/></c:set>
+    <c:set var="CENTRAL_LABEL_DASH" scope="request"><spring:message code="LB0202"/></c:set>
+    <c:set var="CENTRAL_LABEL_Of" scope="request"><spring:message code="LB0198"/></c:set>
+    <c:set var="CENTRAL_LABEL_RECORD" scope="request"><spring:message code="LB0199"/></c:set>
+    <c:set var="CENTRAL_LABEL_PAGE" scope="request"><spring:message code="LB0639"/></c:set>
+
+    <div class="form-inline">
+        <div align="right">
+            <label class="control-label displayrecord">${CENTRAL_LABEL_DISPLAYING}
+                <span id="${id}StartDisplayRecords">0</span>&#160;${CENTRAL_LABEL_DASH}&#160;<span id="${id}ToDisplayRecords">0</span>&#160;${CENTRAL_LABEL_Of}&#160;<span id="${id}DisplayTotalRecord">0</span>&#160;${CENTRAL_LABEL_RECORD}
+            </label>
+            <button type="button" id="${id}BtnFirst" class="btn btn-default form-control">
+                <span class="fa fa-backward"></span>
+            </button>
+            <button type="button" id="${id}BtnPrev" class="btn btn-default form-control">
+                <span class="fa fa-caret-left fa-lg"></span>
+            </button>
+            <label class="control-label">&#160;&#160;${CENTRAL_LABEL_PAGE}&#160;&#160;</label>
+            <input id="${id}CurrentPage" maxlength="6" type="text" size="5" class="form-control" value="0" style="text-align: center" autocomplete="off"/>
+            <label class="control-label">&#160;&#160;${CENTRAL_LABEL_Of}&#160;&#160;<span id="${id}MaxPage">0</span>&#160;&#160;</label>
+            <button type="button" id="${id}BtnNext" class="btn btn-default form-control"><span class="fa fa-caret-right fa-lg"></span></button>
+            <button type="button" id="${id}BtnLast" class="btn btn-default form-control"><span class="fa fa-forward "></span></button>
+        </div>
+    </div>
+   
+</jsp:root>
