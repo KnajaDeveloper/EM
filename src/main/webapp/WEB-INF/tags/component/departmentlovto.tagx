@@ -1,0 +1,30 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:output omit-xml-declaration="yes"/>
+
+    <jsp:directive.attribute name="id" type="java.lang.String" required="true" rtexprvalue="true"/>
+    <jsp:directive.attribute name="placeholder" type="java.lang.String" required="false" rtexprvalue="true"/>
+    <jsp:directive.attribute name="classes" type="java.lang.Boolean" required="false" rtexprvalue="true"/>
+    <jsp:directive.attribute name="dataContent" type="java.lang.String" required="false" rtexprvalue="true"/>
+    <jsp:directive.attribute name="dataiddepartmentfrom" type="java.lang.String" required="true" rtexprvalue="true"/>
+
+    <div class="input-group">
+        <input id='${id}' onchange="UtilLov.onChangeInputLovDepartmentTo(this)" data-toggle="popover"
+               data-content="${dataContent}" data-placement="bottom" placeholder="${placeholder}" class="form-control"
+               autocomplete="off" data-iddepartmentfrom="${dataiddepartmentfrom}" type="department-lov-to">
+            <span class="input-group-btn">
+                 <button id="${id}Btn" onclick="UtilLov.lovDepartmentTo(this,'${dataiddepartmentfrom}');" target="${id}"
+                         class="btn btn-default" type="button" data-iddepartmentfrom="${dataiddepartmentfrom}">
+                    <span class="fa fa-search">
+                        <jsp:text/>
+                    </span>
+                 </button>
+            </span>
+        </input>
+    </div>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            UtilLov.onLoadInputLovDepartmentTo('${id}');
+        });
+    </script>
+</jsp:root>
