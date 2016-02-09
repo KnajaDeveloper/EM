@@ -44,7 +44,7 @@
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">เพิ่ม</button>
                     </div>
                     <div class="col-xs-4">
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#edit">ลบที่เลือก</button>
+                        <button id="btnEdit" type="button" class="btn btn-danger">ลบที่เลือก</button>
                     </div>
                 </div>
             </form>
@@ -60,39 +60,21 @@
                             <div class="form-group">
                                 <label class="control-label col-sm-3 required">รหัสตำแหน่ง</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="addPositionCode" />
+                                    <input type="text" class="form-control" id="txtPositionCode" data-content="กรุณากรอกข้อมูลรหัสตำแหน่ง" data-placement="bottom" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-3 required">ขื่อตำแหน่ง</label>
+                                <label class="control-label col-sm-3 required">ชื่อตำแหน่ง</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="addPositionName" />
+                                    <input type="text" class="form-control" id="txtPositionName" data-content="กรุณากรอกข้อมูลชื่อตำแหน่ง" data-placement="bottom" />
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">ตกลง</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">ถัดไป</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="edit" role="dialog">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header bg-primary">
-                        <h4 class="modal-title">ลบข้อมูล</h4>
-                    </div>
-                    <div class="modal-body">
-                        <label class="control-label">คุณต้องการลบข้อมูลที่คุณเลือกหรือไหม...???(...)</label>
-                        <br/>
-                        <br/>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">ตกลง</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
+                        <button id="btnAdd" type="button" class="btn btn-primary">ตกลง</button>
+                        <button id="btnNext" type="button" class="btn btn-primary">ถัดไป</button>
+                        <button id="btnCancel" type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
                     </div>
                 </div>
             </div>
@@ -101,25 +83,33 @@
     <div class="row">
         <form class="form-horizontal">
             <div class="form-group">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th><input type="checkbox" name="checkdDelete" /></th>
-                            <th>แก้ไข</th>
-                            <th>รหัสตำแหน่ง</th>
-                            <th>ชื่อตำแหน่ง</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input type="checkbox" name="checkdDelete" /></td>
-                            <td><button type="button" class="btn btn-default" data-dismiss="modal">แก้ไข</button></td>
-                            <td>001</td>
-                            <td>ทีมธงชัย</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div id="penaltyTableContainer" class="table-responsive">
+                    <table id="Table" class="table table-condensed">
+                        <thead>
+                            <tr class="bg-info">
+                                <th><input type="checkbox" name="checkdDelete" /></th>
+                                <th>แก้ไข</th>
+                                <th>รหัสตำแหน่ง</th>
+                                <th>ชื่อตำแหน่ง</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ResualtSearch" style="cursor:pointer">
+                            <!-- <tr>
+                                <td><input type="checkbox" name="checkdDelete" /></td>
+                                <td><button type="button" class="btn btn-default" data-dismiss="modal">แก้ไข</button></td>
+                                <td>001</td>
+                                <td>ทีมธงชัย</td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </form>
     </div>
+
+    <script>
+        var contextPath = '${pageContext.request.contextPath}';
+    </script>
+    <spring:url value="/resources/scripts/EM/addPosition.js" var="addPosition" />
+    <script src="${addPosition}" type="text/javascript"><!--Not Empty --></script>
 </div>
