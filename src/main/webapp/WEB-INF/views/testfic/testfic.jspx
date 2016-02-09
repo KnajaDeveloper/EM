@@ -16,8 +16,8 @@
 	                <thead>
 	                <tr class="bg-info">
 	                    <!-- <th class=" text-center"><input type="checkbox" id="selecctall"/></th> -->
-	                    <th class=" text-center">Code</th>
-	                    <th class=" text-center">Name</th>
+	                    <th class="text-center">Code</th>
+	                    <th class="text-center">Name</th>
 	                </tr>
 
 	                </thead>
@@ -51,7 +51,6 @@
     			 message: "Alert Dialog",
     			 size : "small"
     		});
-    	});
-    	    		
+    	}); 	    		
     </script>
 </div>
