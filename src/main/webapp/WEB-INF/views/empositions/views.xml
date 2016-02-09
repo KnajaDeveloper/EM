@@ -13,4 +13,7 @@
 <definition extends="default" name="empositions/update">
         <put-attribute name="body" value="/WEB-INF/views/empositions/update.jspx"/>
     </definition>
+<definition extends="default" name="empositions/addPosition">
+        <put-attribute name="body" value="/WEB-INF/views/empositions/addPosition.jspx"/>
+    </definition>
 </tiles-definitions>
