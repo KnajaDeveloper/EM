@@ -51,13 +51,16 @@ privileged aspect EMEmployeeController_Roo_Controller_Json {
     public ResponseEntity<String> EMEmployeeController.createFromJson(@RequestBody String json, UriComponentsBuilder uriBuilder) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
+            //System.out.print("Jsonnnn  :"+json);
         try {
             EMEmployee EMEmployee_ = EMEmployee.fromJsonToEMEmployee(json);
+            //System.out.print("Cheek :   :"+EMEmployee_);
             EMEmployee_.persist();
             RequestMapping a = (RequestMapping) getClass().getAnnotation(RequestMapping.class);
             headers.add("Location",uriBuilder.path(a.value()[0]+"/"+EMEmployee_.getId().toString()).build().toUriString());
             return new ResponseEntity<String>(headers, HttpStatus.CREATED);
         } catch (Exception e) {
+
             return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

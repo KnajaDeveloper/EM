@@ -18,13 +18,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
+import java.util.List;
 
 privileged aspect EMEmployeeController_Custom_Controller {
     
     @RequestMapping(value = "/addEmployee" , produces = "text/html")
     public String EMEmployeeController.addEmployee( Model uiModel) {
+    	List<EMPosition> emposition =  EMPosition.findAllEMPositions();
+    	List<EMTeam> emTeam = EMTeam.findAllEMTeams();
+    	uiModel.addAttribute("listEmpost",emposition);
+    	uiModel.addAttribute("listEmteam",emTeam);
+    	System.out.println("555555555555555 : >> "+emposition);
+    	System.out.println("66666666666666 : >>>>>>>"+emTeam);
             return "ememployees/addEmployee";
         }
-        
     
 }
