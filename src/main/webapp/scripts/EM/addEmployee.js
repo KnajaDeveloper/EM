@@ -62,7 +62,7 @@ $('#btnAdd').click(function(){
 
 		function checkData() {
 			var dataJsonData = {
-				positionCode:$('#txtPositionCode').val()
+				positionCode:$('#empCode').val()
 			}
 
 			var checkdDb = $.ajax({
