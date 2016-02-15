@@ -4,7 +4,7 @@ var DeFail = 0;
 //////////////////////////////////////////////////////////////////////////////////////////////////
 var paggination = Object.create(UtilPaggination);
 $(document).ready(function () {
-    searchData();
+    //searchData();
 });  //-- show--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $('[id^=btnM]').click(function () {
@@ -104,8 +104,8 @@ $("#cancelEdit").click(function () {
 }); //--cancelEdit--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $("#search").click(function () {
-    searchData();
-
+    //searchData();
+    checkIdKey();
     //bootbox.alert("ไม่พบข้อมูล"+searchData()) ;
     //var responseHeader = null;
     //responseHeader = $.ajax({
@@ -369,11 +369,11 @@ function checkCode() {
     }
 }; //--functionCheck a-z --//
 /////////////////////////////////////////////////////////////////////////////////////////////////
-function checkIdKey(i) {
-    var dataJsonData = {
-        teamCode: checkedRows[i]
-
-    }
+function checkIdKey() {
+    //var dataJsonData = {
+    //    teamCode: checkedRows[i]
+    //
+    //}
     $.ajax({
         type: "GET",
         contentType: "application/json; charset=utf-8",
@@ -381,8 +381,8 @@ function checkIdKey(i) {
         headers: {
             Accept: "application/json"
         },
-        url: contextPath + '/ememployees/findcheckIdKey',
-        data: dataJsonData,
+        url: contextPath + '/ememployees/findTeam',
+      ///  data: dataJsonData,
         complete: function (xhr) {
 
         },

@@ -74,7 +74,8 @@ privileged aspect EMTeam_Custom_Jpa_ActiveRecord {
 
             List<EMTeam> emTeams = criteria.list();
             EMTeam emTeam = emTeams.get(0);
-            emTeam.getTeamCode();
+
+            System.out.print( emTeam.getTeamCode());
         }catch (IndexOutOfBoundsException e)
         {
 
