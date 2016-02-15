@@ -41,17 +41,18 @@ privileged aspect EMTeamController_Custom_Controller_Json {
             List<EMTeam> result = EMTeam.findProjectBytypeTeamCode( searchCode,searchName );
             //////
             List<Map<String,String>> list = new ArrayList<>();
-            for(int i=firstResult;i<maxResult + firstResult && i < result.size() ;i++){
-                EMTeam ty = result.get(i);
-                Map<String,String> map = new HashMap<>();
-                map.put("teamCode",ty.getTeamCode());
-                map.put("teamName",ty.getTeamName());
-                list.add(map);
-                System.out.println("Code : "+ty.getTeamCode()+"\nName : "+ty.getTeamName()+"\n==================");
-            }
+//            for(int i=firstResult;i<maxResult + firstResult && i < result.size() ;i++){
+//                EMTeam ty = result.get(i);
+//                Map<String,String> map = new HashMap<>();
+//                map.put("teamCode",ty.getTeamCode());
+//                map.put("teamName",ty.getTeamName());
+//
+//                list.add(map);
+//                System.out.println("Code : "+ty.getTeamCode()+"\nName : "+ty.getTeamName()+"\n==================");
+//            }
 
 
-            return  new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(list), headers, HttpStatus.OK);
+            return  new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(result), headers, HttpStatus.OK);
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
             return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -122,19 +123,7 @@ privileged aspect EMTeamController_Custom_Controller_Json {
         }
     }
 
-    @RequestMapping(value = "/findcheckIdKey",method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
-    public ResponseEntity<String> EMTeamController.findcheckIdKey(
-            @RequestParam(value = "teamCode", required = false) String teamCode) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "application/json;charset=UTF-8");
-        try {
-            List<EMTeam> result = EMTeam.findcheckIdKey(teamCode);
-            return  new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(result), headers, HttpStatus.OK);
-        } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
-            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+
 
 
 

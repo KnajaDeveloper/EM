@@ -35,6 +35,9 @@ privileged aspect EMTeam_Custom_Jpa_ActiveRecord {
         {
             criteria.add(Restrictions.like("teamName",  "%"+teamName+"%"));
         }
+        List<EMTeam> emTeams = criteria.list();
+        EMTeam emTeam = emTeams.get(0);
+        emTeam.getId();
         return criteria.list();
     }
 
@@ -68,6 +71,7 @@ privileged aspect EMTeam_Custom_Jpa_ActiveRecord {
         Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMTeam.class);
         try {
             criteria.add(Restrictions.eq("teamCode", teamCode));
+
             List<EMTeam> emTeams = criteria.list();
             EMTeam emTeam = emTeams.get(0);
             emTeam.getTeamCode();
@@ -81,32 +85,5 @@ privileged aspect EMTeam_Custom_Jpa_ActiveRecord {
         return criteria.list();
     }
 
-    @Transactional
-    public static List<EMTeam> EMTeam.findcheckIdKey(String teamCode) {
-        EntityManager ent = EMTeam.entityManager();
-        Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMTeam.class);
 
-        EntityManager entityManager = EMEmployee.entityManager();
-        Criteria criteria1 = ((Session)entityManager.getDelegate()).createCriteria(EMEmployee.class);
-        try {
-            criteria.add(Restrictions.eq("teamCode", teamCode));
-            List<EMTeam> emTeams = criteria.list();
-            EMTeam emTeam = emTeams.get(0);
-            emTeam.getId();
-            System.out.print(emTeam.getId()+",.>>>>>>>");
-
-
-            criteria1.add(Restrictions.eq("emTeam",emTeam.getId()));
-            List<EMEmployee>emEmployees = criteria1.list();
-            EMEmployee emEmployee = emEmployees.get(0);
-            System.out.print(emEmployee.getEmpCode()+",.>>>>>>>");
-
-
-        }catch (IndexOutOfBoundsException e)
-        {
-            return criteria1.list();
-        }
-
-        return criteria.list();
-    }
 }

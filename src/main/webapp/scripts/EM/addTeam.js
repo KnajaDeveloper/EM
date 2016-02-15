@@ -4,7 +4,7 @@ var DeFail = 0;
 //////////////////////////////////////////////////////////////////////////////////////////////////
 var paggination = Object.create(UtilPaggination);
 $(document).ready(function () {
-    searchData2();
+    searchData();
 });  //-- show--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $('[id^=btnM]').click(function () {
@@ -105,7 +105,8 @@ $("#cancelEdit").click(function () {
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $("#search").click(function () {
     searchData();
-        //bootbox.alert("ไม่พบข้อมูล"+searchData()) ;
+
+    //bootbox.alert("ไม่พบข้อมูล"+searchData()) ;
     //var responseHeader = null;
     //responseHeader = $.ajax({
     //    type: "GET",
@@ -170,8 +171,8 @@ $("#btnDelete").click(function () {
     var i = 0;
     for (i; checkedRows.length > i; i++) {
         //alert(checkedRows[i] + 555555555);
-        checkIdKey(i);
-        //DeleteData(i);
+        //checkIdKey(i);
+        DeleteData(i);
     }
     bootbox.alert(" ลบข้อมูลสำเร็จ : " + DeSuccess + "  ลบข้อมูลไม่สำเร็จ : " + DeFail);
     DeSuccess = 0;
@@ -183,7 +184,9 @@ $("#btnDelete").click(function () {
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $('#data').on("click", "#checkAll", function () {
 
-    $(".check").prop('checked', $(this).prop('checked'));
+
+        $(".check").prop('checked', $(this).prop('checked'));
+    
 
     var id = 1;
     var i = $('#data').find('tr').length;
@@ -237,26 +240,50 @@ paggination.loadTable = function loadTable(jsonData) {
 
     var tableData = "";
     var key = 1;
+    var getval;
     jsonData.forEach(function (value) {
-        tableData = ''
-            + '<tr  style="background-color: #fff">'
-            + '<td class="text-center">'
-            + '<input id="chDelete' + key + '" class="check" type="checkbox" name="checkdDelete" />'
-            + '</td>'
-            + '<td class="text-center">'
-            + '<button id="btnEdit' + key + '" type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalEdit" data-backdrop="static" ><span name="editClick" class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>'
-            + '</td>'
-            + '<td id="tdTeamCode' + key + '" class="text-center" style="color: #000">'
-            + value.teamCode
-            + '</td>'
-            + '<td id="tdTeamName' + key++ + '" class="text-center" style="color: #000">'
-            + value.teamName
-            + '</td>'
-            + '</tr>';
-        $('#ResualtSearch').append(
-            tableData
-        );
+        if (value.id == 209) {
+            tableData = ''
+
+                + '<tr  style="background-color: #fff">'
+                + '<td class="text-center">'
+                + '<input id="chDelete' + key + '" class="check" type="checkbox" name="checkdDelete" disabled="true" />'
+                + '</td>'
+                + '<td class="text-center">'
+                + '<button id="btnEdit' + key + '" type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalEdit" data-backdrop="static" ><span name="editClick" class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>'
+                + '</td>'
+                + '<td id="tdTeamCode' + key + '" class="text-center" style="color: #000">'
+                + value.teamCode
+                + '</td>'
+                + '<td id="tdTeamName' + key++ + '" class="text-center" style="color: #000">'
+                + value.teamName
+                + '</td>'
+                + '</tr>';
+            $('#ResualtSearch').append(tableData
+            );
+        } else {
+            tableData = ''
+
+                + '<tr  style="background-color: #fff">'
+                + '<td class="text-center">'
+                + '<input id="chDelete' + key + '" class="check" type="checkbox" name="checkdDelete"  />'
+                + '</td>'
+                + '<td class="text-center">'
+                + '<button id="btnEdit' + key + '" type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalEdit" data-backdrop="static" ><span name="editClick" class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>'
+                + '</td>'
+                + '<td id="tdTeamCode' + key + '" class="text-center" style="color: #000">'
+                + value.teamCode
+                + '</td>'
+                + '<td id="tdTeamName' + key++ + '" class="text-center" style="color: #000">'
+                + value.teamName
+                + '</td>'
+                + '</tr>';
+            $('#ResualtSearch').append(
+                tableData
+            );
+        }
     });
+
 };
 function searchData() {
 
@@ -354,7 +381,7 @@ function checkIdKey(i) {
         headers: {
             Accept: "application/json"
         },
-        url: contextPath + '/emteams/findcheckIdKey',
+        url: contextPath + '/ememployees/findcheckIdKey',
         data: dataJsonData,
         complete: function (xhr) {
 
