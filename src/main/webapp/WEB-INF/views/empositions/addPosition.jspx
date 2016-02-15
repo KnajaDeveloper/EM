@@ -1,4 +1,4 @@
-`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" xmlns:component="urn:jsptagdir:/WEB-INF/tags/component" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
@@ -44,7 +44,6 @@
                         <button id="btnAdd" type="button" class="btn btn-primary" data-toggle="modal" data-target="#add" data-backdrop="static">เพิ่ม</button>
                     </div>
                     <div class="col-xs-4">
-                        <button id="btnEdit" type="button" class="btn btn-danger">ลบที่เลือก</button>
                         <button id="btnDelete" type="button" class="btn btn-danger">ลบที่เลือก</button>
                     </div>
                 </div>
@@ -61,23 +60,18 @@
                             <div class="form-group">
                                 <label class="control-label col-sm-3 required">รหัสตำแหน่ง</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="txtPositionCode" data-content="กรุณากรอกข้อมูลรหัสตำแหน่ง" data-placement="bottom" />
                                     <input type="text" class="form-control" id="txtPositionCode" data-placement="bottom" placeholder="รหัสตำแหน่ง" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-sm-3 required">ชื่อตำแหน่ง</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="txtPositionName" data-content="กรุณากรอกข้อมูลชื่อตำแหน่ง" data-placement="bottom" />
                                     <input type="text" class="form-control" id="txtPositionName" data-content="กรุณากรอกข้อมูลชื่อตำแหน่ง" data-placement="bottom" placeholder="ชื่อตำแหน่ง" />
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button id="btnAdd" type="button" class="btn btn-primary">ตกลง</button>
-                        <button id="btnNext" type="button" class="btn btn-primary">ถัดไป</button>
-                        <button id="btnCancel" type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
                         <button id="btnMAdd" type="button" class="btn btn-primary">ตกลง</button>
                         <button id="btnMNext" type="button" class="btn btn-primary">ถัดไป</button>
                         <button id="btnMCancel" type="button" class="btn btn-danger">ยกเลิก</button>
@@ -90,23 +84,6 @@
         <form class="form-horizontal">
             <div class="form-group">
                 <div id="penaltyTableContainer" class="table-responsive">
-                    <table id="Table" class="table table-condensed">
-                        <thead>
-                            <tr class="bg-info">
-                                <th><input type="checkbox" name="checkdDelete" /></th>
-                                <th>แก้ไข</th>
-                                <th>รหัสตำแหน่ง</th>
-                                <th>ชื่อตำแหน่ง</th>
-                            </tr>
-                        </thead>
-                        <tbody id="ResualtSearch" style="cursor:pointer">
-                            <!-- <tr>
-                                <td><input type="checkbox" name="checkdDelete" /></td>
-                                <td><button type="button" class="btn btn-default" data-dismiss="modal">แก้ไข</button></td>
-                                <td>001</td>
-                                <td>ทีมธงชัย</td>
-                            </tr> -->
-                        </tbody>
                     <table id="Table" class="table table-hover">
                         <thead>
                             <tr class="info">
