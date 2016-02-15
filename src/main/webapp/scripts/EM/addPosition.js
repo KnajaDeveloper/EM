@@ -262,4 +262,5 @@ function checkData() {
 	});
 
     chkDb = jQuery.parseJSON(checkdDb.responseText);
+    
 }
