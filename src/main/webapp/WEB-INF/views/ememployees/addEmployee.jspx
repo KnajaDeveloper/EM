@@ -13,7 +13,7 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label required">รหัสพนักงาน</label>
 							<div class="col-sm-2">
-								<input type="" class="form-control" id="empCode" data-content="กรุณากรอกข้อมูลรหัสพนักงาน" data-placement="bottom" 
+								<input type="" class="form-control" id="empCode" onblur="checkempCode()" data-content="กรุณากรอกข้อมูลรหัสพนักงาน" data-placement="bottom" 
 								placeholder="รหัสพนักงาน"/>
 							</div>
 							<label class="col-sm-3 control-label required" >ชื่อเล่น</label>
@@ -38,17 +38,19 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label required">ตำแหน่ง</label>
 							<div class="col-sm-3">
-								<select class="form-control" id ="emPosition" ><jsp:text/>
-									<c:forEach var="emposition" items="${listEmpost}">
-									<option value="${emposition.id}${LABEL_DELIMETER}${emposition.version}">
-										${emposition.positionName}
-									</option>                                             
-								</c:forEach>
+							<select class="form-control" id ="emPosition"  ><jsp:text/>
+									<option value="0">เลือกตำแหน่ง</option>
+									<c:forEach var="emposition" items="${listEmpost}"> 
+								 <option value="${emposition.id}${LABEL_DELIMETER}${emposition.version}"> 
+									 ${emposition.positionName} 
+								 </option>                                            
+								</c:forEach> 
 							</select>
 						</div>
 						<label class="col-sm-2 control-label required">ทีม</label>
 						<div class="col-sm-3">
-							<select class="form-control" id="emTeam"><jsp:text/>
+							<select class="form-control" id="emTeam"><jsp:text/>	
+								<option value="0">เลือกทีม</option>
 								<c:forEach var="emTeam" items="${listEmteam}">
 								<option value="${emTeam.id}${LABEL_DELIMETER}${emTeam.version}" >
 									${emTeam.teamName}
@@ -60,14 +62,14 @@
 				<div class="form-group">
 					<label class="col-sm-2 control-label required">อีเมล</label>
 					<div class="col-sm-3">
-						<input type="" class="form-control" id="email" data-content="กรุณากรอกข้อมูลนามสกุล" data-placement="bottom" 
+						<input type="" class="form-control" id="email"  onblur="checkEmail()" data-content="กรุณากรอกข้อมูลนามสกุล" data-placement="bottom" 
 						placeholder="อีเมล"/>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label required">ชื่อผู้ใช้งาน</label>
 					<div class="col-sm-3">
-						<input type="" class="form-control" id="userName" data-content="กรุณากรอกชื่อผู้ใช้" data-placement="bottom"
+						<input type="" class="form-control" id="userName"  onblur="checkUserName()" data-content="กรุณากรอกชื่อผู้ใช้" data-placement="bottom"
 						placeholder="ชื่อผู้ใช้"/>
 					</div>
 				</div>
@@ -86,30 +88,6 @@
 					<div class="col-md-12 col-md-offset-5">
 						 <button id="btnAdd" type="button" data-target="#add" class="btn btn-primary ">ตกลง
 					</button> 
-					<!-- Modal content-->
-					<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">ตกลง</button> -->
-			<!-- 		<div class="modal fade " id="add" tabindex="-1" role="dialog" >
-						<div class="modal-dialog modal-sm">
-							<div class="modal-content">
-							<div class="modal-header bg-primary">
-												<h4 class="modal-title">สมัครสมาชิก</h4>
-											</div>
-											<div class="modal-body">
-												<form class="form-horizontal">
-													<div class="form-group">	
-														<label class="control-label col-xs-7 ">สมัครสมาชิกเรียบร้อยแล้ว</label>						
-													</div>
-													 <div class="form-group">
-														<label class="control-label col-xs-7 ">ไม่สามารถสมัครสมาชิกได้</label>										
-													</div> 
-												</form>
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-danger" data-dismiss="modal" id="cancelAdd">ตกลง</button>				
-											</div>
-							</div>
-						</div>
-					</div> -->
 				</div>
 			</div>
 		</form>
@@ -122,6 +100,4 @@ var contextPath = '${pageContext.request.contextPath}';
 </script>
 <spring:url value="/resources/scripts/EM/addEmployee.js" var="addEmployee" />
 <script src="${addEmployee}" type="text/javascript"><!--Not Empty --></script>
-
-
 </div>

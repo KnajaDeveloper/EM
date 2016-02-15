@@ -28,9 +28,9 @@ privileged aspect EMEmployeeController_Custom_Controller {
     	List<EMTeam> emTeam = EMTeam.findAllEMTeams();
     	uiModel.addAttribute("listEmpost",emposition);
     	uiModel.addAttribute("listEmteam",emTeam);
-    	System.out.println("555555555555555 : >> "+emposition);
-    	System.out.println("66666666666666 : >>>>>>>"+emTeam);
-            return "ememployees/addEmployee";
+    	//System.out.println("emposition : >>>>> "+emposition);
+    	//System.out.println("emTeam : >>>>>>>"+emTeam);
+        return "ememployees/addEmployee";
         }
     
 }
