@@ -1,166 +1,169 @@
-<div xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
-	<jsp:directive.page contentType="text/html;charset=UTF-8" />
-	<jsp:output omit-xml-declaration="yes" />
-
-	
-	<div class="row">
-		<div class="panel panel-primary">
-			<div class="panel-heading">ค้นหาทีม</div>
-			<div class="panel-body">
-				<br/>
-				<div class="col-xs-12">
-					<form class="form-horizontal">
-						<div class="form-group col-xs-6">
-							<label class="control-label col-xs-3">รหัสทีม</label>
-							<div class="col-xs-8">
-								<input type="text" class="form-control" id="positionCode" />
-							</div>
-						</div>
-						<div class="form-group col-xs-6">
-							<label class="control-label col-xs-2">ชื่อทีม</label>
-							<div class="col-xs-8">
-								<input type="text" class="form-control" id="positionName" />
-							</div>
-						</div>
-					</form>
-				</div>
-				<br/>
-				<br/>
-				<br/>
-				<div class="col-xs-8">
-					<div class="col-xs-offset-8 col-xs-2">
-						<button type="button" class="btn btn-primary">ค้นหา</button>
-					</div>
-				</div>
-				<br/>
-				<br/>
-			</div>
-		</div>
-	</div>
-
-	<div>
-		<div class="row" >
-			<div class=" col-sm-12">
-				<form class="form-inline">
-					<div class="form-group">
-						<div class=" col-sm-4">
-						<button type="add" class="btn btn-success"  data-toggle="modal" data-target="#modalAdd">เพิ่ม</button>
-					</div>
-					<div class=" col-sm-4">
-						<button type="delete" class="btn btn-danger">ลบที่เลือก</button>
-					</div>
-						
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+<div xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"
+     xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:component="urn:jsptagdir:/WEB-INF/tags/component" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
 
 
-	<form class="form-horizontal">
-		<div class="form-group">
-			<table class="table table-bordered">
-				<tdead>
-					<tr>
-						<td><input  class="check"  type="checkbox" id="checkAll"/></td>
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">ค้นหาทีม</div>
+            <div class="panel-body">
+                <br/>
+                <div class="col-xs-12">
+                    <form class="form-horizontal">
+                        <div class="form-group col-xs-6">
+                            <label class="control-label col-xs-3">รหัสทีม</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control" Name="searchCode" placeholder="รหัสทีม"/>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label class="control-label col-xs-2">ชื่อทีม</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control" Name="searchName" placeholder="ชื่อทีม"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <br/>
+                <br/>
+                <br/>
+                <div class="col-xs-8">
+                    <div class="col-xs-offset-8 col-xs-2">
+                        <button type="button" class="btn btn-primary" id="search">ค้นหา</button>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+            </div>
+        </div>
+    </div>
 
-						<td>แก้ไข</td>
-						<td>รหัสทีม</td>
-						<td>ชื่อทีม</td>
-					</tr>
-				</tdead>
-				<tbody>
-					<tr>
-						<td><input type="checkbox" class="check" name ="checkDelete"  value=""/></td>
-						<td><button type="button"  class="btn btn-default" data-toggle="modal" data-target="#edit">แก้ไข</button></td>
-						<td>1</td>
-						<td>a</td>
-					</tr>
-				</tbody>
-				
-			</table>
-		</div>
-	</form>
+    <div>
+        <div class="row">
+            <div class=" col-sm-12">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <div class=" col-sm-4">
+                            <button type="button" class="btn btn-primary" data-toggle ="modal" data-target="#ModalAdd"
+                                    data-backdrop="static">เพิ่ม
+                            </button>
+                        </div>
+                        <div class=" col-sm-4">
+                            <button id="btnDelete" type="button" class="btn btn-danger">ลบที่เลือก</button>
+                        </div>
 
-	<!-- Modal Add -->
-	<div class="modal fade" id="modalAdd" role="dialog">
-		<div class="modal-dialog ">
-
-			<!-- Modal content-->
-			<div class="modal-content " >
-				<div class="modal-header bg-primary">
-					<h4 class="modal-title">เพิ่มทีม</h4>
-				</div>
-				<div class="modal-body">
-					<form class="form-horizontal">
-						<div class="form-group">
-							<label class="control-label col-xs-2 required">รหัสทีม </label>
-							<div class="col-xs-8">
-								<input type="text" class="form-control" id="positionCode" />
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="control-label col-xs-2 required">ชื่อทีม </label>
-							<div class="col-xs-8">
-								<input type="text" class="form-control" id="positionCode" />
-							</div>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" id="saveAdd">บันทึก</button>
-					<button type="button" class="btn btn-danger" data-dismiss="modal" id="cancelAdd">ยกเลิก</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Modal Add -->
-	<div class="modal fade" id="edit" role="dialog">
-		<div class="modal-dialog ">
-
-			<!-- Modal content-->
-			<div class="modal-content " >
-				<div class="modal-header bg-primary">
-					<h4 class="modal-title">แก้ไข</h4>
-				</div>
-				<div class="modal-body">
-					<form class="form-horizontal">
-						<div class="form-group">
-							<label class="control-label col-xs-2 required">รหัสทีม </label>
-							<div class="col-xs-8">
-								<input type="text" class="form-control" id="positionCode" />
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="control-label col-xs-2 required">ชื่อทีม </label>
-							<div class="col-xs-8">
-								<input type="text" class="form-control" id="positionCode" />
-							</div>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" id="saveAdd">บันทึก</button>
-					<button type="button" class="btn btn-danger" data-dismiss="modal" id="cancelAdd">ยกเลิก</button>
-				</div>
-			</div>
-		</div>
-	</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
+    <form class="form-horizontal">
+        <div class="form-group">
+            <table id="data" class="table table-hover">
+                <tdead>
+                    <tr class="info">
+                        <th class="text-center"><input class="check" type="checkbox" id="checkAll"/></th>
+
+                        <th class="text-center" style="color:#000">แก้ไข</th>
+                        <th class="text-center" style="color:#000">รหัสทีม</th>
+                        <th class="text-center" style="color:#000">ชื่อทีม</th>
+                    </tr>
+                </tdead>
+                <tbody id="ResualtSearch" style="cursor:pointer"></tbody>
+            </table>
+        </div>
+
+        <div class="form-horizontal">
+            <div class="form-group">
+                <component:pagging id="paggingSimple"/>
+            </div>
+        </div>
+    </form>
+
+    <!-- Modal Add -->
+    <div class="modal fade" id="ModalAdd" role="dialog">
+        <div class="modal-dialog ">
+
+            <!-- Modal content-->
+            <div class="modal-content ">
+                <div class="modal-header bg-primary">
+                    <h4 class="modal-title">เพิ่มทีม</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="formAdd" Type="POST" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-xs-2 required">รหัสทีม </label>
+                            <div class="col-xs-8">
+                                <input name="add" type="text" class="form-control" data-placement="bottom"
+                                       data-content="กรุณากรอกข้อมูล" id="teamCode" placeholder="รหัสทีม" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-2 required">ชื่อทีม </label>
+                            <div class="col-xs-8">
+                                <input name="add" type="text" class="form-control" id="teamName" data-placement="bottom"
+                                       data-content="กรุณากรอกข้อมูล" placeholder="ชื่อทีม"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnMsave">บันทึก</button>
+                    <button type="button" class="btn btn-primary" id="btnMnext">ถัดไป</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="cancelAdd">ยกเลิก</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Edit -->
+    <div class="modal fade" id="ModalEdit" role="dialog">
+        <div class="modal-dialog ">
+
+            <!-- Modal content-->
+            <div class="modal-content ">
+                <div class="modal-header bg-primary">
+                    <h4 class="modal-title">แก้ไข</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-xs-2 ">รหัสทีม </label>
+                            <div class="col-xs-8">
+                                <input id="editCode" type="text" class="form-control" name="editText" disabled="true"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-xs-2 required">ชื่อทีม </label>
+                            <div class="col-xs-8">
+                                <input id="editName" type="text" class="form-control" name="editText"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="saveEdit">บันทึก</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="cancelEdit">ยกเลิก</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-	<script type="text/javascript">
-	$("#checkAll").click(function(){
 
-		 $(".check").prop('checked', $(this).prop('checked'));
-	});
+    <spring:url value="/resources/scripts/component/UtilPagination.js" var="UtilPagination"/>
+    <script src="${UtilPagination}" type="text/javascript"><!--Not Empty --></script>
 
+    <script>
+        var contextPath = '${pageContext.request.contextPath}';
+    </script>
 
-	</script>
-
+    <spring:url value="/resources/scripts/EM/addTeam.js" var="addTeam"/>
+    <script src="${addTeam}" type="text/javascript"><!--Not Empty --></script>
 
 </div>
