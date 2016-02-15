@@ -41,7 +41,7 @@
 							<select class="form-control" id ="emPosition"  ><jsp:text/>
 									<option value="0">เลือกตำแหน่ง</option>
 									<c:forEach var="emposition" items="${listEmpost}"> 
-								 <option value="${emposition.id}${LABEL_DELIMETER}${emposition.version}"> 
+								 <option value="${emposition.emPosition}${LABEL_DELIMETER}${emposition.version}"> 
 									 ${emposition.positionName} 
 								 </option>                                            
 								</c:forEach> 
