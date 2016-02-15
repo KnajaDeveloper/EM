@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" xmlns:component="urn:jsptagdir:/WEB-INF/tags/component" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <div class="row">
@@ -12,13 +12,13 @@
                         <div class="form-group col-xs-6">
                             <label class="control-label col-xs-3">รหัสตำแหน่ง</label>
                             <div class="col-xs-8">
-                                <input type="text" class="form-control" id="positionCode" />
+                                <input type="text" class="form-control" id="sPositionCode" placeholder="รหัสตำแหน่ง" />
                             </div>
                         </div>
                         <div class="form-group col-xs-6">
                             <label class="control-label col-xs-2">ชื่อตำแหน่ง</label>
                             <div class="col-xs-8">
-                                <input type="text" class="form-control" id="positionName" />
+                                <input type="text" class="form-control" id="sPositionName" placeholder="ชื่อตำแหน่ง"/>
                             </div>
                         </div>
                     </form>
@@ -28,7 +28,7 @@
                 <br/>
                 <div class="col-xs-8">
                     <div class="col-xs-offset-8 col-xs-2">
-                        <button type="button" class="btn btn-primary">ค้นหา</button>
+                        <button id="btnSearch" type="button" class="btn btn-primary">ค้นหา</button>
                     </div>
                 </div>
                 <br/>
@@ -41,10 +41,11 @@
             <form class="form-inline">
                 <div class="form-group">
                     <div class="col-xs-4">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">เพิ่ม</button>
+                        <button id="btnAdd" type="button" class="btn btn-primary" data-toggle="modal" data-target="#add" data-backdrop="static">เพิ่ม</button>
                     </div>
                     <div class="col-xs-4">
                         <button id="btnEdit" type="button" class="btn btn-danger">ลบที่เลือก</button>
+                        <button id="btnDelete" type="button" class="btn btn-danger">ลบที่เลือก</button>
                     </div>
                 </div>
             </form>
@@ -61,12 +62,14 @@
                                 <label class="control-label col-sm-3 required">รหัสตำแหน่ง</label>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" id="txtPositionCode" data-content="กรุณากรอกข้อมูลรหัสตำแหน่ง" data-placement="bottom" />
+                                    <input type="text" class="form-control" id="txtPositionCode" data-placement="bottom" placeholder="รหัสตำแหน่ง" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-sm-3 required">ชื่อตำแหน่ง</label>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" id="txtPositionName" data-content="กรุณากรอกข้อมูลชื่อตำแหน่ง" data-placement="bottom" />
+                                    <input type="text" class="form-control" id="txtPositionName" data-content="กรุณากรอกข้อมูลชื่อตำแหน่ง" data-placement="bottom" placeholder="ชื่อตำแหน่ง" />
                                 </div>
                             </div>
                         </form>
@@ -75,6 +78,9 @@
                         <button id="btnAdd" type="button" class="btn btn-primary">ตกลง</button>
                         <button id="btnNext" type="button" class="btn btn-primary">ถัดไป</button>
                         <button id="btnCancel" type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
+                        <button id="btnMAdd" type="button" class="btn btn-primary">ตกลง</button>
+                        <button id="btnMNext" type="button" class="btn btn-primary">ถัดไป</button>
+                        <button id="btnMCancel" type="button" class="btn btn-danger">ยกเลิก</button>
                     </div>
                 </div>
             </div>
@@ -101,6 +107,18 @@
                                 <td>ทีมธงชัย</td>
                             </tr> -->
                         </tbody>
+                    <table id="Table" class="table table-hover">
+                        <thead>
+                            <tr class="info">
+                                <th class="text-center">
+                                    <input id="checkboxAll" type="checkbox" name="checkdDelete" />
+                                </th>
+                                <th class="text-center" style="color: #000">แก้ไข</th>
+                                <th class="text-center" style="color: #000">รหัสตำแหน่ง</th>
+                                <th class="text-center" style="color: #000">ชื่อตำแหน่ง</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ResualtSearch" style="cursor:pointer"></tbody>
                     </table>
                 </div>
             </div>
@@ -110,6 +128,16 @@
     <script>
         var contextPath = '${pageContext.request.contextPath}';
     </script>
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            <component:pagging id="paggingSimple"/>
+        </div>
+    </div>
+
+    <spring:url value="/resources/scripts/component/UtilPagination.js" var="UtilPagination"/>
+    <script src="${UtilPagination}" type="text/javascript"><!--Not Empty --></script>
+
     <spring:url value="/resources/scripts/EM/addPosition.js" var="addPosition" />
     <script src="${addPosition}" type="text/javascript"><!--Not Empty --></script>
 </div>
