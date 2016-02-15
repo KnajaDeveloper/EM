@@ -36,7 +36,7 @@ paggination.loadTable = function loadTable (jsonData) {
 
 function searchData(){
   var dataJsonData = {
-    
+
     }
 
     paggination.setOptionJsonData({
