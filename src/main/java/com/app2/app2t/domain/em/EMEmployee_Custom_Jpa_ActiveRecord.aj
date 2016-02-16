@@ -34,15 +34,5 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
             System.out.print( e );
             return criteria.list();
         }
-        return criteria.list();
-
-    }
-
-
-
-
-    
-
-    
     
 }
