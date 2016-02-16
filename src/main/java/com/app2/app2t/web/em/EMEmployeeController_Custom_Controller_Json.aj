@@ -4,21 +4,18 @@
 package com.app2.app2t.web.em;
 
 import com.app2.app2t.domain.em.EMEmployee;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-
-import com.app2.app2t.domain.em.EMEmployee;
-import com.app2.app2t.web.em.EMEmployeeController;
-
+import flexjson.JSONSerializer;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.util.UriComponentsBuilder;
-import flexjson.JSONSerializer;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 privileged aspect EMEmployeeController_Custom_Controller_Json {
 
     @RequestMapping(value = "/findProjectByemPosition", method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json" )
@@ -48,22 +45,22 @@ privileged aspect EMEmployeeController_Custom_Controller_Json {
     }
     @RequestMapping(value = "/findProjectByemTeam", method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json" )
     public ResponseEntity<String> EMEmployeeController.findProjectByemTeam(
-            @RequestParam(value = "empCode", required = false) String empCode
+            @RequestParam(value = "emTeam", required = false) long emTeam
     ) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json;charset=UTF-8" );
         try {
-            List<EMEmployee> result = EMEmployee.findProjectByemTeam(empCode);
+            List<EMEmployee> result = EMEmployee.findProjectByemTeam(emTeam);
             List<Map<String, String>> list = new ArrayList<>();
             for (int i = 0; i < result.size(); i++) {
                 EMEmployee ty = result.get(i);
                 Map<String, String> map = new HashMap<>();
                 map.put("code", ty.getEmTeam().getTeamCode());
                 list.add(map);
-                //System.out.println("Code : "+ty.getEmPosition().getPositionCode()+"\n==================");
-            }
+                System.out.println("Code : " + ty.getEmPosition().getPositionCode() + "\n++++++++++++++++++++++++++" );
 
-            return new ResponseEntity<String>(new JSONSerializer().exclude("*.class" ).deepSerialize(list), headers, HttpStatus.OK);
+            }
+            return new ResponseEntity<String>(new JSONSerializer().exclude("*.class" ).deepSerialize(result), headers, HttpStatus.OK);
 
 
         } catch (Exception e) {
@@ -71,5 +68,7 @@ privileged aspect EMEmployeeController_Custom_Controller_Json {
             return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }
     

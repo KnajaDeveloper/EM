@@ -2,15 +2,13 @@
 // You may push code into the target .java compilation unit if you wish to edit any member(s).
 
 package com.app2.app2t.domain.em;
-import com.app2.app2t.domain.em.EMEmployee;
-import java.util.List;
-import org.springframework.transaction.annotation.Transactional;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import javax.persistence.EntityManager;
+import java.util.List;
 
 privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
     public static List<EMEmployee> EMEmployee.findProjectByemPosition(String empCode) {
@@ -21,16 +19,26 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
         return criteria.list();
 
     }
-    public static List<EMEmployee> EMEmployee.findProjectByemTeam(String empCode) {
+    public static List<EMEmployee> EMEmployee.findProjectByemTeam(Long emTeam) {
         EntityManager ent = EMEmployee.entityManager();
-        Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class);
-        criteria.add(Restrictions.like("empCode", "%"+empCode+"%"));
-        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class,"emEmployee");
+        criteria.createAlias("emEmployee.emTeam","emTeam");
+        try {
+
+            criteria.add(Restrictions.eq("emTeam.id", emTeam));
+//            List<EMEmployee> emEmployees = criteria.list();
+//            EMEmployee emEmployee = emEmployees.get(0);
+//            System.out.print( emEmployee.getPassword());
+        } catch (IndexOutOfBoundsException e)
+        {
+            System.out.print( e );
+            return criteria.list();
+        }
         return criteria.list();
 
     }
 
-    
+
 
 
     

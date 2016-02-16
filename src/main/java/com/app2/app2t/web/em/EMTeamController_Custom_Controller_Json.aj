@@ -35,21 +35,21 @@ privileged aspect EMTeamController_Custom_Controller_Json {
             ) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json;charset=UTF-8");
-        System.out.println(searchCode + "+++"+searchName);
+//        System.out.println(searchCode + "+++"+searchName);
         try {
 
             List<EMTeam> result = EMTeam.findProjectBytypeTeamCode( searchCode,searchName );
             //////
             List<Map<String,String>> list = new ArrayList<>();
-//            for(int i=firstResult;i<maxResult + firstResult && i < result.size() ;i++){
-//                EMTeam ty = result.get(i);
-//                Map<String,String> map = new HashMap<>();
-//                map.put("teamCode",ty.getTeamCode());
-//                map.put("teamName",ty.getTeamName());
-//
-//                list.add(map);
-//                System.out.println("Code : "+ty.getTeamCode()+"\nName : "+ty.getTeamName()+"\n==================");
-//            }
+            for(int i=firstResult;i<maxResult + firstResult && i < result.size() ;i++){
+                EMTeam ty = result.get(i);
+                Map<String,String> map = new HashMap<>();
+                map.put("teamCode",ty.getTeamCode());
+                map.put("teamName",ty.getTeamName());
+
+                list.add(map);
+                System.out.println("Code : "+ty.getTeamCode()+"\nName : "+ty.getTeamName()+"\n==================");
+            }
 
 
             return  new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(result), headers, HttpStatus.OK);
