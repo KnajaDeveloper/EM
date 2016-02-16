@@ -2,6 +2,7 @@
 // You may push code into the target .java compilation unit if you wish to edit any member(s).
 
 package com.app2.app2t.domain.em;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -18,27 +19,27 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
         return criteria.list();
 
     }
-    public static List<EMEmployee> EMEmployee.findProjectByemTeam(String empCode) {
+    public static List<EMEmployee> EMEmployee.findProjectByemTeam(Long emTeam) {
         EntityManager ent = EMEmployee.entityManager();
-        Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class);
-        criteria.add(Restrictions.like("empCode", "%"+empCode+"%"));
-        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class,"emEmployee");
+        criteria.createAlias("emEmployee.emTeam","emTeam");
+        try {
+
+            criteria.add(Restrictions.eq("emTeam.id", emTeam));
+//            List<EMEmployee> emEmployees = criteria.list();
+//            EMEmployee emEmployee = emEmployees.get(0);
+//            System.out.print( emEmployee.getPassword());
+        } catch (IndexOutOfBoundsException e)
+        {
+            System.out.print( e );
+            return criteria.list();
+        }
         return criteria.list();
 
     }
 
 
-    public static List<EMEmployee> EMEmployee.findTeam(String empCode) {
-        EntityManager ent = EMEmployee.entityManager();
-        Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class);
-        criteria.add(Restrictions.eq("empCode", empCode));
-        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-        List<EMEmployee> emEmployees = criteria.list();
-        EMEmployee emEmployee = emEmployees.get(0);
-        emEmployee.getEmTeam();
-        return criteria.list();
 
-    }
 
     
 

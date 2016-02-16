@@ -1,10 +1,12 @@
 var checkedRows = [];
 var DeSuccess = 0;
 var DeFail = 0;
+//var checkBoxDisable = [] ;
+var json=[];
 //////////////////////////////////////////////////////////////////////////////////////////////////
 var paggination = Object.create(UtilPaggination);
 $(document).ready(function () {
-    //searchData();
+
 });  //-- show--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $('[id^=btnM]').click(function () {
@@ -104,8 +106,33 @@ $("#cancelEdit").click(function () {
 }); //--cancelEdit--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $("#search").click(function () {
-    //searchData();
-    checkIdKey();
+
+    searchData();
+    if( json.length <= 0)
+    {
+        bootbox.alert("ไม่พบข็อมูล");
+    }
+   // var a = null;
+   //a= $.ajax({
+   //     type: "GET",
+   //     contentType: "application/json; charset=utf-8",
+   //     dataType: "json",
+   //     headers: {
+   //         Accept: "application/json"
+   //     },
+   //     url: contextPath + '/ememployees/findProjectByemTeam',
+   //     //  data: dataJsonData,
+   //     complete: function (xhr) {
+   //
+   //     },
+   //     async: false
+   // });
+   // var res =jQuery.parseJSON(a.responseText);
+   // console.log(res);
+   // for (var i = 0; res.size > i ; i++)
+   // {
+   //     console.log();
+   // }
     //bootbox.alert("ไม่พบข้อมูล"+searchData()) ;
     //var responseHeader = null;
     //responseHeader = $.ajax({
@@ -231,7 +258,7 @@ $("#saveEdit").click(function () {
 //////////////////////////////////////////////////////////////////////////////////////////////////
 paggination.setEventPaggingBtn("paggingSimple", paggination);
 paggination.loadTable = function loadTable(jsonData) {
-
+    json = jsonData;
     if (jsonData.length <= 0) {
 
     }
@@ -240,9 +267,10 @@ paggination.loadTable = function loadTable(jsonData) {
 
     var tableData = "";
     var key = 1;
-    var getval;
+
     jsonData.forEach(function (value) {
-        if (value.id == 209) {
+        checkIdKey(value.id);
+        if (checkBoxDisable != "" ) {
             tableData = ''
 
                 + '<tr  style="background-color: #fff">'
@@ -369,23 +397,27 @@ function checkCode() {
     }
 }; //--functionCheck a-z --//
 /////////////////////////////////////////////////////////////////////////////////////////////////
-function checkIdKey() {
-    //var dataJsonData = {
-    //    teamCode: checkedRows[i]
-    //
-    //}
-    $.ajax({
+function checkIdKey(emTeam) {
+    var responseResult = null;
+    var dataJsonData = {
+        emTeam : emTeam
+
+    }
+    responseResult = $.ajax({
         type: "GET",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         headers: {
             Accept: "application/json"
         },
-        url: contextPath + '/ememployees/findTeam',
-      ///  data: dataJsonData,
+        url: contextPath + '/ememployees/findProjectByemTeam',
+        data: dataJsonData,
         complete: function (xhr) {
 
         },
         async: false
     });
-} //----//
+    checkBoxDisable = jQuery.parseJSON(responseResult.responseText);
+    console.log(checkBoxDisable);
+
+} //--functionCheckID--//
