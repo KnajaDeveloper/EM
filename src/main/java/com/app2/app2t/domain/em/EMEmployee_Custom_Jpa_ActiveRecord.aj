@@ -21,7 +21,6 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
     }
     public static List<EMEmployee> EMEmployee.findProjectByemTeam(Long emTeam) {
         EntityManager ent = EMEmployee.entityManager();
-<<<<<<< 047438276729cc2411db911c3fd3b945024d4a73
         Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class,"emEmployee");
         criteria.createAlias("emEmployee.emTeam","emTeam");
         try {
@@ -35,21 +34,5 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
             System.out.print( e );
             return criteria.list();
         }
-=======
-        Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class);
-        criteria.add(Restrictions.like("empCode", "%"+empCode+"%"));
-       // criteria.add(Restrictions.eq("empCode", empCode));
-        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
->>>>>>> Emm Game
-        return criteria.list();
-
-    }
-
-
-
-
-    
-
-    
     
 }
