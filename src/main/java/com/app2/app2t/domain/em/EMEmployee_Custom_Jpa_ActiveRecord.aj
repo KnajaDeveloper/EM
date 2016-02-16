@@ -21,18 +21,18 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
     }
     public static List<EMEmployee> EMEmployee.findProjectByemTeam(Long emTeam) {
         EntityManager ent = EMEmployee.entityManager();
-        Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class,"emEmployee");
-        criteria.createAlias("emEmployee.emTeam","emTeam");
+        Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class, "emEmployee");
+        criteria.createAlias("emEmployee.emTeam", "emTeam");
         try {
 
             criteria.add(Restrictions.eq("emTeam.id", emTeam));
 //            List<EMEmployee> emEmployees = criteria.list();
 //            EMEmployee emEmployee = emEmployees.get(0);
 //            System.out.print( emEmployee.getPassword());
-        } catch (IndexOutOfBoundsException e)
-        {
-            System.out.print( e );
+        } catch (IndexOutOfBoundsException e) {
+            System.out.print(e);
             return criteria.list();
         }
-    
+        return criteria.list();
+    }
 }
