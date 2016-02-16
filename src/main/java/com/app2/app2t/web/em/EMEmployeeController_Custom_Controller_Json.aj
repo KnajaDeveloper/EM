@@ -69,6 +69,21 @@ privileged aspect EMEmployeeController_Custom_Controller_Json {
         }
     }
 
+    @RequestMapping(value = "/findProjectByempCode",method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
+    public ResponseEntity<String> EMEmployeeController.findProjectByempCode(
+        @RequestParam(value = "empCode", required = false) String empCode
+    ) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json;charset=UTF-8");
+        try {
+            List<EMEmployee> result = EMEmployee.findProjectByempCode(empCode);
+            return  new ResponseEntity<String>(result.size() + "", headers, HttpStatus.OK);
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     
 }

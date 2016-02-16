@@ -26,6 +26,7 @@ $('#btnAdd').click(function(){
 	}else if($('#password').val().length < 8){
 		bootbox.alert("กรุณากรอกรหัสผ่านอย่างน้อย 8 ตัวอักษร");
 	}else{
+
 	var ememployees = {
 		empCode : $("#empCode").val() ,
 		empNickName : $("#empNickName").val() ,
@@ -44,6 +45,8 @@ $('#btnAdd').click(function(){
 		 } ,
 		emConpass : $("#emConpass").val()
 	}
+	checkData();
+	if(chkDb===0){
 	var responseHeader = null;
 	$.ajax({
 		type: "POST",
@@ -55,13 +58,8 @@ $('#btnAdd').click(function(){
 		url: contextPath + '/ememployees',
 		data : JSON.stringify(ememployees),
 		complete: function(xhr){
-		} ,
-		  async: false
-	});
-
-
-	bootbox.alert("สมัครสมาชิกเรียบร้อยแล้ว");
-	$('#empCode').val("");
+			bootbox.alert("สมัครสมาชิกเรียบร้อยแล้ว");
+			$('#empCode').val("");
 	$('#empNickName').val("");
 	$("#empFirstName").val("");
 	$("#empLastName").val("");
@@ -71,8 +69,14 @@ $('#btnAdd').click(function(){
 	$("#emConpass").val("");
 	$("#emPosition").val("0");
 	$("#emTeam").val("0");
+		} ,
+		  async: false
+	});
 
+}else{
 
+	bootbox.alert("รหัสพนักงานซ้ำกรุณากรอกรหัสพนักงานใหม่อีกครั้ง");
+}
 	}
 }) ;
 function checkempCode()
@@ -102,6 +106,30 @@ function checkUserName()
 			$('#userName').val("");
 		}
 	} ;
+
+var chkDb;
+function checkData() {
+ var dataJsonData = {
+    empCode :$('#empCode').val()
+    }
+
+    var checkdDb = $.ajax({
+  type: "GET",
+  contentType: "application/json; charset=utf-8",
+  dataType: "json",
+  headers: {
+   Accept: "application/json"
+  },
+  url: contextPath + '/ememployees/findProjectByempCode',
+  data : dataJsonData,
+  complete: function(xhr){
+  },
+  async: false
+ });
+
+    chkDb = jQuery.parseJSON(checkdDb.responseText);
+  
+}
 
 
 
