@@ -43,14 +43,16 @@ privileged aspect EMEmployeeController_Custom_Controller_Json {
             return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
     @RequestMapping(value = "/findProjectByemTeam", method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json" )
     public ResponseEntity<String> EMEmployeeController.findProjectByemTeam(
-            @RequestParam(value = "empCode", required = false) long empCode
+            @RequestParam(value = "emTeam", required = false) long emTeam
     ) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json;charset=UTF-8" );
         try {
-            List<EMEmployee> result = EMEmployee.findProjectByemTeam(empCode);
+            List<EMEmployee> result = EMEmployee.findProjectByemTeam(emTeam);
             List<Map<String, String>> list = new ArrayList<>();
             for (int i = 0; i < result.size(); i++) {
                 EMEmployee ty = result.get(i);
@@ -59,7 +61,7 @@ privileged aspect EMEmployeeController_Custom_Controller_Json {
                 list.add(map);
                 //System.out.println("Code : "+ty.getEmPosition().getPositionCode()+"\n==================");
             }
-            return new ResponseEntity<String>(new JSONSerializer().exclude("*.class" ).deepSerialize(list), headers, HttpStatus.OK);
+            return new ResponseEntity<String>(new JSONSerializer().exclude("*.class" ).deepSerialize(result), headers, HttpStatus.OK);
 
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);

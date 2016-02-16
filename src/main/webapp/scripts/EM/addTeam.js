@@ -1,7 +1,7 @@
 var checkedRows = [];
 var DeSuccess = 0;
 var DeFail = 0;
-//var checkBoxDisable = [] ;
+var checkBoxDisable = [] ;
 var json = [];
 //////////////////////////////////////////////////////////////////////////////////////////////////
 var paggination = Object.create(UtilPaggination);
@@ -194,17 +194,26 @@ $('#data').on("click", "[id^=btnEdit]", function () {
 $("#btnDelete").click(function () {
     //alert(checkedRows.length);
     var i = 0;
-    for (i; checkedRows.length > i; i++) {
-        //alert(checkedRows[i] + 555555555);
-        //checkIdKey(i);
-        DeleteData(i);
+    if (checkedRows.length > 0) {
+        bootbox.confirm("คุณต้องการลบข้อมูลที่เลือกหรือไม่", function (result) {
+            if (result === true) {
+                for (i; checkedRows.length > i; i++) {
+                    //alert(checkedRows[i] + 555555555);
+                    //checkIdKey(i);
+                    DeleteData(i);
+                }
+                bootbox.alert(" ลบข้อมูลสำเร็จ : " + DeSuccess + "  ลบข้อมูลไม่สำเร็จ : " + DeFail);
+                DeSuccess = 0;
+                DeFail = 0;
+                checkedRows = [];
+                $("#checkAll").attr('checked', false);
+                searchData();
+            }
+        });
+    } else if (checkedRows.length == 0) {
+        bootbox.alert("กรุณาเลือกข้อมูลที่ต้องการลบ");
     }
-    bootbox.alert(" ลบข้อมูลสำเร็จ : " + DeSuccess + "  ลบข้อมูลไม่สำเร็จ : " + DeFail);
-    DeSuccess = 0;
-    DeFail = 0;
-    checkedRows = [];
-    $("#checkAll").attr('checked', false);
-    searchData();
+
 }); //-- deleteData--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $('#data').on("click", "#checkAll", function () {
@@ -267,6 +276,7 @@ paggination.loadTable = function loadTable(jsonData) {
 
     jsonData.forEach(function (value) {
         checkIdKey(value.id);
+      //  console.log(value.id);
         if (checkBoxDisable != "") {
             tableData = ''
 
@@ -418,3 +428,4 @@ function checkIdKey(emTeam) {
     console.log(checkBoxDisable);
 
 } //--functionCheckID--//
+/////////////////////////////////////////////////////////////////////////////////////////////////
