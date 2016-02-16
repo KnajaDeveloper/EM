@@ -14,11 +14,12 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
     public static List<EMEmployee> EMEmployee.findProjectByemPosition(String empCode) {
         EntityManager ent = EMEmployee.entityManager();
         Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class);
-        criteria.add(Restrictions.like("empCode", "%"+empCode+"%"));
+        criteria.add(Restrictions.like("empCode", "%" + empCode + "%"));
         criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         return criteria.list();
 
     }
+
     public static List<EMEmployee> EMEmployee.findProjectByemTeam(Long emTeam) {
         EntityManager ent = EMEmployee.entityManager();
         Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class, "emEmployee");
@@ -26,7 +27,7 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
         try {
 
             criteria.add(Restrictions.eq("emTeam.id", emTeam));
-//            List<EMEmployee> emEmployees = criteria.list();
+            List<EMEmployee> emEmployees = criteria.list();
 //            EMEmployee emEmployee = emEmployees.get(0);
 //            System.out.print( emEmployee.getPassword());
         } catch (IndexOutOfBoundsException e) {
