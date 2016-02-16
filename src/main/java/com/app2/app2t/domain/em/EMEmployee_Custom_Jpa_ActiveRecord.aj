@@ -36,4 +36,10 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
         }
         return criteria.list();
     }
+    public static List<EMEmployee> EMEmployee.findProjectByempCode(String empCode) {
+        EntityManager ent = EMEmployee.entityManager();
+        Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class);
+        criteria.add(Restrictions.eq("empCode", empCode));
+        return criteria.list();
+    }
 }
