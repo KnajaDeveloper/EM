@@ -82,8 +82,11 @@ privileged aspect EMTeam_Custom_Jpa_ActiveRecord {
             System.out.print( emTeam.getTeamCode());
         }catch (IndexOutOfBoundsException e)
         {
+
             return criteria.list();
+
         }
+
         return criteria.list();
     }
 

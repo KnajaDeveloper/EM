@@ -2,7 +2,7 @@ var checkedRows = [];
 var DeSuccess = 0;
 var DeFail = 0;
 //var checkBoxDisable = [] ;
-var json=[];
+var json = [];
 //////////////////////////////////////////////////////////////////////////////////////////////////
 var paggination = Object.create(UtilPaggination);
 $(document).ready(function () {
@@ -14,8 +14,6 @@ $('[id^=btnM]').click(function () {
     var id = this.id.split('M')[1];
     var responseResult = null;
     var teamCode = $("#teamCode").val();
-
-
     if ($("#teamCode").val() != "" && $("#teamName").val() != "") {
 
         var dataJsonData = {
@@ -105,34 +103,34 @@ $("#cancelEdit").click(function () {
     $("input[name='editText']").val(null);
 }); //--cancelEdit--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
 $("#search").click(function () {
 
     searchData();
-    if( json.length <= 0)
-    {
+    if (json.length <= 0) {
         bootbox.alert("ไม่พบข็อมูล");
     }
-   // var a = null;
-   //a= $.ajax({
-   //     type: "GET",
-   //     contentType: "application/json; charset=utf-8",
-   //     dataType: "json",
-   //     headers: {
-   //         Accept: "application/json"
-   //     },
-   //     url: contextPath + '/ememployees/findProjectByemTeam',
-   //     //  data: dataJsonData,
-   //     complete: function (xhr) {
-   //
-   //     },
-   //     async: false
-   // });
-   // var res =jQuery.parseJSON(a.responseText);
-   // console.log(res);
-   // for (var i = 0; res.size > i ; i++)
-   // {
-   //     console.log();
-   // }
+    // var a = null;
+    //a= $.ajax({
+    //     type: "GET",
+    //     contentType: "application/json; charset=utf-8",
+    //     dataType: "json",
+    //     headers: {
+    //         Accept: "application/json"
+    //     },
+    //     url: contextPath + '/ememployees/findProjectByemTeam',
+    //     //  data: dataJsonData,
+    //     complete: function (xhr) {
+    //
+    //     },
+    //     async: false
+    // });
+    // var res =jQuery.parseJSON(a.responseText);
+    // console.log(res);
+    // for (var i = 0; res.size > i ; i++)
+    // {
+    //     console.log();
+    // }
     //bootbox.alert("ไม่พบข้อมูล"+searchData()) ;
     //var responseHeader = null;
     //responseHeader = $.ajax({
@@ -211,16 +209,13 @@ $("#btnDelete").click(function () {
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $('#data').on("click", "#checkAll", function () {
 
-
-        $(".check").prop('checked', $(this).prop('checked'));
-    
-
+        $('[id^=chDelete]').prop('checked', $(this).prop('checked'));
     var id = 1;
     var i = $('#data').find('tr').length;
     var num;
     //alert($('#data').find('tr').length);
     for (i; i > id; id++) {
-        if ($(this).prop('checked') == true) {
+        if ( $('#chDelete'+ id ).prop('checked') == true) {
             num = checkedRows.indexOf($('#tdTeamCode' + id).text())
             if (num != "") {
                 checkedRows.push($('#tdTeamCode' + id).text());
@@ -250,8 +245,10 @@ $('#data').on("click", "[id^=chDelete]", function () {
 }); //--checkData--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $("#saveEdit").click(function () {
+
     var teamCode = $('#editCode').val();
     var teamName = $('#editName').val();
+
     EditData(teamCode, teamName);
     searchData();
 }); //-- EditData--//
@@ -270,12 +267,12 @@ paggination.loadTable = function loadTable(jsonData) {
 
     jsonData.forEach(function (value) {
         checkIdKey(value.id);
-        if (checkBoxDisable != "" ) {
+        if (checkBoxDisable != "") {
             tableData = ''
 
                 + '<tr  style="background-color: #fff">'
                 + '<td class="text-center">'
-                + '<input id="chDelete' + key + '" class="check" type="checkbox" name="checkdDelete" disabled="true" />'
+                + '<input  id="checkDisableDelete' + key + '" class="check" type="checkbox" name="checkdDelete" disabled="disabled" />'
                 + '</td>'
                 + '<td class="text-center">'
                 + '<button id="btnEdit' + key + '" type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalEdit" data-backdrop="static" ><span name="editClick" class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>'
@@ -400,7 +397,7 @@ function checkCode() {
 function checkIdKey(emTeam) {
     var responseResult = null;
     var dataJsonData = {
-        emTeam : emTeam
+        emTeam: emTeam
 
     }
     responseResult = $.ajax({
