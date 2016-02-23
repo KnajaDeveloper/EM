@@ -85,24 +85,52 @@ privileged aspect EMEmployeeController_Custom_Controller_Json {
     }
 
 //---------getEmpNameByEmpCode-----------------------------------------------------------------------------------------------------------
+@RequestMapping(value = "/findEmpNameByEmpCode",method = RequestMethod.GET)
+public ResponseEntity<String> EMEmployeeController.findEmpNameByEmpCode(
+        @RequestParam(value = "empCode", required = false) String empcode
+) {
 
-    @RequestMapping(value = "/findEmpNameByEmpCode",method = RequestMethod.GET)
-    public ResponseEntity<String> EMEmployeeController.findEmpNameByEmpCode(
-            @RequestParam(value = "empCode", required = false) String empcode
+    HttpHeaders headers = new HttpHeaders();
+    headers.add("Content-Type", "application/json;charset=UTF-8");
+    try {
+        List<EMEmployee> result = EMEmployee.findEmpNameByEmpCode(empcode);
+        List<Map<String, String>> list = new ArrayList<>();
+        for (int i = 0; i < result.size(); i++) {
+            EMEmployee ty = result.get(i);
+            Map<String, String> map = new HashMap<>();
+            map.put("Fname", ty.getEmpFirstName());
+            map.put("Lname", ty.getEmpLastName());
+            list.add(map);
+            //System.out.println("Code : "+ty.getEmPosition().getPositionCode()+"\n==================");
+        }
+        return  new ResponseEntity<String>(new JSONSerializer().exclude("*.class" ).deepSerialize(list), headers, HttpStatus.OK);
+    } catch (Exception e) {
+        LOGGER.error(e.getMessage(), e);
+        return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+}
+
+
+
+    //---------getEmpNameByUserName-----------------------------------------------------------------------------------------------------------
+
+    @RequestMapping(value = "/findEMNameByUserName",method = RequestMethod.GET)
+    public ResponseEntity<String> EMEmployeeController.findEMNameByUserName(
+            @RequestParam(value = "userName", required = false) String userName
     ) {
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json;charset=UTF-8");
         try {
-            List<EMEmployee> result = EMEmployee.findEmpNameByEmpCode(empcode);
+            List<EMEmployee> result = EMEmployee.findEMNameByUserName(userName);
             List<Map<String, String>> list = new ArrayList<>();
             for (int i = 0; i < result.size(); i++) {
                 EMEmployee ty = result.get(i);
                 Map<String, String> map = new HashMap<>();
-                map.put("Fname", ty.getEmpFirstName());
-                map.put("Lname", ty.getEmpLastName());
+                map.put("UFname", ty.getEmpFirstName());
+                map.put("ULname", ty.getEmpLastName());
                 list.add(map);
-                //System.out.println("Code : "+ty.getEmPosition().getPositionCode()+"\n==================");
+
             }
             return  new ResponseEntity<String>(new JSONSerializer().exclude("*.class" ).deepSerialize(list), headers, HttpStatus.OK);
         } catch (Exception e) {

@@ -45,10 +45,21 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
         return criteria.list();
     }
 
+
+//---------getEmpNameByEmpCode-----------------------------------------------------------------------------------------------------------
+
     public static List<EMEmployee> EMEmployee.findEmpNameByEmpCode(String empCode) {
         EntityManager ent = EMEmployee.entityManager();
         Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class);
         criteria.add(Restrictions.eq("empCode", empCode));
+        return criteria.list();
+    }
+
+    //---------getEmpNameByUsername-----------------------------------------------------------------------------------------------------------
+    public static List<EMEmployee> EMEmployee.findEMNameByUserName(String userName) {
+        EntityManager ent = EMEmployee.entityManager();
+        Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class);
+        criteria.add(Restrictions.eq("userName", userName));
         return criteria.list();
     }
 }
