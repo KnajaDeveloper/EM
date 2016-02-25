@@ -89,4 +89,12 @@ privileged aspect EMEmployee_Roo_JavaBean {
         this.emTeam = emTeam;
     }
     
+    public String EMEmployee.getRoleCode() {
+        return this.roleCode;
+    }
+    
+    public void EMEmployee.setRoleCode(String roleCode) {
+        this.roleCode = roleCode;
+    }
+    
 }

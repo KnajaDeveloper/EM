@@ -57,4 +57,8 @@ public class EMEmployee extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "emTeam")
     private EMTeam emTeam;
+
+    /**
+     */
+    private String roleCode;
 }
