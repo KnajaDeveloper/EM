@@ -45,6 +45,7 @@ privileged aspect EMEmployeeDataOnDemand_Roo_DataOnDemand {
         setEmpName(obj, index);
         setEmpNickName(obj, index);
         setPassword(obj, index);
+        setRoleCode(obj, index);
         setStatus(obj, index);
         setUpdatedBy(obj, index);
         setUpdatedDate(obj, index);
@@ -95,6 +96,11 @@ privileged aspect EMEmployeeDataOnDemand_Roo_DataOnDemand {
     public void EMEmployeeDataOnDemand.setPassword(EMEmployee obj, int index) {
         String password = "password_" + index;
         obj.setPassword(password);
+    }
+    
+    public void EMEmployeeDataOnDemand.setRoleCode(EMEmployee obj, int index) {
+        String roleCode = "roleCode_" + index;
+        obj.setRoleCode(roleCode);
     }
     
     public void EMEmployeeDataOnDemand.setStatus(EMEmployee obj, int index) {

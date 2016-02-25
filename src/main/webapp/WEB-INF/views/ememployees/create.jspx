@@ -18,6 +18,7 @@
         <field:input field="password" id="c_com_app2_app2t_domain_em_EMEmployee_password" z="+OEwcxU374Yd25eKjEJHDd+CvW0="/>
         <field:select field="emPosition" id="c_com_app2_app2t_domain_em_EMEmployee_emPosition" itemValue="id" items="${empositions}" path="/empositions" z="OONNiNOxNkTnwQ44EIfSKdwPYAE="/>
         <field:select field="emTeam" id="c_com_app2_app2t_domain_em_EMEmployee_emTeam" itemValue="id" items="${emteams}" path="/emteams" z="e39HlWdcfUUM+5sCw1+gg0thRHo="/>
+        <field:input field="roleCode" id="c_com_app2_app2t_domain_em_EMEmployee_roleCode" z="0uy7GSDtYewhvN+pyOL1VsrxLE8="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_com_app2_app2t_domain_em_EMEmployee" render="${not empty dependencies}" z="yjiBR3XnuqiHHAqcciqywGI9quU="/>
 </div>

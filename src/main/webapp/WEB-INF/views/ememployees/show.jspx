@@ -18,5 +18,6 @@
         <field:display field="password" id="s_com_app2_app2t_domain_em_EMEmployee_password" object="${ememployee_}" z="i8+Kzrpz06mkGrcuzty5cIiNvcg="/>
         <field:display field="emPosition" id="s_com_app2_app2t_domain_em_EMEmployee_emPosition" object="${ememployee_}" z="fhaUFIH6d6iN0WPMC6tsLEPI4Vk="/>
         <field:display field="emTeam" id="s_com_app2_app2t_domain_em_EMEmployee_emTeam" object="${ememployee_}" z="RZYBgg1PZ0zga1SyLFQpvTFJVBU="/>
+        <field:display field="roleCode" id="s_com_app2_app2t_domain_em_EMEmployee_roleCode" object="${ememployee_}" z="smc8sk9lud8cde8MRms2a4koV0U="/>
     </page:show>
 </div>
