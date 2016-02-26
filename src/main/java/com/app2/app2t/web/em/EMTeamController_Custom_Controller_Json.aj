@@ -46,13 +46,13 @@ privileged aspect EMTeamController_Custom_Controller_Json {
                 Map<String,String> map = new HashMap<>();
                 map.put("teamCode",ty.getTeamCode());
                 map.put("teamName",ty.getTeamName());
-
+                map.put("id",ty.getId().toString());
                 list.add(map);
-                System.out.println("Code : "+ty.getTeamCode()+"\nName : "+ty.getTeamName()+"\n==================");
+//                System.out.println("Code : "+ty.getTeamCode()+"\nName : "+ty.getTeamName()+"\n==================");
             }
 
 
-            return  new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(result), headers, HttpStatus.OK);
+            return  new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(list), headers, HttpStatus.OK);
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
             return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);

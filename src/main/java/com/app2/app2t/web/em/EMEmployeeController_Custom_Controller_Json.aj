@@ -5,18 +5,23 @@ package com.app2.app2t.web.em;
 
 import com.app2.app2t.domain.em.EMEmployee;
 import flexjson.JSONSerializer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 privileged aspect EMEmployeeController_Custom_Controller_Json {
+
+    protected static Logger LOGGER = LoggerFactory.getLogger(EMEmployeeController_Custom_Controller_Json.class);
 
     @RequestMapping(value = "/findProjectByemPosition", method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json" )
     public ResponseEntity<String> EMEmployeeController.findProjectByemPosition(
@@ -138,6 +143,96 @@ public ResponseEntity<String> EMEmployeeController.findEmpNameByEmpCode(
             return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
+    @RequestMapping(value = "/findselectDataAddRole",method = RequestMethod.GET, headers = "Accept=application/json")
+    public ResponseEntity<String> EMEmployeeController.findselectDataAddRole(
+            @RequestParam(value="empCode",required=false)String empCode,
+            @RequestParam(value="empFirstName",required=false)String empFirstName,
+            @RequestParam(value="empLastName",required=false)String empLastName,
+            @RequestParam(value="emPosition",required=false)String emPosition,
+            @RequestParam(value="emTeam",required=false)String emTeam,
+            @RequestParam(value="appRoleHave",required=false)String appRoleHave,
+            @RequestParam(value = "maxResult", required = false) Integer maxResult,
+            @RequestParam(value = "firstResult", required = false) Integer firstResult
+    ) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json;charset=UTF-8");
+        try {
+            List<EMEmployee> result = EMEmployee.findselectDataAddRole(empCode,empFirstName,empLastName,emPosition,emTeam,appRoleHave);
+            List<Map<String,Object>> list = new ArrayList<>();
+            for(int i=firstResult;i<maxResult + firstResult && i < result.size();i++){
+                EMEmployee ty = result.get(i);
+                Map<String,Object> map = new HashMap<>();
+                map.put("empCode", ty.getEmpCode());
+                map.put("empFirstName", ty.getEmpFirstName());
+                map.put("empLastName", ty.getEmpLastName());
+                map.put("emPosition", ty.getEmPosition());
+                map.put("emTeam", ty.getEmTeam());
+                map.put("roleCode", ty.getRoleCode());
+                list.add(map);
+            }
+            return  new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(list), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    @RequestMapping(value = "/addRolePaggingSize", method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> EMEmployeeController.addRolePaggingSize(
+            @RequestParam(value="empCode",required=false)String empCode,
+            @RequestParam(value="empFirstName",required=false)String empFirstName,
+            @RequestParam(value="empLastName",required=false)String empLastName,
+            @RequestParam(value="emPosition",required=false)String emPosition,
+            @RequestParam(value="emTeam",required=false)String emTeam,
+            @RequestParam(value="appRoleHave",required=false)String appRoleHave
+            ) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json;charset=UTF-8");
+        try {
+            List<EMEmployee> result = EMEmployee.findselectDataAddRole(empCode,empFirstName,empLastName,emPosition,emTeam,appRoleHave);
+            Map data = new HashMap();
+            data.put("size", result.size());
+            return new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(data), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            LOGGER.error("findEvaPeriodTime :{}", e);
+            return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/findappRoleName",method = RequestMethod.GET)
+    public ResponseEntity<String> EMEmployeeController.findappRoleName() {
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json;charset=UTF-8");
+        try {
+            List<Map> list = emRestService.getSecurityService();
+            return  new ResponseEntity<String>(new JSONSerializer().exclude("*.class" ).deepSerialize(list), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/saveOrUpdateAppRoleCode",method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> EMEmployeeController.saveOrUpdateAppRoleCode(
+            @RequestParam(value="arrEmpCode",required=false)String empCode,
+            @RequestParam(value="arrRoleCode",required=false)String roleCode
+    ) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json;charset=UTF-8");
+        try {
+             List<EMEmployee> result = EMEmployee.findSaveOrUpdateAppRoleCode(empCode,roleCode);
+            return  new ResponseEntity<String>(new JSONSerializer().exclude("*.class" ).deepSerialize(result), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            LOGGER.error(">>>><<<<{}:"+e.getMessage(), e);
+            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 }
     

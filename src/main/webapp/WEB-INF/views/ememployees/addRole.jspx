@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
+     xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" xmlns:component="urn:jsptagdir:/WEB-INF/tags/component"
+     version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <c:set var="LABEL_DELIMETER" scope="request">#</c:set>
+
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">ค้นหาพนักงาน</div>
+                <div class="panel-body">
+                    <br></br>
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label ">รหัสพนักงาน</label>
+                            <div class="col-sm-2">
+                                <input type="" class="form-control" id="empCode"
+                                       placeholder="รหัสพนักงาน"/>
+                            </div>
+                            <label class="col-sm-3 control-label " >ตำแหน่ง</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control" id ="emPosition"  ><jsp:text/>
+                                        <option value="">เลือกตำแหน่ง</option>
+                                        <c:forEach var="emposition" items="${listEmpost}">
+                                            <option value="${emposition.positionName}">
+                                                ${emposition.positionName}
+                                            </option>
+                                        </c:forEach>
+                                    </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label " >ชื่อ</label>
+                            <div class="col-sm-3">
+                                <input type="" class="form-control" id="empFirstName"
+                                       placeholder="ชื่อจริง"/>
+                            </div>
+                            <label class="col-sm-2 control-label ">ทีม</label>
+                            <div class="col-sm-3">
+                                <select class="form-control" id="emTeam"><jsp:text/>
+                                    <option value="">เลือกทีม</option>
+                                    <c:forEach var="emTeam" items="${listEmteam}">
+                                        <option value="${emTeam.teamName}" >
+                                            ${emTeam.teamName}
+                                        </option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label ">นามสกุล</label>
+                            <div class="col-sm-3">
+                                <input type="" class="form-control" id="empLastName"
+                                       placeholder="นามสกุล"/>
+                            </div>
+                                <label  class="col-md-offset-2 col-sm-1  radio-inline" ><input  id="appRole" type="radio" name="optradio"/>ถูกเพิ่มสิทธิแล้ว</label>
+                                <label class="col-sm-1  radio-inline"><input  id="notApprole" type="radio" name="optradio" />ยังไม่ถูกเพิ่มสิทธิ</label>
+                                <label class="col-sm-1  radio-inline"><input  id="allApprole" type="radio" name="optradio" checked="checked"/>ทั้งหมด</label>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-5 col-md-1 ">
+                                <button id="search" type="button"  class="btn btn-primary ">ค้นหา
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <table id="data" class="table table-hover">
+                        <tdead>
+                            <tr id="column" class="info">
+                                <th class="text-center" style="width: 50px; color:#000">รหัสพนักงาน</th>
+                                <th class="text-center" style="width: 200px; color:#000">ชื่อ-นามสกุล</th>
+                                <th class="text-center" style="width: 100px; color:#000">ตำแหน่ง</th>
+                                <th class="text-center" style="width: 100px; color:#000">ทีม</th>
+                            </tr>
+                        </tdead>
+                        <tbody id="ResualtSearch" style="cursor:pointer"></tbody>
+                    </table>
+                </div>
+
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <component:pagging id="paggingSimple"/>
+                    </div>
+                </div>
+            </form>
+
+            <div class="form-inline">
+                <div class="col-sm-offset-5  ">
+                    <div class="col-sm-1 ">
+                    <button id="save" type="button" class="btn btn-primary">บันทึก</button></div>
+                        <div class="col-sm-1 ">
+                    <button id="canCel"  type="button" class=" btn btn-danger">ยกลิก</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <spring:url value="/resources/scripts/component/UtilPagination.js" var="UtilPagination"/>
+    <script src="${UtilPagination}" type="text/javascript"><!--Not Empty --></script>
+    <script>
+        var contextPath = '${pageContext.request.contextPath}';
+    </script>
+    <spring:url value="/resources/scripts/EM/addRole.js" var="addRole" />
+    <script src="${addRole}" type="text/javascript"><!--Not Empty --></script>
+</div>
