@@ -33,4 +33,14 @@ privileged aspect EMEmployeeController_Custom_Controller {
         return "ememployees/addEmployee";
         }
     
+    @RequestMapping(value = "/addRole" , produces = "text/html")
+public String EMEmployeeController.addRole( Model uiModel) {
+        List<EMPosition> emposition =  EMPosition.findAllEMPositions();
+        List<EMTeam> emTeam = EMTeam.findAllEMTeams();
+        uiModel.addAttribute("listEmpost",emposition);
+        uiModel.addAttribute("listEmteam",emTeam);
+        return "ememployees/addRole";
+        }
+
 }
+

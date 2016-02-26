@@ -16,4 +16,7 @@
     <definition extends="default" name="ememployees/addEmployee">
         <put-attribute name="body" value="/WEB-INF/views/ememployees/addEmployee.jspx"/>
     </definition>
+     <definition extends="default" name="ememployees/addRole">
+        <put-attribute name="body" value="/WEB-INF/views/ememployees/addRole.jspx"/>
+    </definition>
 </tiles-definitions>

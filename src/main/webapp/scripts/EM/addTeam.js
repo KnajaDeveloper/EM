@@ -276,7 +276,7 @@ paggination.loadTable = function loadTable(jsonData) {
 
     jsonData.forEach(function (value) {
         checkIdKey(value.id);
-      //  console.log(value.id);
+        console.log(value.id);
         if (checkBoxDisable != "") {
             tableData = ''
 
