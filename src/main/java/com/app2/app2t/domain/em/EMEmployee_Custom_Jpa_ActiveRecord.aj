@@ -61,6 +61,14 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
         return criteria.list();
     }
 
+    public static EMEmployee EMEmployee.findAppRoleByUserName(String userName) {
+        EntityManager ent = EMEmployee.entityManager();
+        Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class);
+        criteria.add(Restrictions.eq("userName", userName));
+        List<EMEmployee> listEmployee = criteria.list();
+        return listEmployee.get(0);
+    }
+
     //---------getEmpNameByUsername-----------------------------------------------------------------------------------------------------------
     public static List<EMEmployee> EMEmployee.findEMNameByUserName(String userName) {
         EntityManager ent = EMEmployee.entityManager();
@@ -109,4 +117,5 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
         emEmployee.merge();
         return criteria.list();
     }
+
 }
