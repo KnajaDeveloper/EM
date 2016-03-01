@@ -144,6 +144,29 @@ public ResponseEntity<String> EMEmployeeController.findEmpNameByEmpCode(
         }
     }
 
+    @RequestMapping(value = "/findAppRoleByUserName", method = RequestMethod.GET)
+    public ResponseEntity<String> EMEmployeeController.findAppRoleByUserName(
+            @RequestParam(value = "userName", required = false) String userName
+    ) {
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json;charset=UTF-8");
+        try {
+
+            EMEmployee emp = EMEmployee.findAppRoleByUserName(userName);
+            Map<String, Object> map = new HashMap<>();
+            map.put("appRole", emp.getRoleCode());
+            LOGGER.debug(map+"");
+            List<Map<String, Object>> result = new ArrayList<>();
+            result.add(map);
+
+            return  new ResponseEntity<String>(new JSONSerializer().exclude("*.class" ).deepSerialize(result), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @RequestMapping(value = "/findselectDataAddRole",method = RequestMethod.GET, headers = "Accept=application/json")
     public ResponseEntity<String> EMEmployeeController.findselectDataAddRole(
             @RequestParam(value="empCode",required=false)String empCode,
