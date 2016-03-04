@@ -225,7 +225,7 @@
     background-color: #22A7F0; }
     .flat-blue .card.card-info .card-header .title {
       color: #FFF; }
-  .flat-blue .panel.panel-default {
+  /*.flat-blue .panel.panel-default {
     border: 1px solid #EAEAEA; }
     .flat-blue .panel.panel-default .panel-heading {
       border-bottom: 1px solid #EAEAEA;
@@ -259,7 +259,7 @@
     .flat-blue .panel.panel-danger .panel-heading {
       border-bottom: 1px solid #fb927d;
       background-color: #ffb8aa;
-      color: #7c1a06; }
+      color: #7c1a06; }*/
   .flat-blue .panel.fresh-color.panel-primary {
     border: 1px solid #353d47; }
     .flat-blue .panel.fresh-color.panel-primary .panel-heading {
