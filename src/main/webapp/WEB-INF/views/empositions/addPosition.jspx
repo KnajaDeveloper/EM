@@ -3,103 +3,107 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <div class="row">
-        <div class="panel panel-primary">
-            <div class="panel-heading">ค้นหาตำแหน่ง</div>
-            <div class="panel-body">
-                <br/>
-                <div class="col-xs-12">
-                    <form class="form-horizontal">
-                        <div class="form-group col-xs-6">
-                            <label class="control-label col-xs-3">รหัสตำแหน่ง</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="sPositionCode" placeholder="รหัสตำแหน่ง" />
-                            </div>
-                        </div>
-                        <div class="form-group col-xs-6">
-                            <label class="control-label col-xs-2">ชื่อตำแหน่ง</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="sPositionName" placeholder="ชื่อตำแหน่ง"/>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <br/>
-                <br/>
-                <br/>
-                <div class="col-xs-8">
-                    <div class="col-xs-offset-8 col-xs-2">
-                        <button id="btnSearch" type="button" class="btn btn-primary">ค้นหา</button>
-                    </div>
-                </div>
-                <br/>
-                <br/>
-            </div>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-xs-12">
-            <form class="form-inline">
-                <div class="form-group">
-                    <div class="col-xs-4">
-                        <button id="btnAdd" type="button" class="btn btn-primary" data-toggle="modal" data-target="#add" data-backdrop="static">เพิ่ม</button>
-                    </div>
-                    <div class="col-xs-4">
-                        <button id="btnDelete" type="button" class="btn btn-danger">ลบที่เลือก</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="modal fade" id="add" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header bg-primary">
-                        <h4 class="modal-title">เพิ่มตำแหน่ง</h4>
-                    </div>
-                    <div class="modal-body">
+            <div class="panel panel-primary">
+                <div class="panel-heading">ค้นหาตำแหน่ง</div>
+                <div class="panel-body">
+                    <br/>
+                    <div class="col-xs-12">
                         <form class="form-horizontal">
-                            <div class="form-group">
-                                <label class="control-label col-sm-3 required">รหัสตำแหน่ง</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="txtPositionCode" data-placement="bottom" placeholder="รหัสตำแหน่ง" />
+                            <div class="form-group col-xs-6">
+                                <label class="control-label col-xs-3">รหัสตำแหน่ง</label>
+                                <div class="col-xs-8">
+                                    <input type="text" class="form-control" id="sPositionCode" placeholder="รหัสตำแหน่ง" />
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-3 required">ชื่อตำแหน่ง</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="txtPositionName" data-content="กรุณากรอกข้อมูลชื่อตำแหน่ง" data-placement="bottom" placeholder="ชื่อตำแหน่ง" />
+                            <div class="form-group col-xs-6">
+                                <label class="control-label col-xs-3">ชื่อตำแหน่ง</label>
+                                <div class="col-xs-7">
+                                    <input type="text" class="form-control" id="sPositionName" placeholder="ชื่อตำแหน่ง"/>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button id="btnMAdd" type="button" class="btn btn-primary">ตกลง</button>
-                        <button id="btnMNext" type="button" class="btn btn-primary">ถัดไป</button>
-                        <button id="btnMCancel" type="button" class="btn btn-danger">ยกเลิก</button>
+                    <div class="col-xs-8">
+                        <div class="col-xs-offset-8 col-xs-2">
+                            <button id="btnSearch" type="button" class="btn btn-primary">ค้นหา</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <form class="form-horizontal">
-            <div class="form-group">
-                <div id="penaltyTableContainer" class="table-responsive">
-                    <table id="Table" class="table table-hover">
-                        <thead>
-                            <tr class="info">
-                                <th class="text-center">
-                                    <input id="checkboxAll" type="checkbox" name="checkdDelete" />
-                                </th>
-                                <th class="text-center" style="color: #000">แก้ไข</th>
-                                <th class="text-center" style="color: #000">รหัสตำแหน่ง</th>
-                                <th class="text-center" style="color: #000">ชื่อตำแหน่ง</th>
-                            </tr>
-                        </thead>
-                        <tbody id="ResualtSearch" style="cursor:pointer"></tbody>
-                    </table>
+
+    <div class="modal fade" id="add" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title">เพิ่มตำแหน่ง</h5>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-sm-3 required">รหัสตำแหน่ง</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="txtPositionCode" data-placement="bottom" placeholder="รหัสตำแหน่ง" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3 required">ชื่อตำแหน่ง</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="txtPositionName" data-content="กรุณากรอกข้อมูลชื่อตำแหน่ง" data-placement="bottom" placeholder="ชื่อตำแหน่ง" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnMAdd" type="button" class="btn btn-primary">ตกลง</button>
+                    <button id="btnMNext" type="button" class="btn btn-primary">ถัดไป</button>
+                    <button id="btnMCancel" type="button" class="btn btn-danger">ยกเลิก</button>
                 </div>
             </div>
-        </form>
+        </div>
+    </div>
+    
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <div class="col-xs-4">
+                                    <button id="btnAdd" type="button" class="btn btn-primary" data-toggle="modal" data-target="#add" data-backdrop="static">เพิ่ม</button>
+                                </div>
+                                <div class="col-xs-4">
+                                    <button id="btnDelete" type="button" class="btn btn-danger">ลบที่เลือก</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="form-group">
+                        <div id="penaltyTableContainer" class="table-responsive">
+                            <table id="Table" class="table table-bordered table-stripted table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" width="5%">
+                                            <input id="checkboxAll" type="checkbox" name="checkdDelete" />
+                                        </th>
+                                        <th class="text-center" width="5%">แก้ไข</th>
+                                        <th class="text-center" width="45%">รหัสตำแหน่ง</th>
+                                        <th class="text-center" width="45%">ชื่อตำแหน่ง</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ResualtSearch" style="cursor:pointer"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
