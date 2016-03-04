@@ -19,36 +19,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 privileged aspect EMEmployeeController_Custom_Controller_Json {
 
     protected static Logger LOGGER = LoggerFactory.getLogger(EMEmployeeController_Custom_Controller_Json.class);
-
-    @RequestMapping(value = "/findProjectByemPosition", method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json" )
-    public ResponseEntity<String> EMEmployeeController.findProjectByemPosition(
-            @RequestParam(value = "empCode", required = false) String empCode
-    ) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "application/json;charset=UTF-8" );
-        try {
-            List<EMEmployee> result = EMEmployee.findProjectByemPosition(empCode);
-            List<Map<String, String>> list = new ArrayList<>();
-            for (int i = 0; i < result.size(); i++) {
-                EMEmployee ty = result.get(i);
-                Map<String, String> map = new HashMap<>();
-                map.put("code", ty.getEmPosition().getPositionCode());
-                list.add(map);
-                //System.out.println("Code : "+ty.getEmPosition().getPositionCode()+"\n==================");
-            }
-
-            return new ResponseEntity<String>(new JSONSerializer().exclude("*.class" ).deepSerialize(list), headers, HttpStatus.OK);
-
-
-        } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
-            return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
 
     @RequestMapping(value = "/findProjectByemTeam", method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json" )
     public ResponseEntity<String> EMEmployeeController.findProjectByemTeam(

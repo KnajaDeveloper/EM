@@ -17,15 +17,6 @@ import java.util.List;
 privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
     protected static Logger LOGGER = LoggerFactory.getLogger(EMEmployee_Custom_Jpa_ActiveRecord.class);
 
-    public static List<EMEmployee> EMEmployee.findProjectByemPosition(String empCode) {
-        EntityManager ent = EMEmployee.entityManager();
-        Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class);
-        criteria.add(Restrictions.like("empCode", "%" + empCode + "%"));
-        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-        return criteria.list();
-
-    }
-
     public static List<EMEmployee> EMEmployee.findProjectByemTeam(Long emTeam) {
         EntityManager ent = EMEmployee.entityManager();
         Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class, "emEmployee");
