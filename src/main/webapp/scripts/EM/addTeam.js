@@ -251,6 +251,15 @@ $('#data').on("click", "[id^=chDelete]", function () {
         checkedRows.splice(num, 1);
         //alert(">>> " + checkedRows + "..");
     }
+    var checkNum = $('input[status=check]').length;
+    var checkBoxCheck =  $('input[status=check]:checked').length;
+    if (checkBoxCheck == checkNum){
+        $('#checkAll').prop('checked', true);
+    }
+    else
+    {
+        $('#checkAll').prop('checked', false);
+    }
 }); //--checkData--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $("#saveEdit").click(function () {
@@ -261,6 +270,19 @@ $("#saveEdit").click(function () {
     EditData(teamCode, teamName);
     searchData();
 }); //-- EditData--//
+//////////////////////////////////////////////////////////////////////////////////////////////////
+$('#data').on("click", "[id^=checkDisableDelete]", function () {
+    bootbox.alert("ไม่สามารถลบข้อมูลนี้ได้");
+    var id = this.id.split('checkDisableDelete')[1];
+    $("#checkDisableDelete"+id).attr('checked', false);
+
+}); //--checkDataDelete--//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+$("[id^=paggingSimpleBtn]").click(function () {
+    if ($('#checkAll').prop('checked') == true){
+        $('#checkAll').prop('checked', false);
+    }
+}); //--paggingSimpleBtn--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
 paggination.setEventPaggingBtn("paggingSimple", paggination);
 paggination.loadTable = function loadTable(jsonData) {
@@ -282,7 +304,7 @@ paggination.loadTable = function loadTable(jsonData) {
 
                 + '<tr  style="background-color: #fff">'
                 + '<td class="text-center">'
-                + '<input  id="checkDisableDelete' + key + '" class="check" type="checkbox" name="checkdDelete" disabled="disabled" />'
+                + '<input  id="checkDisableDelete' + key + '" class="check" type="checkbox"  name="checkdDelete"  />'
                 + '</td>'
                 + '<td class="text-center">'
                 + '<button id="btnEdit' + key + '" type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalEdit" data-backdrop="static" ><span name="editClick" class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>'
@@ -301,7 +323,7 @@ paggination.loadTable = function loadTable(jsonData) {
 
                 + '<tr  style="background-color: #fff">'
                 + '<td class="text-center">'
-                + '<input id="chDelete' + key + '" class="check" type="checkbox" name="checkdDelete"  />'
+                + '<input id="chDelete' + key + '" class="check" type="checkbox"  status="check" name="checkdDelete"  />'
                 + '</td>'
                 + '<td class="text-center">'
                 + '<button id="btnEdit' + key + '" type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalEdit" data-backdrop="static" ><span name="editClick" class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>'

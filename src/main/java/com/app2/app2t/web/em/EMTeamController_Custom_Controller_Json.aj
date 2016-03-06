@@ -35,20 +35,16 @@ privileged aspect EMTeamController_Custom_Controller_Json {
             ) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json;charset=UTF-8");
-//        System.out.println(searchCode + "+++"+searchName);
         try {
 
-            List<EMTeam> result = EMTeam.findProjectBytypeTeamCode( searchCode,searchName );
-            //////
+            List<EMTeam> result = EMTeam.finTeamOfDataPagingData(searchCode,searchName,maxResult,firstResult );
             List<Map<String,String>> list = new ArrayList<>();
-            for(int i=firstResult;i<maxResult + firstResult && i < result.size() ;i++){
-                EMTeam ty = result.get(i);
+            for(EMTeam emTeam : result){
                 Map<String,String> map = new HashMap<>();
-                map.put("teamCode",ty.getTeamCode());
-                map.put("teamName",ty.getTeamName());
-                map.put("id",ty.getId().toString());
+                map.put("teamCode",emTeam.getTeamCode());
+                map.put("teamName",emTeam.getTeamName());
+                map.put("id",emTeam.getId().toString());
                 list.add(map);
-//                System.out.println("Code : "+ty.getTeamCode()+"\nName : "+ty.getTeamName()+"\n==================");
             }
 
 
@@ -68,10 +64,10 @@ privileged aspect EMTeamController_Custom_Controller_Json {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json;charset=UTF-8");
         try {
-            List<EMTeam> result = EMTeam.findProjectBytypeTeamCode( searchCode,searchName );
-            Map data = new HashMap();
-            data.put("size", result.size());
-            return new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(data), headers, HttpStatus.OK);
+            Long result = EMTeam.finTeamOfDataPagingSize( searchCode,searchName );
+            Map dataSendToFront = new HashMap();
+            dataSendToFront.put("size",result);
+            return new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(dataSendToFront), headers, HttpStatus.OK);
         } catch (Exception e) {
             LOGGER.error("findEvaPeriodTime :{}", e);
             return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);

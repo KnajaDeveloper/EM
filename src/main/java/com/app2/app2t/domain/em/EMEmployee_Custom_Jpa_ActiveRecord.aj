@@ -7,6 +7,7 @@ package com.app2.app2t.domain.em;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,32 +69,30 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
         return criteria.list();
     }
 
-    public static List<EMEmployee> EMEmployee.findselectDataAddRole(String empCode,String empFirstName,String empLastName,String emPosition,String emTeam,String appRoleHave) {
+    public static Criteria EMEmployee.findselectDataAddRole(String empCode, String empFirstName, String empLastName, String emPosition, String emTeam, String appRoleHave) {
         EntityManager ent = EMEmployee.entityManager();
-        Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class, "emEmployee");
-        criteria.createAlias("emEmployee.emTeam", "emTeam");
-        criteria.createAlias("emEmployee.emPosition", "emPosition");
-        criteria.add(Restrictions.like("emEmployee.empCode", "%"+empCode+"%"));
-        criteria.add(Restrictions.like("emEmployee.empFirstName", "%"+empFirstName+"%"));
-        criteria.add(Restrictions.like("emEmployee.empLastName", "%"+empLastName+"%"));
-        if(appRoleHave.equals("1"))
-        {
-            criteria.add(Restrictions.isNotNull("emEmployee.roleCode"));
-        }
-        else  if(appRoleHave.equals("2"))
-        {
-            criteria.add(Restrictions.isNull("emEmployee.roleCode"));
-        }
-
-        criteria.add(Restrictions.like("emPosition.positionName", "%"+emPosition+"%"));
-        criteria.add(Restrictions.like("emTeam.teamName", "%"+emTeam+"%"));
         try {
-            List<EMEmployee> emEmployees = criteria.list();
-        } catch (IndexOutOfBoundsException e) {
+            Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class, "emEmployee");
+            criteria.createAlias("emEmployee.emTeam", "emTeam");
+            criteria.createAlias("emEmployee.emPosition", "emPosition");
+            criteria.add(Restrictions.like("emEmployee.empCode", "%" + empCode + "%"));
+            criteria.add(Restrictions.like("emEmployee.empFirstName", "%" + empFirstName + "%"));
+            criteria.add(Restrictions.like("emEmployee.empLastName", "%" + empLastName + "%"));
+            if (appRoleHave.equals("1")) {
+                criteria.add(Restrictions.isNotNull("emEmployee.roleCode"));
+            } else if (appRoleHave.equals("2")) {
+                criteria.add(Restrictions.isNull("emEmployee.roleCode"));
+            }
 
-            return criteria.list();
+            criteria.add(Restrictions.like("emPosition.positionName", "%" + emPosition + "%"));
+            criteria.add(Restrictions.like("emTeam.teamName", "%" + emTeam + "%"));
+            return criteria;
         }
-        return criteria.list();
+        catch (Exception e)
+        {
+            LOGGER.error("{}:"+e);
+        }
+        return null;
     }
 
 
@@ -109,4 +108,26 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
         return criteria.list();
     }
 
+
+    public static List<EMEmployee> EMEmployee.findselectDataAddRole(String empCode,String empFirstName,
+                                                                         String empLastName,String emPosition,
+                                                                         String emTeam,String appRoleHave,
+                                                                         Integer maxResult,Integer firstResult
+
+    ){
+        Criteria criteria = EMEmployee.findselectDataAddRole(empCode,empFirstName,empLastName,emPosition,emTeam,appRoleHave)
+                .setFirstResult(firstResult)
+                .setMaxResults(maxResult);
+        return criteria.list();
+    }
+
+    public static  Long EMEmployee.finProjectOfDataPagingSize(String empCode,String empFirstName,
+                                                              String empLastName,String emPosition,
+                                                              String emTeam,String appRoleHave
+    ){
+        Criteria criteria = EMEmployee.findselectDataAddRole(empCode,empFirstName,empLastName,emPosition,emTeam,appRoleHave)
+                .setProjection(Projections.rowCount());
+        return (Long) criteria.uniqueResult();
+    }
+    
 }

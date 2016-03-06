@@ -5,7 +5,10 @@ package com.app2.app2t.domain.em;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -13,12 +16,12 @@ import java.util.List;
 
 privileged aspect EMTeam_Custom_Jpa_ActiveRecord {
 
+    protected static Logger LOGGER = LoggerFactory.getLogger(EMTeam_Custom_Jpa_ActiveRecord.class);
 
-
-    public static List<EMTeam> EMTeam.findProjectBytypeTeamCode(String teamCode,String teamName) {
+    public static Criteria EMTeam.findProjectBytypeTeamCode(String teamCode, String teamName) {
         EntityManager ent = EMTeam.entityManager();
         Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMTeam.class);
-
+        try {
         if(teamCode == "" && teamName =="") {
 
             criteria.list();
@@ -35,16 +38,17 @@ privileged aspect EMTeam_Custom_Jpa_ActiveRecord {
         {
             criteria.add(Restrictions.like("teamName",  "%"+teamName+"%"));
         }
-        try {
-            List<EMTeam> emTeams = criteria.list();
-            EMTeam emTeam = emTeams.get(0);
-            emTeam.getId();
+
+//            List<EMTeam> emTeams = criteria.list();
+//            EMTeam emTeam = emTeams.get(0);
+//            emTeam.getId();
+            return criteria ;
         }
-        catch (IndexOutOfBoundsException e){
-            return  criteria.list();
+        catch (Exception e){
+            LOGGER.error("{}:" + e);
         }
 
-        return criteria.list();
+        return null;
     }
 
     @Transactional
@@ -90,5 +94,22 @@ privileged aspect EMTeam_Custom_Jpa_ActiveRecord {
         return criteria.list();
     }
 
+    public static List<EMTeam> EMTeam.finTeamOfDataPagingData(String teamCode,
+                                                                 String teamName,
+                                                                   Integer maxResult,
+                                                                   Integer firstResult
 
+    ){
+        Criteria criteria = EMTeam.findProjectBytypeTeamCode(teamCode,teamName)
+                .setFirstResult(firstResult)
+                .setMaxResults(maxResult);
+        return criteria.list();
+    }
+    public static  Long EMTeam.finTeamOfDataPagingSize(String teamCode,
+                                                       String teamName
+    ){
+        Criteria criteria = EMTeam.findProjectBytypeTeamCode(teamCode,teamName)
+                .setProjection(Projections.rowCount());
+        return (Long) criteria.uniqueResult();
+    }
 }
