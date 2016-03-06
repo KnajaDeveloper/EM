@@ -105,7 +105,7 @@ $("#cancelEdit").click(function () {
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $("#search").click(function () {
-
+    $("#checkAll").attr('checked', false);
     searchData();
     if (json.length <= 0) {
         bootbox.alert("ไม่พบข็อมูล");
@@ -192,14 +192,19 @@ $('#data').on("click", "[id^=btnEdit]", function () {
 }) //--getDataEdit--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $("#btnDelete").click(function () {
-    //alert(checkedRows.length);
-    var i = 0;
+
+    $('input[status^=check]:checked').each(function () {
+        if( $('input[status^=check]:checked'))
+        {
+            var roleCode = $(this).attr('teamCode').split("code_")[1];
+            checkedRows.push(roleCode);
+        }
+    });
+    //console.log(checkedRows);
     if (checkedRows.length > 0) {
         bootbox.confirm("คุณต้องการลบข้อมูลที่เลือกหรือไม่", function (result) {
             if (result === true) {
-                for (i; checkedRows.length > i; i++) {
-                    //alert(checkedRows[i] + 555555555);
-                    //checkIdKey(i);
+                for (var i=0; checkedRows.length > i; i++) {
                     DeleteData(i);
                 }
                 bootbox.alert(" ลบข้อมูลสำเร็จ : " + DeSuccess + "  ลบข้อมูลไม่สำเร็จ : " + DeFail);
@@ -217,40 +222,11 @@ $("#btnDelete").click(function () {
 }); //-- deleteData--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $('#data').on("click", "#checkAll", function () {
-
         $('[id^=chDelete]').prop('checked', $(this).prop('checked'));
-    var id = 1;
-    var i = $('#data').find('tr').length;
-    var num;
-    //alert($('#data').find('tr').length);
-    for (i; i > id; id++) {
-        if ( $('#chDelete'+ id ).prop('checked') == true) {
-            num = checkedRows.indexOf($('#tdTeamCode' + id).text())
-            if (num != "") {
-                checkedRows.push($('#tdTeamCode' + id).text());
-            }
-        }
-        else {
-            num = checkedRows.indexOf($('#tdTeamCode' + id).text());
-            checkedRows.splice(num, 1);
-        }
-
-    }
-    //alert(">>> " + checkedRows + "..");
 }); //--checkAllData--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $('#data').on("click", "[id^=chDelete]", function () {
-    var id = this.id.split('e')[3];
-    if ($(this).prop('checked') == true) {
-        checkedRows.push($('#tdTeamCode' + id).text());
-        //alert(">>> " + checkedRows + "..");
 
-    }
-    else {
-        var num = checkedRows.indexOf($('#tdTeamCode' + id).text());
-        checkedRows.splice(num, 1);
-        //alert(">>> " + checkedRows + "..");
-    }
     var checkNum = $('input[status=check]').length;
     var checkBoxCheck =  $('input[status=check]:checked').length;
     if (checkBoxCheck == checkNum){
@@ -323,7 +299,7 @@ paggination.loadTable = function loadTable(jsonData) {
 
                 + '<tr  style="background-color: #fff">'
                 + '<td class="text-center">'
-                + '<input id="chDelete' + key + '" class="check" type="checkbox"  status="check" name="checkdDelete"  />'
+                + '<input id="chDelete' + key + '" class="check" type="checkbox" teamCode="code_'+value.teamCode+'" status="check" name="checkdDelete"  />'
                 + '</td>'
                 + '<td class="text-center">'
                 + '<button id="btnEdit' + key + '" type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalEdit" data-backdrop="static" ><span name="editClick" class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>'
