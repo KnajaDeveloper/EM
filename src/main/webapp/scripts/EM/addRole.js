@@ -103,7 +103,7 @@ $('#data').on("click", "[status^=roleCodeCheck_]", function () {
         $('input[name=radioAll_]').prop('checked', false);
     }
     var rdNum = $('input[radioNum^=radioNum_'+id+']').length;
-    //console.log(rdNum);
+    //console.log(rdNum);9
     var radioCheck =  $('input[status=roleCodeCheck_'+id+']:checked').length;
    if (radioCheck == rdNum-1){
        $('input[status=roleCodeCheckAll_'+id+']').prop('checked', true);

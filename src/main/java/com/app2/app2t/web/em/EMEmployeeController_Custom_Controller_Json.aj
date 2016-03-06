@@ -155,17 +155,16 @@ public ResponseEntity<String> EMEmployeeController.findEmpNameByEmpCode(
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json;charset=UTF-8");
         try {
-            List<EMEmployee> result = EMEmployee.findselectDataAddRole(empCode,empFirstName,empLastName,emPosition,emTeam,appRoleHave);
+            List<EMEmployee> result = EMEmployee.findselectDataAddRole(empCode,empFirstName,empLastName,emPosition,emTeam,appRoleHave,maxResult,firstResult);
             List<Map<String,Object>> list = new ArrayList<>();
-            for(int i=firstResult;i<maxResult + firstResult && i < result.size();i++){
-                EMEmployee ty = result.get(i);
+            for(EMEmployee emEmployee : result){
                 Map<String,Object> map = new HashMap<>();
-                map.put("empCode", ty.getEmpCode());
-                map.put("empFirstName", ty.getEmpFirstName());
-                map.put("empLastName", ty.getEmpLastName());
-                map.put("emPosition", ty.getEmPosition());
-                map.put("emTeam", ty.getEmTeam());
-                map.put("roleCode", ty.getRoleCode());
+                map.put("empCode", emEmployee.getEmpCode());
+                map.put("empFirstName", emEmployee.getEmpFirstName());
+                map.put("empLastName", emEmployee.getEmpLastName());
+                map.put("emPosition", emEmployee.getEmPosition());
+                map.put("emTeam", emEmployee.getEmTeam());
+                map.put("roleCode", emEmployee.getRoleCode());
                 list.add(map);
             }
             return  new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(list), headers, HttpStatus.OK);
@@ -189,10 +188,10 @@ public ResponseEntity<String> EMEmployeeController.findEmpNameByEmpCode(
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json;charset=UTF-8");
         try {
-            List<EMEmployee> result = EMEmployee.findselectDataAddRole(empCode,empFirstName,empLastName,emPosition,emTeam,appRoleHave);
-            Map data = new HashMap();
-            data.put("size", result.size());
-            return new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(data), headers, HttpStatus.OK);
+            Long result = EMEmployee.finProjectOfDataPagingSize(empCode,empFirstName,empLastName,emPosition,emTeam,appRoleHave);
+            Map dataSendToFront = new HashMap();
+            dataSendToFront.put("size",result);
+            return new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(dataSendToFront), headers, HttpStatus.OK);
         } catch (Exception e) {
             LOGGER.error("findEvaPeriodTime :{}", e);
             return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
