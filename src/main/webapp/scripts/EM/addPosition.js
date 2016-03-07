@@ -18,7 +18,7 @@ paggination.loadTable = function loadTable (jsonData) {
         tableData = ''
 		+ '<tr>'
             + '<td class="text-center">'
-            	+ '<input  id="" class="checkboxTable" type="checkbox" />'
+            	+ '<input inUse="' + value.inUse + '" id="' + value.id + '" class="checkboxTable" type="checkbox" />'
             + '</td>'
             + '<td class="text-center">'
             	+ '<button onclick="openModalEdit($(this))" type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#add" data-backdrop="static"><span name="editClick" class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>'
@@ -36,6 +36,7 @@ var positionName;
 function openModalEdit(element){
 	check = 1;
 	$('#btnMNext').hide();
+	$('.modal-title').text('แก้ไขตำแหน่ง');
     $('#txtPositionCode').val(element.parent("td:eq(0)").parent("tr:eq(0)").children("#tdPositionCode").text()).attr('disabled', true);
     positionName = element.parent("td:eq(0)").parent("tr:eq(0)").children("#tdPositionName").text();
     $('#txtPositionName').val(positionName);
@@ -176,7 +177,7 @@ function deleteData() {
 			},
 			url: contextPath + '/empositions/findDeletePosition',
 			data : {
-				positionCode: $(this).attr("id")
+				positionID: $(this).attr("id")
 			},
 			complete: function(xhr){
 				if(xhr.status === 200)
@@ -204,6 +205,9 @@ $('#btnDelete').click(function() {
 				}else{
 					bootbox.alert("ลบข้อมูลสำเร็จ : " + status200 + " รายการ ลบข้อมูลไม่สำเร็จ : " + status500 + " รายการ");
 				}
+
+				status200 = 0;
+				status500 = 0;
 			}
 		});
     }
@@ -211,6 +215,13 @@ $('#btnDelete').click(function() {
 
 $("#checkboxAll").click(function(){
     $(".checkboxTable").prop('checked', $(this).prop('checked'));
+
+    $.each($(".checkboxTable:checked"),function(index,value){
+	    if($(this).attr("inUse") > 0){
+    		$(this).prop("checked", false);
+    		$("#checkboxAll").prop("checked", false);
+    	}
+	});
 });
 
 $('#Table').on("click", ".checkboxTable", function () {
@@ -218,6 +229,11 @@ $('#Table').on("click", ".checkboxTable", function () {
         $("#checkboxAll").prop("checked", true);
     }else{
         $("#checkboxAll").prop("checked", false);
+    }
+
+    if($(this).attr("inUse") > 0){
+    	$(this).prop("checked", false);
+    	bootbox.alert("ข้อมูลถูกเรียกใช้อยู่");
     }
 });
 
@@ -237,5 +253,5 @@ function checkData() {
 		},
 		async: false
 	});
-    return jQuery.parseJSON(checkdDb.responseText);
+    return checkdDb.responseJSON;
 }

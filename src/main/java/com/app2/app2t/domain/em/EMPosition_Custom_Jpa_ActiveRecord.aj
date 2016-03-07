@@ -57,14 +57,14 @@ privileged aspect EMPosition_Custom_Jpa_ActiveRecord {
         return criteria.list();
     }
 
-    public static List<EMPosition> EMPosition.findDeletePosition(String positionCode) {
+    public static EMPosition EMPosition.findDeletePosition(Long positionID) {
         EntityManager ent = EMPosition.entityManager();
         Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMPosition.class);
-        criteria.add(Restrictions.eq("positionCode", positionCode));
+        criteria.add(Restrictions.eq("id", positionID));
         List<EMPosition> em = criteria.list();
-        EMPosition deEMPosition = em.get(0);
-        deEMPosition.remove();
-        return criteria.list();
+        EMPosition emPositions = em.get(0);
+        emPositions.remove();
+        return emPositions;
     }
 
     public static List<EMPosition> EMPosition.findCheckPositionCode(String positionCode) {

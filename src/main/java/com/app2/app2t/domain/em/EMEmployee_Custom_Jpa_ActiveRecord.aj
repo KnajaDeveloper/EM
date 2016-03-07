@@ -3,11 +3,9 @@
 
 package com.app2.app2t.domain.em;
 
-
-
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.*;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -108,7 +106,6 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
         return criteria.list();
     }
 
-
     public static List<EMEmployee> EMEmployee.findselectDataAddRole(String empCode,String empFirstName,
                                                                          String empLastName,String emPosition,
                                                                          String emTeam,String appRoleHave,
@@ -129,5 +126,13 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
                 .setProjection(Projections.rowCount());
         return (Long) criteria.uniqueResult();
     }
-    
+
+    public static Long EMEmployee.findEMPositionByID(Long emPosition) {
+        Session session = (Session) EMEmployee.entityManager().getDelegate();
+        Criteria criteria = session.createCriteria(EMEmployee.class, "emEmployee");
+        criteria.createAlias("emEmployee.emPosition", "emPosition");
+        criteria.add(Restrictions.eq("emPosition.id", emPosition));
+        criteria.setProjection(Projections.rowCount());
+        return (Long) criteria.uniqueResult();
+    }
 }
