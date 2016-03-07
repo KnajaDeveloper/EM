@@ -229,6 +229,21 @@ public ResponseEntity<String> EMEmployeeController.findEmpNameByEmpCode(
         }
     }
 
-
+    @RequestMapping(value = "/findEMPositionByID", method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> EMEmployeeController.findEMPositionByID(
+        @RequestParam(value = "emPosition", required = false) Long emPosition
+    ) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json;charset=UTF-8");
+        try {
+            Long size = EMEmployee.findEMPositionByID(emPosition);
+            Map sizeEMPosition = new HashMap();
+            sizeEMPosition.put("size", size);
+            return new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(sizeEMPosition), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            LOGGER.error("findEvaPeriodTime :{}", e);
+            return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
-    

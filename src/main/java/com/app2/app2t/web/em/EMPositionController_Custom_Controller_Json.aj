@@ -4,7 +4,7 @@ import flexjson.JSONSerializer;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import  com.app2.app2t.domain.em.EMPosition;
+import  com.app2.app2t.domain.em.*;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +23,16 @@ privileged aspect EMPositionController_Custom_Controller_Json {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json;charset=UTF-8");
         try{
-            List<EMPosition> resultSearch = EMPosition.findPositionDataPagingData(positionCode, positionName, firstResult, maxResult);
+            List<Map<String,Object>> resultSearch = new ArrayList<>();
+            List<EMPosition> emPositions = EMPosition.findPositionDataPagingData(positionCode, positionName, firstResult, maxResult);
+            for (EMPosition emPosition: emPositions) {
+                Map<String,Object> buffer = new HashMap<>();
+                buffer.put("id", emPosition.getId());
+                buffer.put("positionCode", emPosition.getPositionCode());
+                buffer.put("positionName", emPosition.getPositionName());
+                buffer.put("inUse", EMEmployee.findEMPositionByID(emPosition.getId()));
+                resultSearch.add(buffer);
+            }
             return new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(resultSearch), headers, HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -66,13 +75,13 @@ privileged aspect EMPositionController_Custom_Controller_Json {
 
     @RequestMapping(value = "/findDeletePosition",method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
     public ResponseEntity<String> EMPositionController.findDeletePosition(
-        @RequestParam(value = "positionCode", required = false) String positionCode
+        @RequestParam(value = "positionID", required = false) Long positionID
     ) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json;charset=UTF-8");
         try {
-            List<EMPosition> result = EMPosition.findDeletePosition(positionCode);
-            return  new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(result), headers, HttpStatus.OK);
+            EMPosition emPositions = EMPosition.findDeletePosition(positionID);
+            return  new ResponseEntity<String>(headers, HttpStatus.OK);
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
             return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
