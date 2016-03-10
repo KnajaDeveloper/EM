@@ -72,7 +72,7 @@ $("#save").click(function () {
     });
    console.log(arrEmpCode); console.log(arrRoleCode);
 
-    bootbox.confirm("คุณต้องการบันทึกข้อมูลที่เลือกหรือไม่", function (result) {
+    bootbox.confirm(Message.MESSAGE_SAVE, function (result) {
         if (result === true) {
             console.log(arrEmpCode.length);
             for (var i = 0 ; arrEmpCode.length > i ; i++)
@@ -80,7 +80,7 @@ $("#save").click(function () {
                 saveAppRole(i);
 
             }
-            bootbox.alert("บันทึกข้อมูลเรียบร้อย");
+            bootbox.alert(Message.MESSAGE_SAVE_SUCCESS);
             arrEmpCode =[]; arrRoleCode =[];
             $('input[name=radioAll_]').prop('checked', false);
             searchData();

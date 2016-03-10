@@ -3,6 +3,7 @@ var DeSuccess = 0;
 var DeFail = 0;
 var checkBoxDisable = [] ;
 var json = [];
+var ob ;
 //////////////////////////////////////////////////////////////////////////////////////////////////
 var paggination = Object.create(UtilPaggination);
 $(document).ready(function () {
@@ -35,60 +36,18 @@ $('[id^=btnM]').click(function () {
             async: false
         });
 
-        var ob = jQuery.parseJSON(responseResult.responseText);
+         ob = jQuery.parseJSON(responseResult.responseText);
 
-        checkCode();
-        if (ob == "") {
-            var addTeams = {
-                teamCode: $("#teamCode").val(),
-                teamName: $("#teamName").val()
-            }
-            $.ajax({
-                type: "POST",
-                contentType: "application/json; charset=UTF-8",
-                dataType: "json",
-                headers: {
-                    Accept: "application/json"
-                },
-                url: contextPath + '/emteams',
-                data: JSON.stringify(addTeams),
-
-                complete: function (xhr) {
-
-                    if (xhr.status === 201) {
-
-                        if (id === 'save') {
-
-                            bootbox.alert("บันทึกข้อมูลสำเร็จ");
-                            $('#ModalAdd').modal('hide');
-                            $("input[name='add']").val(null);
-                        }
-                        else if (id === 'next') {
-                            $("input[name='add']").val(null);
-                        }
-
-                    } else if (xhr.status === 500) {
-                        bootbox.alert("บันทึกข้อมูลไม่สำเร็จ");
-                    }
-                },
-                async: false
-            });
-        }
-        else {
-            bootbox.alert("ซ้ำครับ");
-        }
-
+        checkCode(id);
 
     }
-
-
     else if ($("#teamCode").val() == "") {
         $("#teamCode").popover('show');
     }
     else if ($("#teamName").val() == "") {
         $("#teamName").popover('show');
     }
-    searchData();
+
 }); //-- AddTeam --//
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $("#cancelAdd").click(function () {
@@ -103,84 +62,13 @@ $("#cancelEdit").click(function () {
     $("input[name='editText']").val(null);
 }); //--cancelEdit--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////
 $("#search").click(function () {
     $("#checkAll").attr('checked', false);
     searchData();
     if (json.length <= 0) {
-        bootbox.alert("ไม่พบข็อมูล");
+        bootbox.alert(Message.MESSAGE_DATA_NOT_FOUND);
     }
-    // var a = null;
-    //a= $.ajax({
-    //     type: "GET",
-    //     contentType: "application/json; charset=utf-8",
-    //     dataType: "json",
-    //     headers: {
-    //         Accept: "application/json"
-    //     },
-    //     url: contextPath + '/ememployees/findProjectByemTeam',
-    //     //  data: dataJsonData,
-    //     complete: function (xhr) {
-    //
-    //     },
-    //     async: false
-    // });
-    // var res =jQuery.parseJSON(a.responseText);
-    // console.log(res);
-    // for (var i = 0; res.size > i ; i++)
-    // {
-    //     console.log();
-    // }
-    //bootbox.alert("ไม่พบข้อมูล"+searchData()) ;
-    //var responseHeader = null;
-    //responseHeader = $.ajax({
-    //    type: "GET",
-    //    contentType: "application/json; charset=UTF-8",
-    //    dataType: "json",
-    //    headers: {
-    //        Accept: "application/json"
-    //    },
-    //
-    //    url: contextPath + '/emteams/findProjectBytypeTeamCode',
-    //    data: {
-    //        searchCode: $("input[name='searchCode']").val(),
-    //        searchName: $("input[name='searchName']").val()
-    //    },
-    //
-    //    complete: function (xhr) {
-    //
-    //        if (xhr.status === 200) {
-    //            bootbox.alert("55555");
-    //        } else if (xhr.status === 500) {
-    //            bootbox.alert("6666");
-    //        }
-    //    },
-    //    async: false
-    //});
-    //var Obj = jQuery.parseJSON(responseHeader.responseText);
-    //var tableData = "";
 
-    //$.each(Obj, function (key, val) {
-    //    tableData = ''
-    //        + '<tr style="background-color: #fff">'
-    //        + '<td class="text-center">'
-    //        + '<input class="check" type="checkbox" name="checkdDelete" />'
-    //        + '</td>'
-    //        + '<td class="text-center">'
-    //        + '<button id="btnEdit' + key + '" type="button" class="btn btn-info" data-toggle="modal" data-target="#add" data-backdrop="static"><span name="editClick" class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>'
-    //        + '</td>'
-    //        + '<td id="tdTeamCode' + key + '" class="text-center" style="color: #000">'
-    //        + val["teamCode"]
-    //        + '</td>'
-    //        + '<td id="tdTeamName' + key + '" class="text-center" style="color: #000">'
-    //        + val["teamName"]
-    //        + '</td>'
-    //        + '</tr>';
-    //
-    //    $('#ResualtSearch').append(
-    //        tableData
-    //    );
-    //});
 }); //--searchData--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $('#data').on("click", "[id^=btnEdit]", function () {
@@ -202,12 +90,12 @@ $("#btnDelete").click(function () {
     });
     //console.log(checkedRows);
     if (checkedRows.length > 0) {
-        bootbox.confirm("คุณต้องการลบข้อมูลที่เลือกหรือไม่", function (result) {
+        bootbox.confirm(Message.MESSAGE_REMOVE_SELECT, function (result) {
             if (result === true) {
                 for (var i=0; checkedRows.length > i; i++) {
                     DeleteData(i);
                 }
-                bootbox.alert(" ลบข้อมูลสำเร็จ : " + DeSuccess + "  ลบข้อมูลไม่สำเร็จ : " + DeFail);
+                bootbox.alert(Message.MESSAGE_DELETE_SUCCESS+" " + DeSuccess +" "+ Message.MESSAGE_DELETE_FAIL + DeFail);
                 DeSuccess = 0;
                 DeFail = 0;
                 checkedRows = [];
@@ -216,7 +104,7 @@ $("#btnDelete").click(function () {
             }
         });
     } else if (checkedRows.length == 0) {
-        bootbox.alert("กรุณาเลือกข้อมูลที่ต้องการลบ");
+        bootbox.alert( Message.MESSAGE_PLEASE_SELECT_SELECT_DATA);
     }
 
 }); //-- deleteData--//
@@ -248,15 +136,15 @@ $("#saveEdit").click(function () {
 }); //-- EditData--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $('#data').on("click", "[id^=checkDisableDelete]", function () {
-    bootbox.alert("ไม่สามารถลบข้อมูลนี้ได้");
+    bootbox.alert(Message.MESSAGE_DO_NOT_DELETE);
     var id = this.id.split('checkDisableDelete')[1];
     $("#checkDisableDelete"+id).attr('checked', false);
 
 }); //--checkDataDelete--//
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
 $("[id^=paggingSimpleBtn]").click(function () {
     if ($('#checkAll').prop('checked') == true){
-        $('#checkAll').prop('checked', false);
+        $('input[type=checkbox]').prop('checked', false);
     }
 }); //--paggingSimpleBtn--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -274,7 +162,7 @@ paggination.loadTable = function loadTable(jsonData) {
 
     jsonData.forEach(function (value) {
         checkIdKey(value.id);
-        console.log(value.id);
+        //console.log(value.id);
         if (checkBoxDisable != "") {
             tableData = ''
 
@@ -384,21 +272,64 @@ function EditData(teamCode, teamName) {
         complete: function (xhr) {
             if (xhr.status === 200) {
                 $('#ModalEdit').modal('hide');
-                bootbox.alert(" แก้ไขข้อมูลสำเร็จ");
+                bootbox.alert(Message.MESSAGE_EDIT_SUCCESS);
 
             } else if (xhr.status === 500) {
-                bootbox.alert("แก้ไขข้อมูลไม่สำเร็จ");
+                bootbox.alert( Message.MESSAGE_EDIT_FAIL);
             }
         },
         async: false
     });
 } //--functionEditData--//
 /////////////////////////////////////////////////////////////////////////////////////////////////
-function checkCode() {
+function checkCode(id) {
     var elem = $("#teamCode").val();
     if (!elem.match(/^([a-z0-9\_])+$/i)) {
-        bootbox.alert("กรุณากรอกข้อมูลรหัสพนักงานเป็น a-Z หรือ A-Z หรือ 0-9 ");
+        bootbox.alert(Message.MESSAGE_PLEASE_ENTER_A_Z);
         $("#teamCode").val("");
+    }
+    else
+    {
+        if (ob == "") {
+            var addTeams = {
+                teamCode: $("#teamCode").val(),
+                teamName: $("#teamName").val()
+            }
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=UTF-8",
+                dataType: "json",
+                headers: {
+                    Accept: "application/json"
+                },
+                url: contextPath + '/emteams',
+                data: JSON.stringify(addTeams),
+
+                complete: function (xhr) {
+
+                    if (xhr.status === 201) {
+
+                        if (id === 'save') {
+
+                            bootbox.alert(Message.MESSAGE_SAVE_SUCCESS);
+                            $('#ModalAdd').modal('hide');
+                            $("input[name='add']").val(null);
+                        }
+                        else if (id === 'next') {
+                            $("input[name='add']").val(null);
+                        }
+
+                    } else if (xhr.status === 500) {
+                        bootbox.alert(Message.MESSAGE_ADD_FAIL);
+                    }
+                },
+                async: false
+            });
+        }
+        else {
+            bootbox.alert(Message.MESSAGE_CODE_DUPLICATE);
+        }
+        searchData();
     }
 }; //--functionCheck a-z --//
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -423,7 +354,7 @@ function checkIdKey(emTeam) {
         async: false
     });
     checkBoxDisable = jQuery.parseJSON(responseResult.responseText);
-    console.log(checkBoxDisable);
+    //console.log(checkBoxDisable);
 
 } //--functionCheckID--//
 /////////////////////////////////////////////////////////////////////////////////////////////////
