@@ -18,7 +18,7 @@ paggination.loadTable = function loadTable (jsonData) {
         tableData = ''
 		+ '<tr>'
             + '<td class="text-center">'
-            	+ '<input inUse="' + value.inUse + '" id="' + value.id + '" class="checkboxTable" type="checkbox" />'
+            	+ '<input inUse="' + (value.inUse > 0 ? 1 : 0) + '" id="' + value.id + '" class="checkboxTable" type="checkbox" />'
             + '</td>'
             + '<td class="text-center">'
             	+ '<button onclick="openModalEdit($(this))" type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#add" data-backdrop="static"><span name="editClick" class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>'
@@ -215,17 +215,13 @@ $('#btnDelete').click(function() {
 
 $("#checkboxAll").click(function(){
     $(".checkboxTable").prop('checked', $(this).prop('checked'));
-
-    $.each($(".checkboxTable:checked"),function(index,value){
-	    if($(this).attr("inUse") > 0){
-    		$(this).prop("checked", false);
-    		$("#checkboxAll").prop("checked", false);
-    	}
-	});
+    $.each($(".checkboxTable[inUse=1]"),function(index, value){
+        $(this).prop("checked", false);
+    });
 });
 
 $('#Table').on("click", ".checkboxTable", function () {
-    if($(".checkboxTable:checked").length == $(".checkboxTable").length){
+    if($(".checkboxTable:checked").length == $(".checkboxTable[inUse=0]").length){
         $("#checkboxAll").prop("checked", true);
     }else{
         $("#checkboxAll").prop("checked", false);
