@@ -1,26 +1,67 @@
 <div xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"
-     xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:component="urn:jsptagdir:/WEB-INF/tags/component" version="2.0">
+     xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:component="urn:jsptagdir:/WEB-INF/tags/component" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
 
+    <c:set var="LABEL_SEARCH_TEAM" scope="request"><spring:message code="L0006"/></c:set>
+    <c:set var="LABEL_CODE_TEAM" scope="request"><spring:message code="L0001"/></c:set>
+    <c:set var="LABEL_NAME_TEAM" scope="request"><spring:message code="L0002"/></c:set>
+    <c:set var="BUTTON_SEARCH" scope="request"><spring:message code="B0001"/></c:set>
+    <c:set var="LABEL_ADD" scope="request"><spring:message code="L0003"/></c:set>
+    <c:set var="BUTTON_DELETE" scope="request"><spring:message code="B0005"/></c:set>
+    <c:set var="LABEL_EDIT" scope="request"><spring:message code="L0005"/></c:set>
+    <c:set var="LABEL_ADD_TEAM" scope="request"><spring:message code="L0007"/></c:set>
+    <c:set var="BUTTON_SAVE_ADD" scope="request"><spring:message code="B0002"/></c:set>
+    <c:set var="BUTTON_NEXT" scope="request"><spring:message code="B0003"/></c:set>
+    <c:set var="BUTTON_CANCEL" scope="request"><spring:message code="B0004"/></c:set>
+    <c:set var="MESSAGE_PLEASE_FILL" scope="request"><spring:message code="M0001"/></c:set>
+    <c:set var="MESSAGE_REMOVE_SELECT" scope="request"><spring:message code="M0004"/></c:set>
+    <c:set var="MESSAGE_PLEASE_SELECT_SELECT_DATA" scope="request"><spring:message code="M0003"/></c:set>
+    <c:set var="MESSAGE_DELETE_SUCCESS" scope="request"><spring:message code="M0005"/></c:set>
+    <c:set var="MESSAGE_DELETE_FAIL" scope="request"><spring:message code="M0006"/></c:set>
+    <c:set var="MESSAGE_SAVE_SUCCESS" scope="request"><spring:message code="M0010"/></c:set>
+    <c:set var="MESSAGE_ADD_FAIL" scope="request"><spring:message code="M0011"/></c:set>
+    <c:set var="MESSAGE_CODE_DUPLICATE" scope="request"><spring:message code="M0008"/></c:set>
+    <c:set var="MESSAGE_DATA_NOT_FOUND" scope="request"><spring:message code="M0009"/></c:set>
+    <c:set var="MESSAGE_DO_NOT_DELETE" scope="request"><spring:message code="M0012"/></c:set>
+    <c:set var="MESSAGE_EDIT_SUCCESS" scope="request"><spring:message code="M0007"/></c:set>
+    <c:set var="MESSAGE_EDIT_FAIL" scope="request"><spring:message code="M0013"/></c:set>
+    <c:set var="MESSAGE_PLEASE_ENTER_A_Z" scope="request"><spring:message code="M0002"/></c:set>
+
+    <script>
+        var Message = {} ;
+        Message.MESSAGE_PLEASE_FILL='${MESSAGE_PLEASE_FILL}';
+        Message.MESSAGE_REMOVE_SELECT='${MESSAGE_REMOVE_SELECT}';
+        Message.MESSAGE_PLEASE_SELECT_SELECT_DATA='${MESSAGE_PLEASE_SELECT_SELECT_DATA}';
+        Message.MESSAGE_DELETE_SUCCESS='${MESSAGE_DELETE_SUCCESS}';
+        Message.MESSAGE_DELETE_FAIL='${MESSAGE_DELETE_FAIL}';
+        Message.MESSAGE_SAVE_SUCCESS='${MESSAGE_SAVE_SUCCESS}';
+        Message.MESSAGE_ADD_FAIL='${MESSAGE_ADD_FAIL}';
+        Message.MESSAGE_CODE_DUPLICATE='${MESSAGE_CODE_DUPLICATE}';
+        Message.MESSAGE_DATA_NOT_FOUND='${MESSAGE_DATA_NOT_FOUND}';
+        Message.MESSAGE_DO_NOT_DELETE='${MESSAGE_DO_NOT_DELETE}';
+        Message.MESSAGE_EDIT_SUCCESS='${MESSAGE_EDIT_SUCCESS}';
+        Message.MESSAGE_EDIT_FAIL='${MESSAGE_EDIT_FAIL}';
+        Message.MESSAGE_PLEASE_ENTER_A_Z='${MESSAGE_PLEASE_ENTER_A_Z}';
+    </script>
 
     <div class="row">
         <div class="panel panel-primary">
-            <div class="panel-heading">ค้นหาทีม</div>
+            <div class="panel-heading">${LABEL_SEARCH_TEAM}</div>
             <div class="panel-body">
                 <br/>
-                <div class="col-xs-12">
+                <div class="col-sm-12">
                     <form class="form-horizontal">
-                        <div class="form-group col-xs-6">
-                            <label class="control-label col-xs-3">รหัสทีม</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" Name="searchCode" placeholder="รหัสทีม"/>
+                        <div class="form-group col-sm-6">
+                            <label class="control-label col-sm-3">${LABEL_CODE_TEAM}</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" Name="searchCode" placeholder="${LABEL_CODE_TEAM}"/>
                             </div>
                         </div>
-                        <div class="form-group col-xs-6">
-                            <label class="control-label col-xs-2">ชื่อทีม</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" Name="searchName" placeholder="ชื่อทีม"/>
+                        <div class="form-group col-sm-6">
+                            <label class="control-label col-sm-3">${LABEL_NAME_TEAM}</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" Name="searchName" placeholder="${LABEL_NAME_TEAM}"/>
                             </div>
                         </div>
                     </form>
@@ -28,9 +69,9 @@
                 <br/>
                 <br/>
                 <br/>
-                <div class="col-xs-8">
-                    <div class="col-xs-offset-8 col-xs-2">
-                        <button type="button" class="btn btn-primary" id="search">ค้นหา</button>
+                <div class="col-sm-8">
+                    <div class="col-sm-offset-8 col-sm-2">
+                        <button type="button" class="btn btn-primary" id="search">${BUTTON_SEARCH}</button>
                     </div>
                 </div>
                 <br/>
@@ -44,13 +85,11 @@
             <div class=" col-sm-12">
                 <form class="form-inline">
                     <div class="form-group">
-                        <div class=" col-sm-4">
+                        <div >
                             <button type="button" class="btn btn-primary" data-toggle ="modal" data-target="#ModalAdd"
-                                    data-backdrop="static">เพิ่ม
+                                    data-backdrop="static">${LABEL_ADD}
                             </button>
-                        </div>
-                        <div class=" col-sm-4">
-                            <button id="btnDelete" type="button" class="btn btn-danger">ลบที่เลือก</button>
+                            <button style="margin-left: 5px" id="btnDelete" type="button" class="btn btn-danger">${BUTTON_DELETE}</button>
                         </div>
 
                     </div>
@@ -67,9 +106,9 @@
                     <tr class="info">
                         <th class="text-center"><input class="check" type="checkbox" id="checkAll"/></th>
 
-                        <th class="text-center" style="color:#000">แก้ไข</th>
-                        <th class="text-center" style="color:#000">รหัสทีม</th>
-                        <th class="text-center" style="color:#000">ชื่อทีม</th>
+                        <th class="text-center" style="color:#000">${LABEL_EDIT}</th>
+                        <th class="text-center" style="color:#000">${LABEL_CODE_TEAM}</th>
+                        <th class="text-center" style="color:#000">${LABEL_NAME_TEAM}</th>
                     </tr>
                 </tdead>
                 <tbody id="ResualtSearch" style="cursor:pointer"></tbody>
@@ -90,31 +129,31 @@
             <!-- Modal content-->
             <div class="modal-content ">
                 <div class="modal-header bg-primary">
-                    <h4 class="modal-title">เพิ่มทีม</h4>
+                    <h4 class="modal-title">${LABEL_ADD_TEAM}</h4>
                 </div>
                 <div class="modal-body">
                     <form id="formAdd" Type="POST" class="form-horizontal">
                         <div class="form-group">
-                            <label class="control-label col-xs-2 required">รหัสทีม </label>
-                            <div class="col-xs-8">
+                            <label class="control-label col-sm-3 required">${LABEL_CODE_TEAM} </label>
+                            <div class="col-sm-8">
                                 <input name="add" type="text" class="form-control" data-placement="bottom"
-                                       data-content="กรุณากรอกข้อมูล" id="teamCode" placeholder="รหัสทีม" />
+                                       data-content="${MESSAGE_PLEASE_FILL}" id="teamCode" placeholder="${LABEL_CODE_TEAM}" />
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-xs-2 required">ชื่อทีม </label>
-                            <div class="col-xs-8">
+                            <label class="control-label col-sm-3 required">${LABEL_NAME_TEAM} </label>
+                            <div class="col-sm-8">
                                 <input name="add" type="text" class="form-control" id="teamName" data-placement="bottom"
-                                       data-content="กรุณากรอกข้อมูล" placeholder="ชื่อทีม"/>
+                                       data-content="${MESSAGE_PLEASE_FILL}" placeholder="${LABEL_NAME_TEAM}"/>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="btnMsave">บันทึก</button>
-                    <button type="button" class="btn btn-primary" id="btnMnext">ถัดไป</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="cancelAdd">ยกเลิก</button>
+                    <button type="button" class="btn btn-primary" id="btnMsave">${BUTTON_SAVE_ADD}</button>
+                    <button type="button" class="btn btn-primary" id="btnMnext">${BUTTON_NEXT}</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="cancelAdd">${BUTTON_CANCEL}</button>
                 </div>
             </div>
         </div>
@@ -127,28 +166,28 @@
             <!-- Modal content-->
             <div class="modal-content ">
                 <div class="modal-header bg-primary">
-                    <h4 class="modal-title">แก้ไข</h4>
+                    <h4 class="modal-title">${LABEL_EDIT}</h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label class="control-label col-xs-2 ">รหัสทีม </label>
-                            <div class="col-xs-8">
+                            <label class="control-label col-sm-3 ">${LABEL_CODE_TEAM}</label>
+                            <div class="col-sm-8">
                                 <input id="editCode" type="text" class="form-control" name="editText" disabled="true"/>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-xs-2 required">ชื่อทีม </label>
-                            <div class="col-xs-8">
+                            <label class="control-label col-sm-3 required">${LABEL_NAME_TEAM}</label>
+                            <div class="col-sm-8">
                                 <input id="editName" type="text" class="form-control" name="editText"/>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="saveEdit">บันทึก</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="cancelEdit">ยกเลิก</button>
+                    <button type="button" class="btn btn-primary" id="saveEdit">${BUTTON_SAVE_ADD}</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="cancelEdit">${BUTTON_CANCEL}</button>
                 </div>
             </div>
         </div>

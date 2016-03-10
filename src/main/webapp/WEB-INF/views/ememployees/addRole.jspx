@@ -6,23 +6,48 @@
     <jsp:output omit-xml-declaration="yes"/>
     <c:set var="LABEL_DELIMETER" scope="request">#</c:set>
 
+    <c:set var="BUTTON_SAVE_ADD" scope="request"><spring:message code="B0002"/></c:set>
+    <c:set var="BUTTON_SEARCH" scope="request"><spring:message code="B0001"/></c:set>
+    <c:set var="BUTTON_CANCEL" scope="request"><spring:message code="B0004"/></c:set>
+    <c:set var="LABEL_SEARCH_EMP" scope="request"><spring:message code="L0008"/></c:set>
+    <c:set var="LABEL_CODE_EMP" scope="request"><spring:message code="L0009"/></c:set>
+    <c:set var="LABEL_POSITION" scope="request"><spring:message code="L0010"/></c:set>
+    <c:set var="LABEL_SELECT_POSITION" scope="request"><spring:message code="L0011"/></c:set>
+    <c:set var="LABEL_NAME" scope="request"><spring:message code="L0012"/></c:set>
+    <c:set var="LABEL_FIRST_NAME" scope="request"><spring:message code="L0013"/></c:set>
+    <c:set var="LABEL_TEAM" scope="request"><spring:message code="L0014"/></c:set>
+    <c:set var="LABEL_SELECT_TEAM" scope="request"><spring:message code="L0015"/></c:set>
+    <c:set var="LABEL_LAST_NAME" scope="request"><spring:message code="L0016"/></c:set>
+    <c:set var="LABEL_ADDED_ROLE" scope="request"><spring:message code="L0017"/></c:set>
+    <c:set var="LABEL_NOT_ADDED_ROLE" scope="request"><spring:message code="L0018"/></c:set>
+    <c:set var="LABEL_ALL" scope="request"><spring:message code="L0019"/></c:set>
+    <c:set var="LABEL_FIRST_LAST_NAME" scope="request"><spring:message code="L0020"/></c:set>
+    <c:set var="MESSAGE_SAVE" scope="request"><spring:message code="M0014"/></c:set>
+    <c:set var="MESSAGE_SAVE_SUCCESS" scope="request"><spring:message code="M0015"/></c:set>
+
+    <script>
+        var Message = {} ;
+        Message.MESSAGE_SAVE = '${MESSAGE_SAVE}';
+        Message.MESSAGE_SAVE_SUCCESS = '${MESSAGE_SAVE_SUCCESS}';
+    </script>
+
     <div class="container-fluid">
         <div class="col-md-12">
             <div class="panel panel-primary">
-                <div class="panel-heading">ค้นหาพนักงาน</div>
+                <div class="panel-heading">${LABEL_SEARCH_EMP}</div>
                 <div class="panel-body">
                     <br></br>
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label ">รหัสพนักงาน</label>
+                            <label class="col-sm-2 control-label ">${LABEL_CODE_EMP}</label>
                             <div class="col-sm-2">
                                 <input type="" class="form-control" id="empCode"
-                                       placeholder="รหัสพนักงาน"/>
+                                       placeholder="${LABEL_CODE_EMP}"/>
                             </div>
-                            <label class="col-sm-3 control-label " >ตำแหน่ง</label>
+                            <label class="col-sm-3 control-label " >${LABEL_POSITION}</label>
                                 <div class="col-sm-3">
                                     <select class="form-control" id ="emPosition"  ><jsp:text/>
-                                        <option value="">เลือกตำแหน่ง</option>
+                                        <option value="">${LABEL_SELECT_POSITION}</option>
                                         <c:forEach var="emposition" items="${listEmpost}">
                                             <option value="${emposition.positionName}">
                                                 ${emposition.positionName}
@@ -32,15 +57,15 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label " >ชื่อ</label>
+                            <label class="col-sm-2 control-label " >${LABEL_NAME}</label>
                             <div class="col-sm-3">
                                 <input type="" class="form-control" id="empFirstName"
-                                       placeholder="ชื่อจริง"/>
+                                       placeholder="${LABEL_FIRST_NAME}"/>
                             </div>
-                            <label class="col-sm-2 control-label ">ทีม</label>
+                            <label class="col-sm-2 control-label ">${LABEL_TEAM}</label>
                             <div class="col-sm-3">
                                 <select class="form-control" id="emTeam"><jsp:text/>
-                                    <option value="">เลือกทีม</option>
+                                    <option value="">${LABEL_SELECT_TEAM}</option>
                                     <c:forEach var="emTeam" items="${listEmteam}">
                                         <option value="${emTeam.teamName}" >
                                             ${emTeam.teamName}
@@ -50,19 +75,19 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label ">นามสกุล</label>
+                            <label class="col-sm-2 control-label ">${LABEL_LAST_NAME}</label>
                             <div class="col-sm-3">
                                 <input type="" class="form-control" id="empLastName"
-                                       placeholder="นามสกุล"/>
+                                       placeholder="${LABEL_LAST_NAME}"/>
                             </div>
-                                <label  class="col-md-offset-2 col-sm-1  radio-inline" ><input  id="appRole" type="radio" name="optradio"/>ถูกเพิ่มสิทธิแล้ว</label>
-                                <label class="col-sm-1  radio-inline"><input  id="notApprole" type="radio" name="optradio" />ยังไม่ถูกเพิ่มสิทธิ</label>
-                                <label class="col-sm-1  radio-inline"><input  id="allApprole" type="radio" name="optradio" checked="checked"/>ทั้งหมด</label>
+                                <label  class="col-md-offset-2 col-sm-1  radio-inline" ><input  id="appRole" type="radio" name="optradio"/>${LABEL_ADDED_ROLE}</label>
+                                <label class="col-sm-1  radio-inline"><input  id="notApprole" type="radio" name="optradio" />${LABEL_NOT_ADDED_ROLE}</label>
+                                <label class="col-sm-1  radio-inline"><input  id="allApprole" type="radio" name="optradio" checked="checked"/>${LABEL_ALL}</label>
 
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-5 col-md-1 ">
-                                <button id="search" type="button"  class="btn btn-primary ">ค้นหา
+                                <button id="search" type="button"  class="btn btn-primary ">${BUTTON_SEARCH}
                                 </button>
                             </div>
                         </div>
@@ -75,10 +100,10 @@
                     <table id="data" class="table table-hover">
                         <tdead>
                             <tr id="column" class="info">
-                                <th class="text-center" style="width: 50px; color:#000">รหัสพนักงาน</th>
-                                <th class="text-center" style="width: 200px; color:#000">ชื่อ-นามสกุล</th>
-                                <th class="text-center" style="width: 100px; color:#000">ตำแหน่ง</th>
-                                <th class="text-center" style="width: 100px; color:#000">ทีม</th>
+                                <th class="text-center" style="width: 50px; color:#000">${LABEL_CODE_EMP}</th>
+                                <th class="text-center" style="width: 200px; color:#000">${LABEL_FIRST_LAST_NAME}</th>
+                                <th class="text-center" style="width: 100px; color:#000">${LABEL_POSITION}</th>
+                                <th class="text-center" style="width: 100px; color:#000">${LABEL_TEAM}</th>
                             </tr>
                         </tdead>
                         <tbody id="ResualtSearch" style="cursor:pointer"></tbody>
@@ -94,10 +119,10 @@
 
             <div class="form-inline">
                 <div class="col-sm-offset-5  ">
-                    <div class="col-sm-1 ">
-                    <button id="save" type="button" class="btn btn-primary">บันทึก</button></div>
-                        <div class="col-sm-1 ">
-                    <button id="canCel"  type="button" class=" btn btn-danger">ยกลิก</button></div>
+                    <div >
+                    <button id="save" type="button" class="btn btn-primary">${BUTTON_SAVE_ADD}</button>
+
+                    <button style="margin-left: 5px" id="canCel"  type="button" class=" btn btn-danger">${BUTTON_CANCEL}</button></div>
                 </div>
             </div>
         </div>
