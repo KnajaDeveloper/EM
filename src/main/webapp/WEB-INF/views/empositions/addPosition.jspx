@@ -1,32 +1,96 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" xmlns:component="urn:jsptagdir:/WEB-INF/tags/component" version="2.0">
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+    xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
+    xmlns:jsp="http://java.sun.com/JSP/Page"
+    xmlns:spring="http://www.springframework.org/tags"
+    xmlns:component="urn:jsptagdir:/WEB-INF/tags/component"
+    version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
+
+    <c:set var="LABEL_SEARCH_POSITION" scope="request"><spring:message text="ค้นหาตำแหน่ง"/></c:set>
+    <c:set var="LABEL_POSITION_CODE" scope="request"><spring:message text="รหัสตำแหน่ง"/></c:set>
+    <c:set var="LABEL_POSITION_NAME" scope="request"><spring:message text="ชื่อตำแหน่ง"/></c:set>
+    <c:set var="LABEL_ADD_POSITION" scope="request"><spring:message text="เพิ่มตำแหน่ง"/></c:set>
+    <c:set var="LABEL_EDIT" scope="request"><spring:message code="L0005"/></c:set>
+    <c:set var="LABEL_EDIT_POSITION" scope="request"><spring:message text="แก้ไขตำแหน่ง"/></c:set>
+
+    <c:set var="BUTTON_SEARCH" scope="request"><spring:message code="B0001"/></c:set>
+    <c:set var="BUTTON_SAVE" scope="request"><spring:message code="B0002"/></c:set>
+    <c:set var="BUTTON_NEXT" scope="request"><spring:message code="B0003"/></c:set>
+    <c:set var="BUTTON_CANCEL" scope="request"><spring:message code="B0004"/></c:set>
+    <c:set var="BUTTON_ADD" scope="request"><spring:message text="เพิ่ม"/></c:set>
+    <c:set var="BUTTON_REMOVE_SELECTED" scope="request"><spring:message code="B0005"/></c:set>
+
+    <c:set var="MSG_PLEASE_FILL" scope="request"><spring:message code="M0001"/></c:set>
+    <c:set var="MSG_DATA_NOT_FOUND" scope="request"><spring:message code="M0009"/></c:set>
+    <c:set var="PLEASE_ENTER_THE_POSITION_CODE_AS_a_TO_z_OR_A_TO_Z_OR_0_TO_9" scope="request"><spring:message text="กรุณากรอกข้อมูลรหัสตำแหน่งเป็น a-z หรือ A-Z หรือ 0-9"/></c:set>
+    <c:set var="MSG_ADD_MORE_SUCCESS" scope="request"><spring:message code="M0010"/></c:set>
+    <c:set var="MSG_ADD_FAILED" scope="request"><spring:message code="M0011"/></c:set>
+    <c:set var="MSG_PLEASE_ENTER_A_NEW_POSITION_CODE" scope="request"><spring:message text="รหัสตำแหน่งซ้ำกรุณากรอกใหม่"/></c:set>
+    <c:set var="MSG_NO_INFORMATION_CHANGED" scope="request"><spring:message text="ข้อมูลไม่มีการเปลี่ยนแปลง"/></c:set>
+    <c:set var="MSG_EDIT_SUCCESSFULLY" scope="request"><spring:message code="M0007"/></c:set>
+    <c:set var="MSG_EDIT_FAILED" scope="request"><spring:message code="M0013"/></c:set>
+    <c:set var="MSG_PLEASE_SELECT_THE_DATA_TO_BE_DELETED" scope="request"><spring:message code="M0003"/></c:set>
+    <c:set var="MSG_DO_YOU_WANT_TO_REMOVE_THE_SELECTED_ITEMS" scope="request"><spring:message code="M0004"/></c:set>
+    <c:set var="MSG_DELETE_SUCCESS" scope="request"><spring:message code="M0005"/></c:set>
+    <c:set var="MSG_DELETE_FAILED" scope="request"><spring:message code="M0006"/></c:set>
+    <c:set var="MSG_LIST" scope="request"><spring:message text="รายการ"/></c:set>
+    <c:set var="MSG_INUSE" scope="request"><spring:message text="ข้อมูลถูกเรียกใช้อยู่"/></c:set>
+
+    <script type="text/javascript">
+        var Label = {};
+        var Button = {};
+        var Message = {};
+
+        Label.LABEL_EDIT_POSITION = '${LABEL_EDIT_POSITION}';
+        Label.LABEL_ADD_POSITION = '${LABEL_ADD_POSITION}';
+
+        Button.BUTTON_CANCLE = '${BUTTON_CANCLE}';
+
+        Message.MSG_DATA_NOT_FOUND = '${MSG_DATA_NOT_FOUND}';
+        Message.PLEASE_ENTER_THE_POSITION_CODE_AS_a_TO_z_OR_A_TO_Z_OR_0_TO_9 = '${PLEASE_ENTER_THE_POSITION_CODE_AS_a_TO_z_OR_A_TO_Z_OR_0_TO_9}';
+        Message.MSG_PLEASE_FILL = '${MSG_PLEASE_FILL}';
+        Message.MSG_ADD_MORE_SUCCESS = '${MSG_ADD_MORE_SUCCESS}';
+        Message.MSG_ADD_FAILED = '${MSG_ADD_FAILED}';
+        Message.MSG_PLEASE_ENTER_A_NEW_POSITION_CODE = '${MSG_PLEASE_ENTER_A_NEW_POSITION_CODE}';
+        Message.MSG_NO_INFORMATION_CHANGED = '${MSG_NO_INFORMATION_CHANGED}';
+        Message.MSG_EDIT_SUCCESSFULLY = '${MSG_EDIT_SUCCESSFULLY}';
+        Message.MSG_EDIT_FAILED = '${MSG_EDIT_FAILED}';
+        Message.MSG_PLEASE_SELECT_THE_DATA_TO_BE_DELETED = '${MSG_PLEASE_SELECT_THE_DATA_TO_BE_DELETED}';
+        Message.MSG_DO_YOU_WANT_TO_REMOVE_THE_SELECTED_ITEMS = '${MSG_DO_YOU_WANT_TO_REMOVE_THE_SELECTED_ITEMS}';
+        Message.MSG_DELETE_SUCCESS = '${MSG_DELETE_SUCCESS}';
+        Message.MSG_DELETE_FAILED = '${MSG_DELETE_FAILED}';
+        Message.MSG_LIST = '${MSG_LIST}';
+        Message.MSG_INUSE = '${MSG_INUSE}';
+    </script>
+
     <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-primary">
-                <div class="panel-heading">ค้นหาตำแหน่ง</div>
+                <div class="panel-heading">${LABEL_SEARCH_POSITION}</div>
                 <div class="panel-body">
                     <br/>
                     <div class="col-xs-12">
                         <form class="form-horizontal">
                             <div class="form-group col-xs-6">
-                                <label class="control-label col-xs-3">รหัสตำแหน่ง</label>
+                                <label class="control-label col-xs-3">${LABEL_POSITION_CODE}</label>
                                 <div class="col-xs-8">
-                                    <input type="text" class="form-control" id="sPositionCode" placeholder="รหัสตำแหน่ง" />
+                                    <input type="text" class="form-control" id="sPositionCode" placeholder="${LABEL_POSITION_CODE}" />
                                 </div>
                             </div>
                             <div class="form-group col-xs-6">
-                                <label class="control-label col-xs-3">ชื่อตำแหน่ง</label>
+                                <label class="control-label col-xs-3">${LABEL_POSITION_NAME}</label>
                                 <div class="col-xs-7">
-                                    <input type="text" class="form-control" id="sPositionName" placeholder="ชื่อตำแหน่ง"/>
+                                    <input type="text" class="form-control" id="sPositionName" placeholder="${LABEL_POSITION_NAME}"/>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="col-xs-8">
                         <div class="col-xs-offset-8 col-xs-2">
-                            <button id="btnSearch" type="button" class="btn btn-primary">ค้นหา</button>
+                            <button id="btnSearch" type="button" class="btn btn-primary">${BUTTON_SEARCH}</button>
                         </div>
                     </div>
                 </div>
@@ -38,28 +102,28 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-primary">
-                    <h5 class="modal-title">เพิ่มตำแหน่ง</h5>
+                    <h5 class="modal-title">${LABEL_ADD_POSITION}</h5>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label class="control-label col-sm-3 required">รหัสตำแหน่ง</label>
+                            <label class="control-label col-sm-3 required">${LABEL_POSITION_CODE}</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="txtPositionCode" data-placement="bottom" placeholder="รหัสตำแหน่ง" />
+                                <input type="text" class="form-control" id="txtPositionCode" data-placement="bottom" placeholder="${LABEL_POSITION_CODE}" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-3 required">ชื่อตำแหน่ง</label>
+                            <label class="control-label col-sm-3 required">${LABEL_POSITION_NAME}</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="txtPositionName" data-content="กรุณากรอกข้อมูลชื่อตำแหน่ง" data-placement="bottom" placeholder="ชื่อตำแหน่ง" />
+                                <input type="text" class="form-control" id="txtPositionName" data-content="${MSG_PLEASE_FILL}" data-placement="bottom" placeholder="${LABEL_POSITION_NAME}" />
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button id="btnMAdd" type="button" class="btn btn-primary">ตกลง</button>
-                    <button id="btnMNext" type="button" class="btn btn-primary">ถัดไป</button>
-                    <button id="btnMCancel" type="button" class="btn btn-danger">ยกเลิก</button>
+                    <button id="btnModalAdd" type="button" class="btn btn-primary">${BUTTON_SAVE}</button>
+                    <button id="btnModalNext" type="button" class="btn btn-primary">${BUTTON_NEXT}</button>
+                    <button id="btnModalCancel" type="button" class="btn btn-danger">${BUTTON_CANCEL}</button>
                 </div>
             </div>
         </div>
@@ -73,10 +137,10 @@
                         <form class="form-inline">
                             <div class="form-group">
                                 <div class="col-xs-4">
-                                    <button id="btnAdd" type="button" class="btn btn-primary" data-toggle="modal" data-target="#add" data-backdrop="static">เพิ่ม</button>
+                                    <button id="btnAdd" type="button" class="btn btn-primary" data-toggle="modal" data-target="#add" data-backdrop="static">${BUTTON_ADD}</button>
                                 </div>
                                 <div class="col-xs-4">
-                                    <button id="btnDelete" type="button" class="btn btn-danger">ลบที่เลือก</button>
+                                    <button id="btnDelete" type="button" class="btn btn-danger">${BUTTON_REMOVE_SELECTED}</button>
                                 </div>
                             </div>
                         </form>
@@ -90,9 +154,9 @@
                                         <th class="text-center" width="5%">
                                             <input id="checkboxAll" type="checkbox" name="checkdDelete" />
                                         </th>
-                                        <th class="text-center" width="5%">แก้ไข</th>
-                                        <th class="text-center" width="45%">รหัสตำแหน่ง</th>
-                                        <th class="text-center" width="45%">ชื่อตำแหน่ง</th>
+                                        <th class="text-center" width="5%">${LABEL_EDIT}</th>
+                                        <th class="text-center" width="45%">${LABEL_POSITION_CODE}</th>
+                                        <th class="text-center" width="45%">${LABEL_POSITION_NAME}</th>
                                     </tr>
                                 </thead>
                                 <tbody id="ResualtSearch" style="cursor:pointer"></tbody>
