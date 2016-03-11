@@ -8,7 +8,7 @@ paggination.setEventPaggingBtn("paggingSimple",paggination);
 paggination.loadTable = function loadTable (jsonData) {
 
     if(jsonData.length <= 0)
-       bootbox.alert("ไม่พบข้อมูล");
+       bootbox.alert(Message.MSG_DATA_NOT_FOUND);
 
     $('#ResualtSearch').empty();
 
@@ -35,8 +35,8 @@ var positionName;
 
 function openModalEdit(element){
 	check = 1;
-	$('#btnMNext').hide();
-	$('.modal-title').text('แก้ไขตำแหน่ง');
+	$('#btnModalNext').hide();
+	$('.modal-title').text(Label.LABEL_EDIT_POSITION);
     $('#txtPositionCode').val(element.parent("td:eq(0)").parent("tr:eq(0)").children("#tdPositionCode").text()).attr('disabled', true);
     positionName = element.parent("td:eq(0)").parent("tr:eq(0)").children("#tdPositionName").text();
     $('#txtPositionName').val(positionName);
@@ -65,7 +65,7 @@ function searchData() {
 function checkEMPositionCode() {
   	var elem = document.getElementById('txtPositionCode').value;
   	if(!elem.match(/^([a-z0-9\_])+$/i)){
-  		$('#txtPositionCode').attr("data-content" , "กรุณากรอกข้อมูลรหัสพนักงานเป็น a-Z หรือ A-Z หรือ 0-9").popover('show');
+  		$('#txtPositionCode').attr("data-content" , Message.PLEASE_ENTER_THE_POSITION_CODE_AS_a_TO_z_OR_A_TO_Z_OR_0_TO_9).popover('show');
   		return false;
   	}else{
   		return true;
@@ -74,16 +74,16 @@ function checkEMPositionCode() {
 
 var check = 0;
 
-$('[id^=btnM]').click(function() {
-	var id = this.id.split('M')[1];
-	if(id === 'Cancel'){
+$('[id^=btnModal]').click(function() {
+	var id = this.id.split('l')[1];
+	if(id === 'Cance'){
 		check = 0;
 		$('#add').modal('hide');
 		$('#txtPositionCode').popover('hide'); $('#txtPositionName').popover('hide');
 		$('#txtPositionCode').val(null); $('#txtPositionName').val(null);
 	}else{
 		if($('#txtPositionCode').val() === ""){
-			$('#txtPositionCode').attr("data-content" , "กรุณากรอกข้อมูลรหัสตำแหน่ง").popover('show');
+			$('#txtPositionCode').attr("data-content" , Message.MSG_PLEASE_FILL).popover('show');
 		}else if($('#txtPositionName').val()  === ""){
 			if(checkEMPositionCode() === true){
 				$('#txtPositionName').popover('show');
@@ -109,23 +109,23 @@ $('[id^=btnM]').click(function() {
 							complete: function(xhr){
 								if(xhr.status === 201){
 									if(id === 'Add'){
-										bootbox.alert("บันทึกข้อมูลสำเร็จ");
+										bootbox.alert(Message.MSG_ADD_MORE_SUCCESS);
 										$('#add').modal('hide');
 									}
 									$('#txtPositionCode').val(null);
 									$('#txtPositionName').val(null);
 								}else if(xhr.status === 500){
-									bootbox.alert("บันทึกข้อมูลไม่สำเร็จ");
+									bootbox.alert(Message.MSG_ADD_FAILED);
 								}
 							},
 							async: false
 						});
 					}else{
-						bootbox.alert("รหัสตำแหน่งมีแล้ว");
+						bootbox.alert(Message.MSG_PLEASE_ENTER_A_NEW_POSITION_CODE);
 					}
 				}else if(check == 1){
 					if($('#txtPositionName').val() === positionName){
-						bootbox.alert("ข้อมูลไม่มีการเปลี่ยนแปลง");
+						bootbox.alert(Message.MSG_NO_INFORMATION_CHANGED);
 					}else{
 						$.ajax({
 							contentType: "application/json; charset=utf-8",
@@ -138,14 +138,14 @@ $('[id^=btnM]').click(function() {
 							data : emPosition,
 							complete: function(xhr){
 								if(xhr.status === 200){
-									bootbox.alert("แก้ไขข้อมูลสำเร็จ");
+									bootbox.alert(Message.MSG_EDIT_SUCCESSFULLY);
 									$('#add').modal('hide');
 									$('#txtPositionCode').val(null);
 									$('#txtPositionName').val(null);
 									searchData();
 									check = 0;
 								}else if(xhr.status === 500){
-									bootbox.alert("แก้ไขข้อมูลไม่สำเร็จ");
+									bootbox.alert(Message.MSG_EDIT_FAILED);
 								}
 							},
 							async: false
@@ -158,7 +158,7 @@ $('[id^=btnM]').click(function() {
 });
 
 $('#btnAdd').click(function() {
-	$(".modal-title").text("เพิ่มตำแหน่ง");
+	$(".modal-title").text(Label.LABEL_ADD_POSITION);
 	$('#btnMNext').show();
 	$('#txtPositionCode').attr('disabled', false);
 });
@@ -192,18 +192,18 @@ function deleteData() {
 
 $('#btnDelete').click(function() {
 	if($(".checkboxTable:checked").length <= 0){
-            bootbox.alert("คุณยังไม่ได้เลือกข้อมูลที่ต้องการลบ");
+            bootbox.alert(Message.MSG_PLEASE_SELECT_THE_DATA_TO_BE_DELETED);
             return false;
     }else{
-    	bootbox.confirm("คุณต้องการลบข้อมูลที่เลือกหรือไม่", function(result) {
+    	bootbox.confirm(Message.MSG_DO_YOU_WANT_TO_REMOVE_THE_SELECTED_ITEMS, function(result) {
 			if(result == true){
 				deleteData();
 				searchData();
 				$('#checkboxAll').prop('checked', false);
 				if(status500 === 0){
-					bootbox.alert("ลบข้อมูลสำเร็จ : " + status200 + " รายการ");
+					bootbox.alert(Message.MSG_DELETE_SUCCESS + " " + status200 + " " + Message.MSG_LIST);
 				}else{
-					bootbox.alert("ลบข้อมูลสำเร็จ : " + status200 + " รายการ ลบข้อมูลไม่สำเร็จ : " + status500 + " รายการ");
+					bootbox.alert(Message.MSG_DELETE_SUCCESS + " " + status200 + " " + Message.MSG_LIST + " " + Message.MSG_DELETE_FAILED + " " + status500 + " " + Message.MSG_LIST);
 				}
 
 				status200 = 0;
@@ -229,7 +229,7 @@ $('#Table').on("click", ".checkboxTable", function () {
 
     if($(this).attr("inUse") > 0){
     	$(this).prop("checked", false);
-    	bootbox.alert("ข้อมูลถูกเรียกใช้อยู่");
+    	bootbox.alert(Message.MSG_INUSE);
     }
 });
 
