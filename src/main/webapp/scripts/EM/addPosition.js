@@ -65,7 +65,7 @@ function searchData() {
 function checkEMPositionCode() {
   	var elem = document.getElementById('txtPositionCode').value;
   	if(!elem.match(/^([a-z0-9\_])+$/i)){
-  		$('#txtPositionCode').attr("data-content" , Message.PLEASE_ENTER_THE_POSITION_CODE_AS_a_TO_z_OR_A_TO_Z_OR_0_TO_9).popover('show');
+  		$('#txtPositionCode').attr("data-content" , Message.PLEASE_ENTER_THE_CODE_AS_a_TO_z_OR_A_TO_Z_OR_0_TO_9).popover('show');
   		return false;
   	}else{
   		return true;
