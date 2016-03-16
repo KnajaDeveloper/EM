@@ -24,11 +24,13 @@
     <c:set var="LABEL_FIRST_LAST_NAME" scope="request"><spring:message code="L0020"/></c:set>
     <c:set var="MESSAGE_SAVE" scope="request"><spring:message code="M0014"/></c:set>
     <c:set var="MESSAGE_SAVE_SUCCESS" scope="request"><spring:message code="M0015"/></c:set>
+    <c:set var="MESSAGE_DATA_NOT_FOUND" scope="request"><spring:message code="M0009"/></c:set>
 
     <script>
         var Message = {} ;
         Message.MESSAGE_SAVE = '${MESSAGE_SAVE}';
         Message.MESSAGE_SAVE_SUCCESS = '${MESSAGE_SAVE_SUCCESS}';
+        Message.MESSAGE_DATA_NOT_FOUND ='${MESSAGE_DATA_NOT_FOUND}';
     </script>
 
     <div class="container-fluid">

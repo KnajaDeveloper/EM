@@ -4,6 +4,7 @@ var DeFail = 0;
 var checkBoxDisable = [] ;
 var json = [];
 var ob ;
+var edit = '' ;
 //////////////////////////////////////////////////////////////////////////////////////////////////
 var paggination = Object.create(UtilPaggination);
 $(document).ready(function () {
@@ -76,6 +77,7 @@ $('#data').on("click", "[id^=btnEdit]", function () {
     var id = this.id.split('t')[2];
     $('#editCode').val($('#tdTeamCode' + id).text());
     $('#editName').val($('#tdTeamName' + id).text());
+    edit=$('#editName').val();
 
 }) //--getDataEdit--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -128,11 +130,19 @@ $('#data').on("click", "[id^=chDelete]", function () {
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $("#saveEdit").click(function () {
 
-    var teamCode = $('#editCode').val();
-    var teamName = $('#editName').val();
+    if($('#editName').val()== edit)
+    {
+        bootbox.alert("ข้อมูลไม่มีการเปลี่ยนแปลง");////////////////////////////////////////////////////////////////////////////////////////
+    }
+    else
+    {
+        var teamCode = $('#editCode').val();
+        var teamName = $('#editName').val();
+        EditData(teamCode, teamName);
+        searchData();
+    }
 
-    EditData(teamCode, teamName);
-    searchData();
+
 }); //-- EditData--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $('#data').on("click", "[id^=checkDisableDelete]", function () {
