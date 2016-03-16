@@ -2,6 +2,7 @@ var paggination = Object.create(UtilPaggination);
 var roleName;
 var arrEmpCode=[] ;
 var arrRoleCode=[] ;
+var json = [];
 //////////////////////////////////////////////////////////////////////////////
 $(document).ready(function () {
     appRole();
@@ -9,7 +10,12 @@ $(document).ready(function () {
 //////////////////////////////////////////////////////////////////////////////
 $("#search").click(function () {
     $('input[name=radioAll_]').prop('checked', false);
+
     searchData();
+    //console.log(json+"555");
+    if (json.length <= 0) {
+        bootbox.alert(Message.MESSAGE_DATA_NOT_FOUND);
+    }
 }); //-- --//
 //////////////////////////////////////////////////////////////////////////////
 paggination.setEventPaggingBtn("paggingSimple", paggination);
