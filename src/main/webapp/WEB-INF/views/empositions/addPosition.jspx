@@ -9,35 +9,35 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
 
-    <c:set var="LABEL_SEARCH_POSITION" scope="request"><spring:message text="L0021"/></c:set>
-    <c:set var="LABEL_POSITION_CODE" scope="request"><spring:message text="L0022"/></c:set>
-    <c:set var="LABEL_POSITION_NAME" scope="request"><spring:message text="L0023"/></c:set>
-    <c:set var="LABEL_ADD_POSITION" scope="request"><spring:message text="L0024"/></c:set>
+    <c:set var="LABEL_SEARCH_POSITION" scope="request"><spring:message code="L0021"/></c:set>
+    <c:set var="LABEL_POSITION_CODE" scope="request"><spring:message code="L0022"/></c:set>
+    <c:set var="LABEL_POSITION_NAME" scope="request"><spring:message code="L0023"/></c:set>
+    <c:set var="LABEL_ADD_POSITION" scope="request"><spring:message code="L0024"/></c:set>
     <c:set var="LABEL_EDIT" scope="request"><spring:message code="L0005"/></c:set>
-    <c:set var="LABEL_EDIT_POSITION" scope="request"><spring:message text="L0025"/></c:set>
+    <c:set var="LABEL_EDIT_POSITION" scope="request"><spring:message code="L0025"/></c:set>
 
     <c:set var="BUTTON_SEARCH" scope="request"><spring:message code="B0001"/></c:set>
     <c:set var="BUTTON_SAVE" scope="request"><spring:message code="B0002"/></c:set>
     <c:set var="BUTTON_NEXT" scope="request"><spring:message code="B0003"/></c:set>
     <c:set var="BUTTON_CANCEL" scope="request"><spring:message code="B0004"/></c:set>
-    <c:set var="BUTTON_ADD" scope="request"><spring:message text="B0006"/></c:set>
+    <c:set var="BUTTON_ADD" scope="request"><spring:message code="B0006"/></c:set>
     <c:set var="BUTTON_REMOVE_SELECTED" scope="request"><spring:message code="B0005"/></c:set>
 
     <c:set var="MSG_PLEASE_FILL" scope="request"><spring:message code="M0001"/></c:set>
     <c:set var="MSG_DATA_NOT_FOUND" scope="request"><spring:message code="M0009"/></c:set>
-    <c:set var="PLEASE_ENTER_THE_CODE_AS_a_TO_z_OR_A_TO_Z_OR_0_TO_9" scope="request"><spring:message text="M0017"/></c:set>
+    <c:set var="PLEASE_ENTER_THE_CODE_AS_a_TO_z_OR_A_TO_Z_OR_0_TO_9" scope="request"><spring:message code="M0017"/></c:set>
     <c:set var="MSG_ADD_MORE_SUCCESS" scope="request"><spring:message code="M0010"/></c:set>
     <c:set var="MSG_ADD_FAILED" scope="request"><spring:message code="M0011"/></c:set>
-    <c:set var="MSG_PLEASE_ENTER_A_NEW_POSITION_CODE" scope="request"><spring:message text="M0018"/></c:set>
-    <c:set var="MSG_NO_INFORMATION_CHANGED" scope="request"><spring:message text="M0016"/></c:set>
+    <c:set var="MSG_PLEASE_ENTER_A_NEW_POSITION_CODE" scope="request"><spring:message code="M0018"/></c:set>
+    <c:set var="MSG_NO_INFORMATION_CHANGED" scope="request"><spring:message code="M0016"/></c:set>
     <c:set var="MSG_EDIT_SUCCESSFULLY" scope="request"><spring:message code="M0007"/></c:set>
     <c:set var="MSG_EDIT_FAILED" scope="request"><spring:message code="M0013"/></c:set>
     <c:set var="MSG_PLEASE_SELECT_THE_DATA_TO_BE_DELETED" scope="request"><spring:message code="M0003"/></c:set>
     <c:set var="MSG_DO_YOU_WANT_TO_REMOVE_THE_SELECTED_ITEMS" scope="request"><spring:message code="M0004"/></c:set>
     <c:set var="MSG_DELETE_SUCCESS" scope="request"><spring:message code="M0005"/></c:set>
     <c:set var="MSG_DELETE_FAILED" scope="request"><spring:message code="M0006"/></c:set>
-    <c:set var="MSG_LIST" scope="request"><spring:message text="M0019"/></c:set>
-    <c:set var="MSG_INUSE" scope="request"><spring:message text="M0020"/></c:set>
+    <c:set var="MSG_LIST" scope="request"><spring:message code="M0019"/></c:set>
+    <c:set var="MSG_INUSE" scope="request"><spring:message code="M0020"/></c:set>
 
     <script type="text/javascript">
         var Label = {};
