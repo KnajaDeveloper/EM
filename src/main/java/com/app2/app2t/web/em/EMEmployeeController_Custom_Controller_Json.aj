@@ -118,6 +118,22 @@ public ResponseEntity<String> EMEmployeeController.findEmpNameByEmpCode(
         }
     }
 
+    @RequestMapping(value = "/findEmployeeByUserName",method = RequestMethod.GET)
+    public ResponseEntity<String> EMEmployeeController.findEmployeeByUserName(
+            @RequestParam(value = "userName", required = false) String userName
+    ) {
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json;charset=UTF-8");
+        try {
+            List<EMEmployee> empList = EMEmployee.findEMNameByUserName(userName);
+            return  new ResponseEntity<String>(new JSONSerializer().exclude("*.class" ).deepSerialize(empList), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
     @RequestMapping(value = "/findAppRoleByUserName", method = RequestMethod.GET)
     public ResponseEntity<String> EMEmployeeController.findAppRoleByUserName(
             @RequestParam(value = "userName", required = false) String userName

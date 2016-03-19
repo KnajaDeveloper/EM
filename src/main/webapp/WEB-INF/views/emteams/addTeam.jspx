@@ -46,81 +46,68 @@
     </script>
 
     <div class="row">
-        <div class="panel panel-primary">
-            <div class="panel-heading">${LABEL_SEARCH_TEAM}</div>
-            <div class="panel-body">
-                <br/>
-                <div class="col-sm-12">
-                    <form class="form-horizontal">
-                        <div class="form-group col-sm-6">
-                            <label class="control-label col-sm-3">${LABEL_CODE_TEAM}</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" Name="searchCode" placeholder="${LABEL_CODE_TEAM}"/>
+        <div class="col-xs-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">${LABEL_SEARCH_TEAM}</div>
+                <div class="panel-body">
+                    <div class="col-sm-12">
+                        <form class="form-horizontal">
+                            <div class="form-group col-sm-6">
+                                <label class="control-label col-sm-3">${LABEL_CODE_TEAM}</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" Name="searchCode" placeholder="${LABEL_CODE_TEAM}"/>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group col-sm-6">
-                            <label class="control-label col-sm-3">${LABEL_NAME_TEAM}</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" Name="searchName" placeholder="${LABEL_NAME_TEAM}"/>
+                            <div class="form-group col-sm-6">
+                                <label class="control-label col-sm-3">${LABEL_NAME_TEAM}</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" Name="searchName" placeholder="${LABEL_NAME_TEAM}"/>
+                                </div>
                             </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="col-sm-offset-8 col-sm-2">
+                            <button type="button" class="btn btn-primary" id="search">${BUTTON_SEARCH}</button>
                         </div>
-                    </form>
-                </div>
-                <br/>
-                <br/>
-                <br/>
-                <div class="col-sm-8">
-                    <div class="col-sm-offset-8 col-sm-2">
-                        <button type="button" class="btn btn-primary" id="search">${BUTTON_SEARCH}</button>
                     </div>
                 </div>
-                <br/>
-                <br/>
             </div>
         </div>
     </div>
 
-    <div>
-        <div class="row">
-            <div class=" col-sm-12">
-                <form class="form-inline">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                    <button type="button" class="btn btn-primary" data-toggle ="modal" data-target="#ModalAdd" data-backdrop="static">${LABEL_ADD}
+                    </button>
+                    <button style="margin-left: 5px" id="btnDelete" type="button" class="btn btn-danger">${BUTTON_DELETE}</button>
+                    
                     <div class="form-group">
-                        <div >
-                            <button type="button" class="btn btn-primary" data-toggle ="modal" data-target="#ModalAdd"
-                                    data-backdrop="static">${LABEL_ADD}
-                            </button>
-                            <button style="margin-left: 5px" id="btnDelete" type="button" class="btn btn-danger">${BUTTON_DELETE}</button>
+                        <table id="data" class="table table-bordered table-stripted table-hover">
+                            <tdead>
+                                <tr>
+                                    <th class="text-center"><input class="check" type="checkbox" id="checkAll"/></th>
+                                    <th class="text-center">${LABEL_EDIT}</th>
+                                    <th class="text-center">${LABEL_CODE_TEAM}</th>
+                                    <th class="text-center">${LABEL_NAME_TEAM}</th>
+                                </tr>
+                            </tdead>
+                            <tbody id="ResualtSearch" style="cursor:pointer"></tbody>
+                        </table>
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <component:pagging id="paggingSimple"/>
+                            </div>
                         </div>
-
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
+        </div>    
     </div>
 
-
-    <form class="form-horizontal">
-        <div class="form-group">
-            <table id="data" class="table table-hover">
-                <tdead>
-                    <tr class="info">
-                        <th class="text-center"><input class="check" type="checkbox" id="checkAll"/></th>
-
-                        <th class="text-center" style="color:#000">${LABEL_EDIT}</th>
-                        <th class="text-center" style="color:#000">${LABEL_CODE_TEAM}</th>
-                        <th class="text-center" style="color:#000">${LABEL_NAME_TEAM}</th>
-                    </tr>
-                </tdead>
-                <tbody id="ResualtSearch" style="cursor:pointer"></tbody>
-            </table>
-        </div>
-
-        <div class="form-horizontal">
-            <div class="form-group">
-                <component:pagging id="paggingSimple"/>
-            </div>
-        </div>
-    </form>
+    
 
     <!-- Modal Add -->
     <div class="modal fade" id="ModalAdd" role="dialog">

@@ -27,18 +27,17 @@
     <c:set var="MESSAGE_DATA_NOT_FOUND" scope="request"><spring:message code="M0009"/></c:set>
 
     <script>
-        var Message = {} ;
+        var Message = {};
         Message.MESSAGE_SAVE = '${MESSAGE_SAVE}';
         Message.MESSAGE_SAVE_SUCCESS = '${MESSAGE_SAVE_SUCCESS}';
         Message.MESSAGE_DATA_NOT_FOUND ='${MESSAGE_DATA_NOT_FOUND}';
     </script>
 
-    <div class="container-fluid">
+    <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">${LABEL_SEARCH_EMP}</div>
                 <div class="panel-body">
-                    <br></br>
                     <form class="form-horizontal">
                         <div class="form-group">
                             <label class="col-sm-2 control-label ">${LABEL_CODE_EMP}</label>
@@ -47,15 +46,15 @@
                                        placeholder="${LABEL_CODE_EMP}"/>
                             </div>
                             <label class="col-sm-3 control-label " >${LABEL_POSITION}</label>
-                                <div class="col-sm-3">
-                                    <select class="form-control" id ="emPosition"  ><jsp:text/>
-                                        <option value="">${LABEL_SELECT_POSITION}</option>
-                                        <c:forEach var="emposition" items="${listEmpost}">
-                                            <option value="${emposition.positionName}">
-                                                ${emposition.positionName}
-                                            </option>
-                                        </c:forEach>
-                                    </select>
+                            <div class="col-sm-3">
+                                <select class="form-control" id ="emPosition"  ><jsp:text/>
+                                    <option value="">${LABEL_SELECT_POSITION}</option>
+                                    <c:forEach var="emposition" items="${listEmpost}">
+                                        <option value="${emposition.positionName}">
+                                            ${emposition.positionName}
+                                        </option>
+                                    </c:forEach>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -85,7 +84,6 @@
                                 <label  class="col-md-offset-2 col-sm-1  radio-inline" ><input  id="appRole" type="radio" name="optradio"/>${LABEL_ADDED_ROLE}</label>
                                 <label class="col-sm-1  radio-inline"><input  id="notApprole" type="radio" name="optradio" />${LABEL_NOT_ADDED_ROLE}</label>
                                 <label class="col-sm-1  radio-inline"><input  id="allApprole" type="radio" name="optradio" checked="checked"/>${LABEL_ALL}</label>
-
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-5 col-md-1 ">
@@ -96,39 +94,45 @@
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <table id="data" class="table table-hover">
-                        <tdead>
-                            <tr id="column" class="info">
-                                <th class="text-center" style="width: 50px; color:#000">${LABEL_CODE_EMP}</th>
-                                <th class="text-center" style="width: 200px; color:#000">${LABEL_FIRST_LAST_NAME}</th>
-                                <th class="text-center" style="width: 100px; color:#000">${LABEL_POSITION}</th>
-                                <th class="text-center" style="width: 100px; color:#000">${LABEL_TEAM}</th>
-                            </tr>
-                        </tdead>
-                        <tbody id="ResualtSearch" style="cursor:pointer"></tbody>
-                    </table>
-                </div>
-
-                <div class="form-horizontal">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
                     <div class="form-group">
-                        <component:pagging id="paggingSimple"/>
+                        <table id="data" class="table table-bordered table-stripted table-hover">
+                            <tdead>
+                                <tr id="column">
+                                    <th class="text-center" style="width: 50px;">${LABEL_CODE_EMP}</th>
+                                    <th class="text-center" style="width: 200px;">${LABEL_FIRST_LAST_NAME}</th>
+                                    <th class="text-center" style="width: 100px;">${LABEL_POSITION}</th>
+                                    <th class="text-center" style="width: 100px;">${LABEL_TEAM}</th>
+                                </tr>
+                            </tdead>
+                            <tbody id="ResualtSearch" style="cursor:pointer"></tbody>
+                        </table>
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <component:pagging id="paggingSimple"/>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </form>
 
-            <div class="form-inline">
-                <div class="col-sm-offset-5  ">
-                    <div >
-                    <button id="save" type="button" class="btn btn-primary">${BUTTON_SAVE_ADD}</button>
+                    <div class="form-inline">
+                        <div class="col-sm-offset-5  ">
+                            <div >
+                            <button id="save" type="button" class="btn btn-primary">${BUTTON_SAVE_ADD}</button>
 
-                    <button style="margin-left: 5px" id="canCel"  type="button" class=" btn btn-danger">${BUTTON_CANCEL}</button></div>
+                            <button style="margin-left: 5px" id="canCel"  type="button" class=" btn btn-danger">${BUTTON_CANCEL}</button></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
     <spring:url value="/resources/scripts/component/UtilPagination.js" var="UtilPagination"/>
     <script src="${UtilPagination}" type="text/javascript"><!--Not Empty --></script>
     <script>

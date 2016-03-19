@@ -11,7 +11,7 @@ import org.springframework.roo.addon.web.mvc.controller.json.RooWebJson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@RequestMapping("/emmenus")
+@RequestMapping("/menus")
 @Controller
 public class EMMenuController {
 	@Autowired

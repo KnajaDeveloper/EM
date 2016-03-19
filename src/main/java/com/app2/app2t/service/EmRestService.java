@@ -36,7 +36,7 @@ public class EmRestService extends AbstractAPP2Service {
         }
     }
 
-    public List<Map> getAppRoleByEMService(String userName) {
+    public List<Map> getAppRoleByUserName(String userName) {
         List<Map> listMap = new ArrayList<>();
         try {
             setWebServicesString("http://" + this.APP2Server + "/employees/findAppRoleByUserName?userName=" + userName);
