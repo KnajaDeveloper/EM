@@ -4,12 +4,32 @@ $('#btnSearch').click(function() {
 	searchData();
 });
 
+function searchData() {
+  	var dataJsonData = {
+  		positionCode:$('#sPositionCode').val(),
+		positionName:$('#sPositionName').val()
+    }
+
+    paggination.setOptionJsonData({
+      	url:contextPath + "/empositions/findPaggingData",
+      	data:dataJsonData
+    });
+
+    paggination.setOptionJsonSize({
+        url:contextPath + "/empositions/findPaggingSize",
+        data:dataJsonData
+    });
+
+    paggination.search(paggination);
+}
+
 paggination.setEventPaggingBtn("paggingSimple",paggination);
 paggination.loadTable = function loadTable (jsonData) {
 
     if(jsonData.length <= 0)
        bootbox.alert(Message.MSG_DATA_NOT_FOUND);
 
+   	$('#checkboxAll').prop('checked', false);
     $('#ResualtSearch').empty();
 
     var tableData = "";
@@ -42,26 +62,6 @@ function openModalEdit(element){
     $('#txtPositionName').val(positionName);
 }
 
-function searchData() {
-	$('#checkboxAll').prop('checked', false);
-  	var dataJsonData = {
-  		positionCode:$('#sPositionCode').val(),
-		positionName:$('#sPositionName').val()
-    }
-
-    paggination.setOptionJsonData({
-      	url:contextPath + "/empositions/findPaggingData",
-      	data:dataJsonData
-    });
-
-    paggination.setOptionJsonSize({
-        url:contextPath + "/empositions/findPaggingSize",
-        data:dataJsonData
-    });
-
-    paggination.search(paggination);
-}
-
 function checkEMPositionCode() {
   	var elem = document.getElementById('txtPositionCode').value;
   	if(!elem.match(/^([a-z0-9\_])+$/i)){
@@ -77,10 +77,25 @@ var check = 0;
 $('[id^=btnModal]').click(function() {
 	var id = this.id.split('l')[1];
 	if(id === 'Cance'){
-		check = 0;
-		$('#add').modal('hide');
-		$('#txtPositionCode').popover('hide'); $('#txtPositionName').popover('hide');
-		$('#txtPositionCode').val(null); $('#txtPositionName').val(null);
+		if(check == 1){
+            if($('#txtPositionName').val() == positionName){
+                $('#add').modal('hide');
+				$('#txtPositionCode').popover('hide'); $('#txtPositionName').popover('hide');
+				$('#txtPositionCode').val(null); $('#txtPositionName').val(null);
+            }else{
+                bootbox.confirm(Message.MSG_WANT_TO_CANCEL_EDITING_THE_DATA_HAS_CHANGED_OR_NOT, function(result) {
+                    if(result == true){
+                        $('#add').modal('hide');
+						$('#txtPositionCode').popover('hide'); $('#txtPositionName').popover('hide');
+						$('#txtPositionCode').val(null); $('#txtPositionName').val(null);
+                    }
+                });
+            }
+        }else{
+            $('#add').modal('hide');
+        }
+
+        check = 0;
 	}else{
 		if($('#txtPositionCode').val() === ""){
 			$('#txtPositionCode').attr("data-content" , Message.MSG_PLEASE_FILL).popover('show');
@@ -91,30 +106,30 @@ $('[id^=btnModal]').click(function() {
 		}else{
 			if(checkEMPositionCode() === true){
 				var emPosition = {
-					positionCode: $('#txtPositionCode').val(),
-					positionName: $('#txtPositionName').val()
+					
 				};
 				var responseHeader = null;
 				if(check == 0){
 					if(checkData() == 0){
 						$.ajax({
-							contentType: "application/json; charset=utf-8",
-							dataType: "json",
 							headers: {
-								Accept: "application/json"
+                                Accept: "application/json"
+                            },
+                            type: "POST",
+							url: contextPath + '/empositions/saveEMPosition',
+							data : {
+								positionCode: $('#txtPositionCode').val(),
+								positionName: $('#txtPositionName').val()
 							},
-							type: "POST",
-							url: contextPath + '/empositions',
-							data : JSON.stringify(emPosition),
 							complete: function(xhr){
-								if(xhr.status === 201){
-									if(id === 'Add'){
+								if(xhr.status == 201){
+									if(id == 'Add'){
 										bootbox.alert(Message.MSG_ADD_MORE_SUCCESS);
 										$('#add').modal('hide');
 									}
 									$('#txtPositionCode').val(null);
 									$('#txtPositionName').val(null);
-								}else if(xhr.status === 500){
+								}else if(xhr.status == 500){
 									bootbox.alert(Message.MSG_ADD_FAILED);
 								}
 							},
@@ -124,7 +139,7 @@ $('[id^=btnModal]').click(function() {
 						bootbox.alert(Message.MSG_PLEASE_ENTER_A_NEW_POSITION_CODE);
 					}
 				}else if(check == 1){
-					if($('#txtPositionName').val() === positionName){
+					if($('#txtPositionName').val() == positionName){
 						bootbox.alert(Message.MSG_NO_INFORMATION_CHANGED);
 					}else{
 						$.ajax({
@@ -159,7 +174,7 @@ $('[id^=btnModal]').click(function() {
 
 $('#btnAdd').click(function() {
 	$(".modal-title").text(Label.LABEL_ADD_POSITION);
-	$('#btnMNext').show();
+	$('#btnModalNext').show();
 	$('#txtPositionCode').attr('disabled', false);
 });
 
@@ -213,26 +228,6 @@ $('#btnDelete').click(function() {
     }
 });
 
-$("#checkboxAll").click(function(){
-    $(".checkboxTable").prop('checked', $(this).prop('checked'));
-    $.each($(".checkboxTable[inUse=1]"),function(index, value){
-        $(this).prop("checked", false);
-    });
-});
-
-$('#Table').on("click", ".checkboxTable", function () {
-    if($(".checkboxTable:checked").length == $(".checkboxTable[inUse=0]").length){
-        $("#checkboxAll").prop("checked", true);
-    }else{
-        $("#checkboxAll").prop("checked", false);
-    }
-
-    if($(this).attr("inUse") > 0){
-    	$(this).prop("checked", false);
-    	bootbox.alert(Message.MSG_INUSE);
-    }
-});
-
 function checkData() {
     var checkdDb = $.ajax({
 		type: "GET",
@@ -251,3 +246,22 @@ function checkData() {
 	});
     return checkdDb.responseJSON;
 }
+
+$("#checkboxAll").click(function(){
+    $(".checkboxTable").prop('checked', $(this).prop('checked'));
+    $.each($(".checkboxTable[inUse=1]"),function(index, value){
+        $(this).prop("checked", false);
+    });
+});
+
+$('#Table').on("click", ".checkboxTable", function () {
+	if($(this).attr("inUse") > 0){
+    	$(this).prop("checked", false);
+    	bootbox.alert(Message.MSG_INUSE);
+    }
+    if($(".checkboxTable:checked").length == $(".checkboxTable[inUse=0]").length && $(".checkboxTable[inUse=0]").length != 0){
+        $("#checkboxAll").prop("checked", true);
+    }else{
+        $("#checkboxAll").prop("checked", false);
+    }
+});
