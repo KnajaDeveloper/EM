@@ -164,21 +164,15 @@ paggination.loadTable = function loadTable(jsonData) {
     if (jsonData.length <= 0) {
 
     }
-
     $('#ResualtSearch').empty();
-
     var tableData = "";
     var key = 1;
-
     jsonData.forEach(function (value) {
-        checkIdKey(value.id);
-        //console.log(value.id);
-        if (checkBoxDisable != "") {
             tableData = ''
 
                 + '<tr  style="background-color: #fff">'
                 + '<td class="text-center">'
-                + '<input  id="checkDisableDelete' + key + '" class="check" type="checkbox"  name="checkdDelete"  />'
+                + '<input  id="' + (parseInt(value.inUse) > 0 ? 'checkDisableDelete' : 'chDelete')+ key + '" class="check" type="checkbox"  name="checkdDelete" '+(parseInt(value.inUse) > 0 ? '':'teamCode="code_'+value.teamCode+'" status="check"')+' />'
                 + '</td>'
                 + '<td class="text-center">'
                 + '<button id="btnEdit' + key + '" type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalEdit" data-backdrop="static" ><span name="editClick" class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>'
@@ -192,27 +186,6 @@ paggination.loadTable = function loadTable(jsonData) {
                 + '</tr>';
             $('#ResualtSearch').append(tableData
             );
-        } else {
-            tableData = ''
-
-                + '<tr  style="background-color: #fff">'
-                + '<td class="text-center">'
-                + '<input id="chDelete' + key + '" class="check" type="checkbox" teamCode="code_'+value.teamCode+'" status="check" name="checkdDelete"  />'
-                + '</td>'
-                + '<td class="text-center">'
-                + '<button id="btnEdit' + key + '" type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalEdit" data-backdrop="static" ><span name="editClick" class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>'
-                + '</td>'
-                + '<td id="tdTeamCode' + key + '" class="text-center" style="color: #000">'
-                + value.teamCode
-                + '</td>'
-                + '<td id="tdTeamName' + key++ + '" class="text-center" style="color: #000">'
-                + value.teamName
-                + '</td>'
-                + '</tr>';
-            $('#ResualtSearch').append(
-                tableData
-            );
-        }
     });
 
 };
@@ -246,7 +219,7 @@ function DeleteData(i) {
         headers: {
             Accept: "application/json"
         },
-        url: contextPath + '/emteams/findDeleteTeam',
+        url: contextPath + '/emteams/deleteTeam',
         data: dataJsonData,
 
         complete: function (xhr) {
@@ -277,7 +250,7 @@ function EditData(teamCode, teamName) {
         headers: {
             Accept: "application/json"
         },
-        url: contextPath + '/emteams/findEditTeam',
+        url: contextPath + '/emteams/editTeam',
         data: dataJsonData,
         complete: function (xhr) {
             if (xhr.status === 200) {
@@ -343,28 +316,28 @@ function checkCode(id) {
     }
 }; //--functionCheck a-z --//
 /////////////////////////////////////////////////////////////////////////////////////////////////
-function checkIdKey(emTeam) {
-    var responseResult = null;
-    var dataJsonData = {
-        emTeam: emTeam
-
-    }
-    responseResult = $.ajax({
-        type: "GET",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        headers: {
-            Accept: "application/json"
-        },
-        url: contextPath + '/ememployees/findProjectByemTeam',
-        data: dataJsonData,
-        complete: function (xhr) {
-
-        },
-        async: false
-    });
-    checkBoxDisable = jQuery.parseJSON(responseResult.responseText);
-    //console.log(checkBoxDisable);
-
-} //--functionCheckID--//
+//function checkIdKey(emTeam) {
+//    var responseResult = null;
+//    var dataJsonData = {
+//        emTeam: emTeam
+//
+//    }
+//    responseResult = $.ajax({
+//        type: "GET",
+//        contentType: "application/json; charset=utf-8",
+//        dataType: "json",
+//        headers: {
+//            Accept: "application/json"
+//        },
+//        url: contextPath + '/ememployees/findProjectByemTeam',
+//        data: dataJsonData,
+//        complete: function (xhr) {
+//
+//        },
+//        async: false
+//    });
+//    checkBoxDisable = jQuery.parseJSON(responseResult.responseText);
+//    //console.log(checkBoxDisable);
+//
+//} //--functionCheckID--//
 /////////////////////////////////////////////////////////////////////////////////////////////////
