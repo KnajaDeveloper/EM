@@ -57,22 +57,6 @@ privileged aspect EMPositionController_Custom_Controller_Json {
         }
     }
 
-    @RequestMapping(value = "/saveEMPosition",method = RequestMethod.POST, produces = "text/html", headers = "Accept=application/json")
-    public ResponseEntity<String> EMPositionController.saveEMPosition(
-        @RequestParam(value = "positionCode", required = false) String positionCode
-        ,@RequestParam(value = "positionName", required = false) String positionName
-    ) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "application/json;charset=UTF-8");
-        try {
-            EMPosition emPosition = EMPosition.saveEMPosition(positionCode, positionName);
-            return new ResponseEntity<String>(headers, HttpStatus.CREATED);
-        } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
-            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
     @RequestMapping(value = "/findeditEMPosition",method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
     public ResponseEntity<String> EMPositionController.findeditEMPosition(
         @RequestParam(value = "positionCode", required = false) String positionCode

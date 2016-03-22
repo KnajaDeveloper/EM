@@ -46,14 +46,6 @@ privileged aspect EMPosition_Custom_Jpa_ActiveRecord {
         return (Long) criteria.uniqueResult();
     }
 
-    public static EMPosition EMPosition.saveEMPosition(String positionCode, String positionName) {
-        EMPosition emPosition = new EMPosition();
-        emPosition.setPositionCode(positionCode);
-        emPosition.setPositionName(positionName);
-        emPosition.persist();
-        return emPosition;
-    }
-
     public static List<EMPosition> EMPosition.findeditEMPosition(String positionCode, String positionName) {
         EntityManager ent = EMPosition.entityManager();
         Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMPosition.class);

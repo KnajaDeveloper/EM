@@ -1,4 +1,4 @@
-package ManualTest;
+package com.app2.app2t.manualtest;
 
 import com.app2.app2t.domain.em.*;
 import org.junit.Before;
@@ -64,17 +64,16 @@ public class AddPositionTest {
         emPosition.persist();
     }
 
-    @Test
-    public void dateTest ()throws Exception{
+    public void dateTest (String json, String dataJson, String positionCode, String positionName)throws Exception{
         MvcResult mvcResult = this.mockMvc.perform(get("/empositions/findPaggingData")
-            .param("positionCode", "P001")
-            .param("positionName", "Software Developer Trainee")
+            .param("positionCode", positionCode)
+            .param("positionName", positionName)
             .param("firstResult","0")
             .param("maxResult","15")
         ).andDo(print())
             .andExpect(status().isOk())
             .andExpect(content().contentType("application/json;charset=UTF-8"))
-            .andExpect(jsonPath("$[0].positionCode", is("P001")))
+            .andExpect(jsonPath(json, is(dataJson)))
             .andReturn()
             ;
     }
@@ -98,10 +97,35 @@ public class AddPositionTest {
 //                 ;
 //     }
 
-//     @Test 
-//     public void selectWhereStDateFrom () throws Exception{
-//         selectProjectReturnLong(1457456400000L,"$[0].dateStart","1457456400000","","","","","","");//date = 09/03/2016
-//     }
+    String positionCode[] = {"P001", "P002", "P003", "P004"};
+    String positionName[] = {"Software Developer Trainee",
+                                "Business Analysis",
+                                "Software Developer",
+                                "Project Manager"};
+
+    // @Test 
+    // public void select_Star_From_EMPOSITION() throws Exception{
+    //     for(int i = 0; i < 4; i++){
+    //         dateTest("$[" + i + "].positionCode", positionCode[i], "", "");
+    //         dateTest("$[" + i + "].positionName", positionName[i], "", "");
+    //     }
+    // }
+
+    // @Test 
+    // public void select_Star_From_EMPOSITION_Where_PositionCode_Equal () throws Exception{
+    //     dateTest("$[0].positionCode", "P001", "P001", "");
+    // }
+
+    // @Test 
+    // public void select_Star_From_EMPOSITION_Where_PositionName_Equal () throws Exception{
+    //     dateTest("$[0].positionName", "Project Manager", "", "Project Manager");
+    // }
+
+    @Test 
+    public void select_Star_From_EMPOSITION_Where_PositionCode_Equal_And_PositionName_Equal () throws Exception{
+        dateTest("$[0].positionCode" ,"Project Manager" ,"P001" ,"Software Developer Trainee");
+        dateTest("$[0].positionName" ,"Software Developer Trainee" ,"P001" ,"Software Developer Trainee");
+    }
 //     @Test
 //     public void selectWhereStDateTo () throws Exception{
 //         selectProjectReturnLong(1457456400000L,"$[0].dateStart","","1458061200000","","","","","");//date = 16/03/2016
