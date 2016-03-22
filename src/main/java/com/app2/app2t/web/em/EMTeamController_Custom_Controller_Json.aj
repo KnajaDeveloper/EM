@@ -3,6 +3,7 @@
 
 package com.app2.app2t.web.em;
 
+import com.app2.app2t.domain.em.EMEmployee;
 import com.app2.app2t.domain.em.EMTeam;
 import flexjson.JSONSerializer;
 import org.slf4j.Logger;
@@ -44,6 +45,7 @@ privileged aspect EMTeamController_Custom_Controller_Json {
                 map.put("teamCode",emTeam.getTeamCode());
                 map.put("teamName",emTeam.getTeamName());
                 map.put("id",emTeam.getId().toString());
+                map.put("inUse", String.valueOf(EMEmployee.findEMEmployeeCheckID(emTeam.getId())));
                 list.add(map);
 
             }

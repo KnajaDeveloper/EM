@@ -112,4 +112,13 @@ privileged aspect EMTeam_Custom_Jpa_ActiveRecord {
                 .setProjection(Projections.rowCount());
         return (Long) criteria.uniqueResult();
     }
+    public static long EMEmployee.findEMEmployeeCheckID(long projectId) {
+        EntityManager ent = EMEmployee.entityManager();
+        Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class, "emEmployee");
+        criteria.createAlias("emEmployee.emTeam", "emTeam");
+        criteria.add(Restrictions.eq("emTeam.id", projectId));
+        criteria.setProjection(Projections.rowCount());
+        return (long) criteria.uniqueResult();
+    }
+
 }
