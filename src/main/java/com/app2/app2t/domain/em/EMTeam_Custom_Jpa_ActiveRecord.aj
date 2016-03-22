@@ -52,7 +52,7 @@ privileged aspect EMTeam_Custom_Jpa_ActiveRecord {
     }
 
     @Transactional
-    public static List<EMTeam> EMTeam.findDeleteTeam(String teamCode) {
+    public static List<EMTeam> EMTeam.deleteTeam(String teamCode) {
         EntityManager ent = EMTeam.entityManager();
         Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMTeam.class);
         criteria.add(Restrictions.eq("teamCode", teamCode));
@@ -64,7 +64,7 @@ privileged aspect EMTeam_Custom_Jpa_ActiveRecord {
 
 
     @Transactional
-    public static List<EMTeam> EMTeam.findEditTeam(String editCode,String editName) {
+    public static List<EMTeam> EMTeam.editTeam(String editCode,String editName) {
         EntityManager ent = EMTeam.entityManager();
         Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMTeam.class);
         criteria.add(Restrictions.eq("teamCode", editCode));

@@ -75,14 +75,14 @@ privileged aspect EMTeamController_Custom_Controller_Json {
         }
     }
 
-    @RequestMapping(value = "/findDeleteTeam",method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
+    @RequestMapping(value = "/deleteTeam",method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
     public ResponseEntity<String> EMTeamController.findDeleteTeam(
             @RequestParam(value = "deleteCode", required = false) String deleteCode
     ) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json;charset=UTF-8");
         try {
-            List<EMTeam> result = EMTeam.findDeleteTeam(deleteCode);
+            List<EMTeam> result = EMTeam.deleteTeam(deleteCode);
             return  new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(result), headers, HttpStatus.OK);
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
@@ -90,7 +90,7 @@ privileged aspect EMTeamController_Custom_Controller_Json {
         }
     }
 
-    @RequestMapping(value = "/findEditTeam",method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
+    @RequestMapping(value = "/editTeam",method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
     public ResponseEntity<String> EMTeamController.findEditTeam(
             @RequestParam(value = "editCode", required = false) String editCode,
             @RequestParam(value = "editName", required = false) String editName
@@ -98,7 +98,7 @@ privileged aspect EMTeamController_Custom_Controller_Json {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json;charset=UTF-8");
         try {
-            List<EMTeam> result = EMTeam.findEditTeam(editCode,editName);
+            List<EMTeam> result = EMTeam.editTeam(editCode,editName);
             return  new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(result), headers, HttpStatus.OK);
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);

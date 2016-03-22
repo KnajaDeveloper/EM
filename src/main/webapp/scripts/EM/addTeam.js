@@ -246,7 +246,7 @@ function DeleteData(i) {
         headers: {
             Accept: "application/json"
         },
-        url: contextPath + '/emteams/findDeleteTeam',
+        url: contextPath + '/emteams/deleteTeam',
         data: dataJsonData,
 
         complete: function (xhr) {
@@ -277,7 +277,7 @@ function EditData(teamCode, teamName) {
         headers: {
             Accept: "application/json"
         },
-        url: contextPath + '/emteams/findEditTeam',
+        url: contextPath + '/emteams/editTeam',
         data: dataJsonData,
         complete: function (xhr) {
             if (xhr.status === 200) {
