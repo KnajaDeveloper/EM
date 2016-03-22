@@ -75,12 +75,12 @@ privileged aspect EMPositionController_Custom_Controller_Json {
 
     @RequestMapping(value = "/findDeletePosition",method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
     public ResponseEntity<String> EMPositionController.findDeletePosition(
-        @RequestParam(value = "positionID", required = false) Long positionID
+        @RequestParam(value = "positionCode", required = false) String positionCode
     ) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json;charset=UTF-8");
         try {
-            EMPosition emPositions = EMPosition.findDeletePosition(positionID);
+            EMPosition emPositions = EMPosition.findDeletePosition(positionCode);
             return  new ResponseEntity<String>(headers, HttpStatus.OK);
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
