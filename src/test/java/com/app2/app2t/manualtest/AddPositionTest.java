@@ -16,6 +16,13 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.*;
+import org.springframework.expression.spel.ast.Projection;
+import javax.persistence.EntityManager;
+
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -46,17 +53,6 @@ public class AddPositionTest {
         insertDataTodateBase("P004", "Project Manager");
     }
 
-//     public void selectProjectReturnLong(long dateLong,String json,String stDatefrom,String stDate_To,String fnDateFrom,String fnDateTo,String costFrom,String costTo,String pm) throws Exception{
-// //        insertDataTodateBase("1457456400000","1459357200000","PM1","ProjectTest1","PT01",20);//date 09/03/2016 - 31/03/2016
-// //        insertDataTodateBase("1457456400000","1458061200000","PM2","ProjectTest2","PT02",30);//date 09/03/2016 - 16/03/2016
-//         dateTest(dateLong,json,stDatefrom,stDate_To,fnDateFrom,fnDateTo,costFrom,costTo,pm);
-//     }
-//     public void selectProjectReturnInt(int dateLong,String json,String stDatefrom,String stDate_To,String fnDateFrom,String fnDateTo,String costFrom,String costTo,String pm) throws Exception{
-// //        insertDataTodateBase("1457456400000","1459357200000","PM1","ProjectTest1","PT01",20);//date 09/03/2016 - 31/03/2016
-// //        insertDataTodateBase("1457456400000","1458061200000","PM2","ProjectTest2","PT02",30);//date 09/03/2016 - 16/03/2016
-//         dataTest(dateLong,json,stDatefrom,stDate_To,fnDateFrom,fnDateTo,costFrom,costTo,pm);
-//     }
-
     public void insertDataTodateBase (String positionCode, String positionName)throws Exception{
         EMPosition emPosition = new EMPosition();
         emPosition.setPositionCode(positionCode);
@@ -64,7 +60,26 @@ public class AddPositionTest {
         emPosition.persist();
     }
 
-    public void dateTest (String json, String dataJson, String positionCode, String positionName)throws Exception{
+    public void editDataTodateBase (String positionCode, String positionName)throws Exception{
+        MvcResult mvcResult = this.mockMvc.perform(get("/empositions/findeditEMPosition")
+            .param("positionCode", positionCode)
+            .param("positionName", positionName)
+        ).andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(content().contentType("application/json;charset=UTF-8"))
+            .andReturn();
+    }
+
+    public void deleteDataTodateBase (String positionCode)throws Exception{
+        MvcResult mvcResult = this.mockMvc.perform(get("/empositions/findDeletePosition")
+            .param("positionCode", positionCode)
+        ).andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(content().contentType("application/json;charset=UTF-8"))
+            .andReturn();
+    }
+
+    public void dateTestFindPaggingData (String json, String dataJson, String positionCode, String positionName)throws Exception{
         MvcResult mvcResult = this.mockMvc.perform(get("/empositions/findPaggingData")
             .param("positionCode", positionCode)
             .param("positionName", positionName)
@@ -74,28 +89,42 @@ public class AddPositionTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType("application/json;charset=UTF-8"))
             .andExpect(jsonPath(json, is(dataJson)))
-            .andReturn()
-            ;
+            .andReturn();
     }
 
-//     public void dataTest  (int dataJson,String json,String stDatefrom,String stDateTo,String fnDateFrom,String fnDateTo,String costFrom,String costTo,String pm)throws Exception{
-//         MvcResult mvcResult = this.mockMvc.perform(get("/projects/findProjectSearchData")
-//                 .param("StDateBegin",stDatefrom)
-//                 .param("StDateEnd",stDateTo)
-//                 .param("FnDateBegin",fnDateFrom)
-//                 .param("FnDateEnd",fnDateTo)
-//                 .param("costStart",costFrom)
-//                 .param("costEnd",costTo)
-//                 .param("projectManage",pm)
-//                 .param("maxResult","15")
-//                 .param("firstResult","0")
-//         ).andDo(print())
-//                 .andExpect(status().isOk())
-//                 .andExpect(content().contentType("application/json;charset=UTF-8"))
-//                 .andExpect(jsonPath(json, is(dataJson)))
-//                 .andReturn()
-//                 ;
-//     }
+    public void dateTestFindPaggingSize (String json, int dataJson, String positionCode, String positionName)throws Exception{
+        MvcResult mvcResult = this.mockMvc.perform(get("/empositions/findPaggingSize")
+            .param("positionCode", positionCode)
+            .param("positionName", positionName)
+        ).andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(content().contentType("application/json;charset=UTF-8"))
+            .andExpect(jsonPath(json, is(dataJson)))
+            .andReturn();
+    }
+
+    public void dateTestIsEmpty (String json, String dataJson, String positionCode, String positionName)throws Exception{
+        MvcResult mvcResult = this.mockMvc.perform(get("/empositions/findPaggingData")
+            .param("positionCode", positionCode)
+            .param("positionName", positionName)
+            .param("firstResult","0")
+            .param("maxResult","15")
+        ).andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(content().contentType("application/json;charset=UTF-8"))
+            .andReturn();
+
+            assertEquals(mvcResult.getResponse().getContentAsString(), dataJson);
+    }
+
+    public void dateTestFindCheckPositionCode (String positionCode)throws Exception{
+        MvcResult mvcResult = this.mockMvc.perform(get("/empositions/findCheckPositionCode")
+            .param("positionCode", positionCode)
+        ).andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(content().contentType("application/json;charset=UTF-8"))
+            .andReturn();
+    }
 
     String positionCode[] = {"P001", "P002", "P003", "P004"};
     String positionName[] = {"Software Developer Trainee",
@@ -103,96 +132,60 @@ public class AddPositionTest {
                                 "Software Developer",
                                 "Project Manager"};
 
-    // @Test 
+    // @Test
     // public void select_Star_From_EMPOSITION() throws Exception{
-    //     for(int i = 0; i < 4; i++){
-    //         dateTest("$[" + i + "].positionCode", positionCode[i], "", "");
-    //         dateTest("$[" + i + "].positionName", positionName[i], "", "");
-    //     }
+    //     dateTestFindPaggingData("$[0].positionCode", positionCode[0], "", "");
+    //     dateTestFindPaggingData("$[3].positionName", positionName[3], "", "");
+    //     dateTestFindPaggingSize("size", 4, "", "");
     // }
 
-    // @Test 
+    // @Test
     // public void select_Star_From_EMPOSITION_Where_PositionCode_Equal () throws Exception{
-    //     dateTest("$[0].positionCode", "P001", "P001", "");
+    //      dateTestFindPaggingData("$[0].positionCode", positionCode[0], positionCode[0], "");
+    //      dateTestFindPaggingSize("size", 1, positionCode[0], "");
     // }
 
-    // @Test 
+    // @Test
     // public void select_Star_From_EMPOSITION_Where_PositionName_Equal () throws Exception{
-    //     dateTest("$[0].positionName", "Project Manager", "", "Project Manager");
+    //      dateTestFindPaggingData("$[0].positionName", positionName[4], "", positionName[4]);
+    //      dateTestFindPaggingSize("size", 1, "", "positionName[4]");
     // }
 
-    @Test 
-    public void select_Star_From_EMPOSITION_Where_PositionCode_Equal_And_PositionName_Equal () throws Exception{
-        dateTest("$[0].positionCode" ,"Project Manager" ,"P001" ,"Software Developer Trainee");
-        dateTest("$[0].positionName" ,"Software Developer Trainee" ,"P001" ,"Software Developer Trainee");
+    // @Test
+    // public void select_Star_From_EMPOSITION_Where_PositionCode_Equal_And_PositionName_Equal () throws Exception{
+    //      dateTestFindPaggingData("$[0].positionCode" ,positionCode[0] ,positionCode[0] ,positionName[0]);
+    //      dateTestFindPaggingData("$[0].positionName" ,positionName[0] ,positionCode[0] ,positionName[0]);
+    //      dateTestFindPaggingSize("size", 1, positionCode[0], positionName[0]);
+    // }
+
+    // @Test
+    // public void update_From_EMPOSITION_set_PositionName_Equal_Where_PositionCode_Equal () throws Exception{
+    //     editDataTodateBase(positionCode[0], "A");
+    //     dateTestFindPaggingData("$[0].positionName", "A", positionCode[0], "A");
+    // }
+
+    // @Test
+    // public void delete_From_EMPOSITION_Where_PositionCode_Equal () throws Exception{
+    //     deleteDataTodateBase(positionCode[0]);
+    //     dateTestIsEmpty("$[0].positionCode", "[]", positionCode[0], positionName[0]);
+    // }
+
+    // @Test
+    // public void select_Count_PositionCode_EMPOSITION_Where_PositionCode_Equal () throws Exception{
+    //     dateTestFindCheckPositionCode(positionCode[0]);
+    // }
+
+    @Test
+    public void select_Inuse_From_EMPOSITION_Where_PositionCode_Equal () throws Exception{
+        MvcResult mvcResult = this.mockMvc.perform(get("/empositions/findPaggingData")
+            .param("positionCode", positionCode[0])
+            .param("positionName", "")
+            .param("firstResult","0")
+            .param("maxResult","15")
+        ).andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(content().contentType("application/json;charset=UTF-8"))
+            .andExpect(jsonPath("$[0].inUse", is(0)))
+            .andReturn();
     }
-//     @Test
-//     public void selectWhereStDateTo () throws Exception{
-//         selectProjectReturnLong(1457456400000L,"$[0].dateStart","","1458061200000","","","","","");//date = 16/03/2016
-//     }
-//     @Test
-//     public void selectWhereStDateFrom_StDateTo () throws Exception{
-//         selectProjectReturnLong(1457456400000L,"$[0].dateStart","1457456400000","1458061200000","","","","","");//date = 09/03/2016 - 16/03/2016
-//     }
-//     @Test
-//     public void selectWhereEnDateFrom () throws Exception{
-//         selectProjectReturnLong(1459357200000L,"$[0].dateEnd","","","1459357200000","","","","");//date = 31/03/2016
-//     }
-//     @Test
-//     public void selectWhereEnDateTo () throws Exception{
-//         selectProjectReturnLong(1458061200000L,"$[0].dateEnd","","","","1458061200000","","","");//date = 16/03/2016
-//     }
-//     @Test
-//     public void selectWhereEnDateFrom_EnDateTo () throws Exception{
-//         selectProjectReturnLong(1458061200000L,"$[0].dateEnd","","","1457456400000","1458061200000","","","");//date = 09/03/2016 - 16/03/2016
-//     }
-//     @Test
-//     public void selectWhereCostFrom () throws Exception{
-//         selectProjectReturnInt(20,"$[0].projectCost","","","","","20","","");
-//     }
-//     @Test
-//     public void selectWhereCostTo () throws Exception{
-//         selectProjectReturnInt(30,"$[1].projectCost","","","","","","30","");
-//     }
-//     @Test
-//     public void selectWhereCostFrom_CostTo () throws Exception{
-//         selectProjectReturnInt(30,"$[0].projectCost","","","","","30","31","");
-//     }
-//     @Test
-//     public void selectWherePm () throws Exception{
-//         selectProjectReturnInt(30,"$[0].projectCost","","","","","","","PM2");
-//     }
-//     ////////////////////////////////
-//     @Test
-//     public void checkModule() throws Exception{
-
-//         MvcResult mvcResult = this.mockMvc.perform(get("/moduleprojects/findProjectCheckID")
-//                 .param("projectId", "1")
-//         ).andDo(print())
-//                 .andExpect(status().isOk())
-//                 .andExpect(content().contentType("application/json;charset=UTF-8"))
-//                 .andReturn()
-//                 ;
-//         assertEquals(mvcResult.getResponse().getContentAsString(),"[]");
-
-//     }
-//     ////////////////////////////////
-//     @Test
-//     public void deleteProject() throws Exception{
-
-//         MvcResult mvcResult = this.mockMvc.perform(get("/projects/deleteProjects")
-//                 .param("deleteCode", "4")
-//         ).andDo(print())
-//                 .andExpect(status().isOk())
-//                 .andExpect(content().contentType("application/json;charset=UTF-8"))
-//                 .andReturn()
-//                 ;
-
-//         selectAll();
-//     }
-//     public void selectAll ()throws Exception{
-//         selectProjectReturnLong(1457456400000L,"$[0].dateStart","","","","","","","");//date = 09/03/2016
-//     }
-
-
 }
