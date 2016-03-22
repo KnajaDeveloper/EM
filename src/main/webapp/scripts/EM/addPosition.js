@@ -106,21 +106,21 @@ $('[id^=btnModal]').click(function() {
 		}else{
 			if(checkEMPositionCode() === true){
 				var emPosition = {
-					
+					positionCode: $('#txtPositionCode').val(),
+					positionName: $('#txtPositionName').val()
 				};
 				var responseHeader = null;
 				if(check == 0){
 					if(checkData() == 0){
 						$.ajax({
+							contentType: "application/json; charset=utf-8",
+							dataType: "json",
 							headers: {
-                                Accept: "application/json"
-                            },
-                            type: "POST",
-							url: contextPath + '/empositions/saveEMPosition',
-							data : {
-								positionCode: $('#txtPositionCode').val(),
-								positionName: $('#txtPositionName').val()
+								Accept: "application/json"
 							},
+							type: "POST",
+							url: contextPath + '/empositions',
+							data : JSON.stringify(emPosition),
 							complete: function(xhr){
 								if(xhr.status == 201){
 									if(id == 'Add'){
