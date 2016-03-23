@@ -89,7 +89,7 @@
                     <button style="margin-left: 5px" id="btnDelete" type="button" class="btn btn-danger">${BUTTON_DELETE}</button>
                     
                     <div class="form-group">
-                        <table id="data" class="table table-bordered table-stripted table-hover">
+                        <table id="data" class="table table-bordered table-stripted ">
                             <tdead>
                                 <tr>
                                     <th class="text-center"><input class="check" type="checkbox" id="checkAll"/></th>

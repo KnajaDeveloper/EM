@@ -100,7 +100,7 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
         criteria.add(Restrictions.eq("empCode", empCode));
         List<EMEmployee> emEmployees = criteria.list();
         EMEmployee emEmployee = emEmployees.get(0);
-        LOGGER.error(emEmployees.get(0)+">>>>>>>>>>>>>>>>>>>>>>><");
+//        LOGGER.error(emEmployees.get(0)+">>>>>>>>>>>>>>>>>>>>>>><");
         emEmployee.setRoleCode(roleCode);
         emEmployee.merge();
         return criteria.list();
