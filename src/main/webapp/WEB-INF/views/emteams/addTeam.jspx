@@ -27,6 +27,8 @@
     <c:set var="MESSAGE_EDIT_SUCCESS" scope="request"><spring:message code="M0007"/></c:set>
     <c:set var="MESSAGE_EDIT_FAIL" scope="request"><spring:message code="M0013"/></c:set>
     <c:set var="MESSAGE_PLEASE_ENTER_A_Z" scope="request"><spring:message code="M0002"/></c:set>
+    <c:set var="MESSAGE_NO_INFORMATION_CHANGED" scope="request"><spring:message code="M0016"/></c:set>
+    <c:set var="MESSAGE_NO_CANCEL_DATA_HAS_CHANGED" scope="request"><spring:message code="M0038"/></c:set>
 
     <script>
         var Message = {} ;
@@ -43,6 +45,8 @@
         Message.MESSAGE_EDIT_SUCCESS='${MESSAGE_EDIT_SUCCESS}';
         Message.MESSAGE_EDIT_FAIL='${MESSAGE_EDIT_FAIL}';
         Message.MESSAGE_PLEASE_ENTER_A_Z='${MESSAGE_PLEASE_ENTER_A_Z}';
+        Message.MESSAGE_NO_INFORMATION_CHANGED='${MESSAGE_NO_INFORMATION_CHANGED}';
+        Message.MESSAGE_NO_CANCEL_DATA_HAS_CHANGED='${MESSAGE_NO_CANCEL_DATA_HAS_CHANGED}';
     </script>
 
     <div class="row">
@@ -174,7 +178,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" id="saveEdit">${BUTTON_SAVE_ADD}</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="cancelEdit">${BUTTON_CANCEL}</button>
+                    <button type="button" class="btn btn-danger"  id="cancelEdit">${BUTTON_CANCEL}</button>
                 </div>
             </div>
         </div>

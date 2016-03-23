@@ -58,9 +58,19 @@ $("#cancelAdd").click(function () {
 }); //-- cancelAdd--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $("#cancelEdit").click(function () {
-    $('#edit').modal('hide');
-    $("input[name='editText']").popover('hide');
-    $("input[name='editText']").val(null);
+    if($('#editName').val()!= edit)
+    {
+        bootbox.confirm(Message.MESSAGE_NO_CANCEL_DATA_HAS_CHANGED, function (result) {
+            if (result === true) {
+                $('#ModalEdit').modal('hide');
+                $("input[name='editText']").popover('hide');
+                $("input[name='editText']").val(null);
+            }
+
+        });
+    }
+    else {$('#ModalEdit').modal('hide');}
+
 }); //--cancelEdit--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $("#search").click(function () {
@@ -132,7 +142,7 @@ $("#saveEdit").click(function () {
 
     if($('#editName').val()== edit)
     {
-        bootbox.alert("ข้อมูลไม่มีการเปลี่ยนแปลง");////////////////////////////////////////////////////////////////////////////////////////
+        bootbox.alert(Message.MESSAGE_NO_INFORMATION_CHANGED);////////////////////////////////////////////////////////////////////////////////////////
     }
     else
     {

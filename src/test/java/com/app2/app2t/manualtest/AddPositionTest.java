@@ -1,6 +1,6 @@
 package com.app2.app2t.manualtest;
 
-import com.app2.app2t.domain.em.*;
+import com.app2.app2t.domain.em.EMPosition;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
