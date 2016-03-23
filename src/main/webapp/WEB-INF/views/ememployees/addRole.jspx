@@ -25,12 +25,17 @@
     <c:set var="MESSAGE_SAVE" scope="request"><spring:message code="M0014"/></c:set>
     <c:set var="MESSAGE_SAVE_SUCCESS" scope="request"><spring:message code="M0015"/></c:set>
     <c:set var="MESSAGE_DATA_NOT_FOUND" scope="request"><spring:message code="M0009"/></c:set>
+    <c:set var="MESSAGE_NO_CANCEL_DATA_HAS_CHANGED" scope="request"><spring:message code="M0038"/></c:set>
+    <c:set var="MESSAGE_NO__DATA_HAS_CHANGED" scope="request"><spring:message code="M0016"/></c:set>
+
 
     <script>
         var Message = {};
         Message.MESSAGE_SAVE = '${MESSAGE_SAVE}';
         Message.MESSAGE_SAVE_SUCCESS = '${MESSAGE_SAVE_SUCCESS}';
         Message.MESSAGE_DATA_NOT_FOUND ='${MESSAGE_DATA_NOT_FOUND}';
+        Message.MESSAGE_NO_CANCEL_DATA_HAS_CHANGED='${MESSAGE_NO_CANCEL_DATA_HAS_CHANGED}';
+        Message.MESSAGE_NO__DATA_HAS_CHANGED='${MESSAGE_NO__DATA_HAS_CHANGED}';
     </script>
 
     <div class="row">
@@ -102,7 +107,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
-                        <table id="data" class="table table-bordered table-stripted table-hover">
+                        <table id="data" class="table table-bordered table-stripted ">
                             <tdead>
                                 <tr id="column">
                                     <th class="text-center" style="width: 50px;">${LABEL_CODE_EMP}</th>

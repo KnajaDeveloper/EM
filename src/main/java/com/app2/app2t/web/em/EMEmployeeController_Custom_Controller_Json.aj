@@ -228,7 +228,7 @@ public ResponseEntity<String> EMEmployeeController.findEmpNameByEmpCode(
         }
     }
 
-    @RequestMapping(value = "/saveOrUpdateAppRoleCode",method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
+    @RequestMapping(value = "/saveOrUpdateAppRoleCode",method = RequestMethod.POST, produces = "text/html", headers = "Accept=application/json")
     @ResponseBody
     public ResponseEntity<String> EMEmployeeController.saveOrUpdateAppRoleCode(
             @RequestParam(value="arrEmpCode",required=false)String empCode,

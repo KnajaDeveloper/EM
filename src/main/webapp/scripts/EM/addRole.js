@@ -2,6 +2,7 @@ var paggination = Object.create(UtilPaggination);
 var roleName;
 var arrEmpCode=[] ;
 var arrRoleCode=[] ;
+var arrRoleChang=[] ;
 var json = [];
 //////////////////////////////////////////////////////////////////////////////
 $(document).ready(function () {
@@ -59,6 +60,7 @@ paggination.loadTable = function loadTable(jsonData) {
         num++;
         if(value.roleCode != null)
         {
+            arrRoleChang.push(value.roleCode);
             //console.log(value.roleCode+"<<<"+value.empCode);
             $('input[status=roleCodeCheck_'+value.roleCode+'][name=radio_'+value.empCode+']').prop('checked', true);
         }
@@ -67,6 +69,7 @@ paggination.loadTable = function loadTable(jsonData) {
 };
 //////////////////////////////////////////////////////////////////////////////
 $("#save").click(function () {
+    arrEmpCode=[];arrRoleCode=[];role=false;
     $('input[name^=radio_]:checked').each(function () {
         var empCode = $(this).attr('name').split("radio_")[1];
         arrEmpCode.push(empCode);
@@ -76,29 +79,65 @@ $("#save").click(function () {
             arrRoleCode.push(roleCode)
         }
     });
-   console.log(arrEmpCode); console.log(arrRoleCode);
-
-    bootbox.confirm(Message.MESSAGE_SAVE, function (result) {
-        if (result === true) {
-            console.log(arrEmpCode.length);
-            for (var i = 0 ; arrEmpCode.length > i ; i++)
-            {
-                saveAppRole(i);
-
-            }
-            bootbox.alert(Message.MESSAGE_SAVE_SUCCESS);
-            arrEmpCode =[]; arrRoleCode =[];
-            $('input[name=radioAll_]').prop('checked', false);
-            searchData();
+    for(var i= 0 ; arrRoleChang.length > i ; i++) {
+        if (arrRoleCode[i] != arrRoleChang[i]) {
+            role = true ; break;
         }
-    });
+    }
+    if (arrEmpCode.length > 0 ) {
+        if(role == true)
+        {
+            bootbox.confirm(Message.MESSAGE_SAVE, function (result) {
+                if (result === true) {
+                    //console.log(arrEmpCode.length);
+                    for (var i = 0; arrEmpCode.length > i; i++) {
+                        saveAppRole(i);
+
+                    }
+                    bootbox.alert(Message.MESSAGE_SAVE_SUCCESS);
+                    $('input[name=radioAll_]').prop('checked', false);
+                    searchData();
+                    arrRoleChang=[];arrEmpCode=[];arrRoleCode=[];
+                }
+            });
+        }
+        else { bootbox.alert(Message.MESSAGE_NO__DATA_HAS_CHANGED);  arrRoleChang=[];arrEmpCode=[];arrRoleCode=[];role=false;searchData();}
+
+    }
 
 
 }); //-- --//
+var role;
 //////////////////////////////////////////////////////////////////////////////
 $("#canCel").click(function () {
-    $('input[name=radioAll_]').prop('checked', false);
-    searchData();
+    arrEmpCode=[];arrRoleCode=[];role=false;
+    $('input[name^=radio_]:checked').each(function () {
+        var empCode = $(this).attr('name').split("radio_")[1];
+        arrEmpCode.push(empCode);
+        if( $('input[status^=roleCodeCheck_]:checked'))
+        {
+            var roleCode = $(this).attr('status').split("roleCodeCheck_")[1];
+            arrRoleCode.push(roleCode)
+        }
+    });
+    //console.log(">"+arrRoleCode); console.log("<"+arrRoleChang);
+    for(var i= 0 ; arrRoleChang.length > i ; i++) {
+        if (arrRoleCode[i] != arrRoleChang[i]) {
+            role = true ; break;
+        }
+
+    }
+    if(role == true)
+    {
+        bootbox.confirm(Message.MESSAGE_NO_CANCEL_DATA_HAS_CHANGED, function (result) {
+            if (result === true) {
+                arrRoleChang=[];arrEmpCode=[];arrRoleCode=[];
+                $('input[name=radioAll_]').prop('checked', false);
+                searchData();
+            }
+        });
+    }
+    else { arrRoleChang=[];arrEmpCode=[];arrRoleCode=[];role=false;searchData();}
 }); //-- --//
 //////////////////////////////////////////////////////////////////////////////
 $('#data').on("click", "[status^=roleCodeCheck_]", function () {
@@ -197,12 +236,12 @@ function saveAppRole(i) {
         arrRoleCode : arrRoleCode[i]
     }
     responseResult = $.ajax({
-        type: "GET",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        headers: {
-            Accept: "application/json"
-        },
+        type: "POST",
+        //contentType: "application/json; charset=utf-8",
+        //dataType: "json",
+        //headers: {
+        //    Accept: "application/json"
+        //},
         url: contextPath + '/ememployees/saveOrUpdateAppRoleCode',
         data: dataJsonData,
         complete: function (xhr) {
