@@ -175,17 +175,17 @@ public class AddPositionTest {
     //     dateTestFindCheckPositionCode(positionCode[0]);
     // }
 
-    @Test
-    public void select_Inuse_From_EMPOSITION_Where_PositionCode_Equal () throws Exception{
-        MvcResult mvcResult = this.mockMvc.perform(get("/empositions/findPaggingData")
-            .param("positionCode", positionCode[0])
-            .param("positionName", "")
-            .param("firstResult","0")
-            .param("maxResult","15")
-        ).andDo(print())
-            .andExpect(status().isOk())
-            .andExpect(content().contentType("application/json;charset=UTF-8"))
-            .andExpect(jsonPath("$[0].inUse", is(0)))
-            .andReturn();
-    }
+    // @Test
+    // public void select_Inuse_From_EMPOSITION_Where_PositionCode_Equal () throws Exception{
+    //     MvcResult mvcResult = this.mockMvc.perform(get("/empositions/findPaggingData")
+    //         .param("positionCode", positionCode[0])
+    //         .param("positionName", "")
+    //         .param("firstResult","0")
+    //         .param("maxResult","15")
+    //     ).andDo(print())
+    //         .andExpect(status().isOk())
+    //         .andExpect(content().contentType("application/json;charset=UTF-8"))
+    //         .andExpect(jsonPath("$[0].inUse", is(0)))
+    //         .andReturn();
+    // }
 }
