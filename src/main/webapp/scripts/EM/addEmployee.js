@@ -1,8 +1,6 @@
 $('#btnAdd').click(function(){
 	if($('#empCode').val() === ""){
     	$('#empCode').popover('show');
-	}else if ($('#empCode').val().length < 4) {
-		bootbox.alert("กรุณากรอกข้อมูลรหัสพนักงานเอย่งาน้อย 4 ตัวอักษร");	
 	}else if($('#empNickName').val() === ""){
 		$('#empNickName').popover('show');
 	}else if($('#empFirstName').val() === ""){
@@ -18,13 +16,13 @@ $('#btnAdd').click(function(){
 	}else if($('#emConpass').val() === ""){
 		$('#emConpass').popover('show');
 	}else if($('#emConpass').val() != $("#password").val()){
-		bootbox.alert("รหัสผ่านไม่ตรงกันกรุณายืนยันรหัสผ่านให้ตรงกันอีกรั้ง");
+		bootbox.alert(Message.MSG_PLEASE_CONFIRM_YOUR_PASSWORD_AGAIN);
 	}else if($("#emPosition").val()=="0"){
-	 	bootbox.alert("กรุณาเลือกตำแหน่ง");
+	 	bootbox.alert(Message.MSG_PLEASE_SELECT_POSITION);
 	}else if($("#emTeam").val()=="0"){
-	 	bootbox.alert("กรุณาเลือกทีม");
+	 	bootbox.alert(Message.MSG_PLESE_SELECT_TEAM);
 	}else if($('#password').val().length < 8){
-		bootbox.alert("กรุณากรอกรหัสผ่านอย่างน้อย 8 ตัวอักษร");
+		bootbox.alert(Message.MSG_PLESE_ENTER_YOUR_PASSWORD_AT_LAST_8_CHAR);
 	}else{
 
 	var ememployees = {
@@ -58,7 +56,7 @@ $('#btnAdd').click(function(){
 		url: contextPath + '/ememployees',
 		data : JSON.stringify(ememployees),
 		complete: function(xhr){
-			bootbox.alert("สมัครสมาชิกเรียบร้อยแล้ว");
+			bootbox.alert(Message.MSG_SUBSCRIBE_SUCCESSFULLY);
 			$('#empCode').val("");
 	$('#empNickName').val("");
 	$("#empFirstName").val("");
@@ -75,37 +73,37 @@ $('#btnAdd').click(function(){
 
 }else{
 
-	bootbox.alert("รหัสพนักงานซ้ำกรุณากรอกรหัสพนักงานใหม่อีกครั้ง");
+	bootbox.alert(Message.MSG_PLEASE_ENTER_YOUR_EMID_AGAIN);
 }
 	}
 }) ;
-function checkempCode()
-	{
-		var elem = document.getElementById('empCode').value;
-		if(!elem.match(/^([a-z0-9\_])+$/i))
-		{
-			bootbox.alert("กรุณากรอกข้อมูลรหัสพนักงานเป็น a-Z หรือ A-Z หรือ 0-9 ");
-			$('#empCode').val("");
-		}
-	} ;
-function checkEmail()
-	{
-		var elem = document.getElementById('email').value;
-		if(!elem.match(/^([a-z0-9\_\@\.-])+$/i))
-		{
-			bootbox.alert("กรุณากรอกข้อมูลอีเมลเป็น a-Z หรือ A-Z หรือ 0-9 ");
-			$('#email').val("");
-		}
-	} ;
-function checkUserName()
-	{
-		var elem = document.getElementById('userName').value;
-		if(!elem.match(/^([a-z0-9\_])+$/i))
-		{
-			bootbox.alert("กรุณากรอกข้อมูลผู้ใช้เป็น a-Z หรือ A-Z หรือ 0-9 ");
-			$('#userName').val("");
-		}
-	} ;
+//function checkempCode()
+	//{
+		//var elem = document.getElementById('empCode').value;
+		//if(!elem.match(/^([a-z0-9\_])+$/i))
+		//{
+			//bootbox.alert("กรุณากรอกข้อมูลรหัสพนักงานเป็น a-Z หรือ A-Z หรือ 0-9 ");
+			//$('#empCode').val("");
+		//}
+	//} ;
+//function checkEmail()
+	//{
+		//var elem = document.getElementById('email').value;
+		//if(!elem.match(/^([a-z0-9\_\@\.-])+$/i))
+		//{
+			//bootbox.alert("กรุณากรอกข้อมูลอีเมลเป็น a-Z หรือ A-Z หรือ 0-9 ");
+			//$('#email').val("");
+		//}
+	//} ;
+//function checkUserName()
+	//{
+		//var elem = document.getElementById('userName').value;
+		//if(!elem.match(/^([a-z0-9\_])+$/i))
+		//{
+			//bootbox.alert("กรุณากรอกข้อมูลผู้ใช้เป็น a-Z หรือ A-Z หรือ 0-9 ");
+			//$('#userName').val("");
+		//}
+	//} ;
 
 var chkDb;
 function checkData() {
