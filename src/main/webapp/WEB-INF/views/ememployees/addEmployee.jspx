@@ -3,43 +3,100 @@
 	<jsp:directive.page contentType="text/html;charset=UTF-8"/>
 	<jsp:output omit-xml-declaration="yes"/>
 	<c:set var="LABEL_DELIMETER" scope="request">#</c:set>
+	<c:set var="LABEL_REGISTER" scope="request"><spring:message code="L0026"/></c:set>
+	<c:set var="LABEL_EMPLOYEE_CODE" scope="request"><spring:message code="L0009"/></c:set>
+	<c:set var="LABEL_NICKNAME" scope="request"><spring:message code="L0027"/></c:set>
+	<c:set var="LABEL_NAME" scope="request"><spring:message code="L0012"/></c:set>
+	<c:set var="LABEL_FIRSTNAME" scope="request"><spring:message code="L0013"/></c:set>
+	<c:set var="LABEL_LAST_NAME" scope="request"><spring:message code="L0016"/></c:set>
+	<c:set var="LABEL_POSTION" scope="request"><spring:message code="L0010"/></c:set>
+	<c:set var="LABEL_TEAM" scope="request"><spring:message code="L0014"/></c:set>
+	<c:set var="LABEL_EMAIL" scope="request"><spring:message code="L0028"/></c:set>
+	<c:set var="LABEL_USERNAME" scope="request"><spring:message code="L0029"/></c:set>
+	<c:set var="LABEL_PASSWORD" scope="request"><spring:message code="L0030"/></c:set>
+	<c:set var="LABEL_CONFIRM_PASSWORD" scope="request"><spring:message code="L0031"/></c:set>
+
+
+
+	<c:set var="MSG_PLESE_ENTER_YOUR_ID" scope="request"><spring:message code="M0021"/></c:set>
+	<c:set var="MSG_PLESE_ENTER_NICKNAME" scope="request"><spring:message code="M0022"/></c:set>
+	<c:set var="MSG_PLESE_ENTER_NAME" scope="request"><spring:message code="M0023"/></c:set>
+	<c:set var="MSG_PLESE_ENTER_LASTNAME" scope="request"><spring:message code="M0024"/></c:set>
+	<c:set var="MSG_PLESE_ENTER_USERNAME" scope="request"><spring:message code="M0025"/></c:set>
+	<c:set var="MSG_PLESE_ENTER_PASSWORD" scope="request"><spring:message code="M0026"/></c:set>
+	<c:set var="MSG_PLESE_ENTER_CONFIRM_PASSWORD" scope="request"><spring:message code="M0027"/></c:set>
+	<c:set var="MSG_PLESE_SELECT_POSITION" scope="request"><spring:message code="M0030"/></c:set>
+	<c:set var="MSG_PLESE_SELECT_TEAM" scope="request"><spring:message code="M0031"/></c:set>
+
+	<c:set var="MSG_DATA_NOT_FOUND" scope="request"><spring:message code="M0018"/></c:set>
+	<c:set var="MSG_PLEASE_ENTER_YOUR_EMID_AGAIN" scope="request"><spring:message code="M0034"/></c:set>
+	<c:set var="MSG_SUBSCRIBE_SUCCESSFULLY" scope="request"><spring:message code="M0033"/></c:set>
+	<c:set var="MSG_PLESE_ENTER_YOUR_PASSWORD_AT_LAST_8_CHAR" scope="request"><spring:message code="M0032"/></c:set>
+	<c:set var="MSG_PLESE_SELECT_TEAM" scope="request"><spring:message code="M0031"/></c:set>
+	<c:set var="MSG_PLEASE_SELECT_POSITION" scope="request"><spring:message code="M0030"/></c:set>
+	<c:set var="MSG_PLEASE_CONFIRM_YOUR_PASSWORD_AGAIN" scope="request"><spring:message code="M0029"/></c:set>
+
+
+	<script type="text/javascript">
+		var Label = {};
+		var Button = {};
+		var Message = {};
+
+		Label.LABEL_POINT = '${LABEL_POINT}';
+		Label.LABEL_LABEL_MODULE_MANAGER = '${LABEL_MODULE_MANAGER}';
+
+		Button.BUTTON_OK = '${BUTTON_OK}';
+
+		Message.MSG_DATA_NOT_FOUND = '${MSG_DATA_NOT_FOUND}';
+		Message.MSG_PLEASE_ENTER_YOUR_EMID_AGAIN = '${MSG_PLEASE_ENTER_YOUR_EMID_AGAIN}';
+		Message.MSG_SUBSCRIBE_SUCCESSFULLY = '${MSG_SUBSCRIBE_SUCCESSFULLY}';
+		Message.MSG_PLESE_ENTER_YOUR_PASSWORD_AT_LAST_8_CHAR = '${MSG_PLESE_ENTER_YOUR_PASSWORD_AT_LAST_8_CHAR}';
+		Message.MSG_PLESE_SELECT_TEAM = '${MSG_PLESE_SELECT_TEAM}';
+		Message.MSG_PLEASE_SELECT_POSITION = '${MSG_PLEASE_SELECT_POSITION}';
+		Message.MSG_PLEASE_CONFIRM_YOUR_PASSWORD_AGAIN = '${MSG_PLEASE_CONFIRM_YOUR_PASSWORD_AGAIN}';
+
+
+	</script>
+
+
+
 
 	<div class="container-fluid">
 		<div class="col-md-12">
 			<div class="panel panel-primary">
-				<div class="panel-heading">สมัครสมาชิก</div>
+				<div class="panel-heading">${LABEL_REGISTER}</div>
 				<div class="panel-body">	
 					<form class="form-horizontal">
 						<div class="form-group">
-							<label class="col-sm-2 control-label required">รหัสพนักงาน</label>
+							<label class="col-sm-2 control-label required">${LABEL_EMPLOYEE_CODE}</label>
 							<div class="col-sm-2">
-								<input type="" class="form-control" id="empCode" onblur="checkempCode()" data-content="กรุณากรอกข้อมูลรหัสพนักงาน" data-placement="bottom" 
-								placeholder="รหัสพนักงาน"/>
+								<input type="" class="form-control" id="empCode" onblur="checkempCode()" data-content= "${MSG_PLESE_ENTER_YOUR_ID}" data-placement="bottom"
+								placeholder="${LABEL_EMPLOYEE_CODE}"/>
 							</div>
-							<label class="col-sm-3 control-label required" >ชื่อเล่น</label>
+							<label class="col-sm-3 control-label required" >${LABEL_NICKNAME}</label>
 							<div class="col-sm-3">
-								<input type="" class="form-control" id="empNickName" data-content="กรุณากรอกข้อมูลชื่อเล่น" data-placement="bottom" 
-								placeholder="ชื่อเล่น"/>
+								<input type="" class="form-control" id="empNickName" data-content="${MSG_PLESE_ENTER_NICKNAME}" data-placement="bottom"
+								placeholder="${LABEL_NICKNAME}"/>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label required" >ชื่อ</label>
+							<label class="col-sm-2 control-label required" >${LABEL_NAME}</label>
 							<div class="col-sm-3">
-								<input type="" class="form-control" id="empFirstName" data-content="กรุณากรอกข้อมูลชื่อจริง" data-placement="bottom"
-								placeholder="ชื่อจริง"/>
+								<input type="" class="form-control" id="empFirstName" data-content="${MSG_PLESE_ENTER_NAME}" data-placement="bottom"
+								placeholder="${LABEL_FIRSTNAME}"/>
 
 							</div>
-							<label class="col-sm-2 control-label required">นามสกุล</label>
+							<label class="col-sm-2 control-label required">${LABEL_LAST_NAME}</label>
 							<div class="col-sm-3">
-								<input type="" class="form-control" id="empLastName" data-content="กรุณากรอกข้อมูลนามสกุล" data-placement="bottom"
-								placeholder="นามสกุล"/>
+								<input type="" class="form-control" id="empLastName" data-content="${MSG_PLESE_ENTER_LASTNAME}" data-placement="bottom"
+								placeholder="${LABEL_LAST_NAME}"/>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label required">ตำแหน่ง</label>
+							<label class="col-sm-2 control-label required">${LABEL_POSTION}</label>
 							<div class="col-sm-3">
 							<select class="form-control" id ="emPosition"  ><jsp:text/>
-									<option value="0">เลือกตำแหน่ง</option>
+									<option value="0">${MSG_PLESE_SELECT_POSITION}</option>
 									<c:forEach var="emposition" items="${listEmpost}"> 
 								 <option value="${emposition.id}${LABEL_DELIMETER}${emposition.version}"> 
 									 ${emposition.positionName} 
@@ -48,10 +105,10 @@
 							
 							</select>
 						</div>
-						<label class="col-sm-2 control-label required">ทีม</label>
+						<label class="col-sm-2 control-label required">${LABEL_TEAM}</label>
 						<div class="col-sm-3">
-							<select class="form-control" id="emTeam"><jsp:text/>	
-								<option value="0">เลือกทีม</option>
+							<select class="form-control" id="emTeam"><jsp:text/>
+								<option value="0">${MSG_PLESE_SELECT_TEAM}</option>
 								<c:forEach var="emTeam" items="${listEmteam}">
 								<option value="${emTeam.id}${LABEL_DELIMETER}${emTeam.version}" >
 									${emTeam.teamName}
@@ -61,28 +118,28 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label required">อีเมล</label>
+					<label class="col-sm-2 control-label required">${LABEL_EMAIL}</label>
 					<div class="col-sm-3">
-						<input type="" class="form-control" id="email"  onblur="checkEmail()" data-content="กรุณากรอกข้อมูลนามสกุล" data-placement="bottom" 
-						placeholder="อีเมล"/>
+						<input type="" class="form-control" id="email"  onblur="checkEmail()" data-content="กรุณากรอกข้อมูลอีเมล" data-placement="bottom"
+						placeholder="${LABEL_EMAIL}"/>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label required">ชื่อผู้ใช้งาน</label>
+					<label class="col-sm-2 control-label required">${LABEL_USERNAME}</label>
 					<div class="col-sm-3">
-						<input type="" class="form-control" id="userName"  onblur="checkUserName()" data-content="กรุณากรอกชื่อผู้ใช้" data-placement="bottom"
-						placeholder="ชื่อผู้ใช้"/>
+						<input type="" class="form-control" id="userName"  onblur="checkUserName()" data-content="${MSG_PLESE_ENTER_USERNAME}" data-placement="bottom"
+						placeholder="${LABEL_USERNAME}"/>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label required">รหัสผ่าน</label>
+					<label class="col-sm-2 control-label required">${LABEL_PASSWORD}</label>
 					<div class="col-sm-3">
-						<input type="password" class="form-control" id="password" data-content="กรุณากรอกรหัสผ่าน" data-placement="bottom"
-						placeholder="รหัสผ่าน"/>
+						<input type="password" class="form-control" id="password" data-content="${MSG_PLESE_ENTER_PASSWORD}" data-placement="bottom"
+						placeholder="${LABEL_PASSWORD}"/>
 					</div>
-					<label class="col-sm-2 control-label required">ยืนยันรหัสผ่าน</label>
+					<label class="col-sm-2 control-label required">${LABEL_CONFIRM_PASSWORD}</label>
 					<div class="col-sm-3">
-						<input type="password" class="form-control" id="emConpass" data-content="กรุณายืนยันรหัสผ่าน" data-placement="bottom" placeholder="ยืนยันรหัสผ่าน"/>
+						<input type="password" class="form-control" id="emConpass" data-content="${MSG_PLESE_ENTER_CONFIRM_PASSWORD}" data-placement="bottom" placeholder="${LABEL_CONFIRM_PASSWORD}"/>
 					</div>
 				</div>
 				<div class="form-group">
