@@ -11,7 +11,7 @@ $(document).ready(function () {
 //////////////////////////////////////////////////////////////////////////////
 $("#search").click(function () {
     $('input[name=radioAll_]').prop('checked', false);
-
+    arrRoleChang=[];
     searchData();
     //console.log(json+"555");
     if (json.length <= 0) {
@@ -58,7 +58,7 @@ paggination.loadTable = function loadTable(jsonData) {
             $('#tr_'+num).append(tableData);
         };
         num++;
-        if(value.roleCode != null)
+        if(value.roleCode != null && value.roleCode !='')
         {
             arrRoleChang.push(value.roleCode);
             //console.log(value.roleCode+"<<<"+value.empCode);
@@ -127,6 +127,7 @@ $("#canCel").click(function () {
         }
 
     }
+    //console.log(role);
     if(role == true)
     {
         bootbox.confirm(Message.MESSAGE_NO_CANCEL_DATA_HAS_CHANGED, function (result) {
