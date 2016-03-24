@@ -117,9 +117,9 @@ public class AddPositionTest {
             assertEquals(mvcResult.getResponse().getContentAsString(), dataJson);
     }
 
-    public void dateTestFindCheckPositionCode (String positionCode)throws Exception{
+    public void dateTestFindCheckPositionCode (String positionID)throws Exception{
         MvcResult mvcResult = this.mockMvc.perform(get("/empositions/findCheckPositionCode")
-            .param("positionCode", positionCode)
+            .param("positionID", positionID)
         ).andDo(print())
             .andExpect(status().isOk())
             .andExpect(content().contentType("application/json;charset=UTF-8"))
@@ -166,7 +166,7 @@ public class AddPositionTest {
 
     // @Test
     // public void delete_From_EMPOSITION_Where_PositionCode_Equal () throws Exception{
-    //     deleteDataTodateBase(positionCode[0]);
+    //     deleteDataTodateBase("1");
     //     dateTestIsEmpty("$[0].positionCode", "[]", positionCode[0], positionName[0]);
     // }
 

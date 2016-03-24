@@ -57,9 +57,9 @@ function openModalEdit(element){
 	check = 1;
 	$('#btnModalNext').hide();
 	$('.modal-title').text(Label.LABEL_EDIT_POSITION);
-    $('#txtPositionCode').val(element.parent("td:eq(0)").parent("tr:eq(0)").children("#tdPositionCode").text()).attr('disabled', true);
+    $('#txtPositionCode').val(element.parent("td:eq(0)").parent("tr:eq(0)").children("#tdPositionCode").text()).attr('disabled', true).popover('hide');;
     positionName = element.parent("td:eq(0)").parent("tr:eq(0)").children("#tdPositionName").text();
-    $('#txtPositionName').val(positionName);
+    $('#txtPositionName').val(positionName).popover('hide');
 }
 
 function checkEMPositionCode() {
@@ -93,6 +93,8 @@ $('[id^=btnModal]').click(function() {
             }
         }else{
             $('#add').modal('hide');
+            $('#txtPositionCode').val(null);
+            $('#txtPositionName').val(null);
         }
 
         check = 0;
@@ -175,7 +177,8 @@ $('[id^=btnModal]').click(function() {
 $('#btnAdd').click(function() {
 	$(".modal-title").text(Label.LABEL_ADD_POSITION);
 	$('#btnModalNext').show();
-	$('#txtPositionCode').attr('disabled', false);
+	$('#txtPositionCode').attr('disabled', false).popover('hide');
+	$('#txtPositionName').popover('hide');
 });
 
 var status200 = 0;
