@@ -92,7 +92,7 @@ $('#data').on("click", "[id^=btnEdit]", function () {
 }) //--getDataEdit--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $("#btnDelete").click(function () {
-
+    checkedRows = [];
     $('input[status^=check]:checked').each(function () {
         if( $('input[status^=check]:checked'))
         {
