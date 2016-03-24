@@ -70,9 +70,9 @@ public class AddPositionTest {
             .andReturn();
     }
 
-    public void deleteDataTodateBase (String positionCode)throws Exception{
+    public void deleteDataTodateBase (String positionID)throws Exception{
         MvcResult mvcResult = this.mockMvc.perform(get("/empositions/findDeletePosition")
-            .param("positionCode", positionCode)
+            .param("positionID", positionID)
         ).andDo(print())
             .andExpect(status().isOk())
             .andExpect(content().contentType("application/json;charset=UTF-8"))
@@ -117,9 +117,9 @@ public class AddPositionTest {
             assertEquals(mvcResult.getResponse().getContentAsString(), dataJson);
     }
 
-    public void dateTestFindCheckPositionCode (String positionID)throws Exception{
+    public void dateTestFindCheckPositionCode (String positionCode)throws Exception{
         MvcResult mvcResult = this.mockMvc.perform(get("/empositions/findCheckPositionCode")
-            .param("positionID", positionID)
+            .param("positionCode", positionCode)
         ).andDo(print())
             .andExpect(status().isOk())
             .andExpect(content().contentType("application/json;charset=UTF-8"))
@@ -132,60 +132,60 @@ public class AddPositionTest {
                                 "Software Developer",
                                 "Project Manager"};
 
-    // @Test
-    // public void select_Star_From_EMPOSITION() throws Exception{
-    //     dateTestFindPaggingData("$[0].positionCode", positionCode[0], "", "");
-    //     dateTestFindPaggingData("$[3].positionName", positionName[3], "", "");
-    //     dateTestFindPaggingSize("size", 4, "", "");
-    // }
+    @Test
+    public void select_Star_From_EMPOSITION() throws Exception{
+        dateTestFindPaggingData("$[0].positionCode", positionCode[0], "", "");
+        dateTestFindPaggingData("$[1].positionName", positionName[1], "", "");
+        dateTestFindPaggingSize("size", 4, "", "");
+    }
 
-    // @Test
-    // public void select_Star_From_EMPOSITION_Where_PositionCode_Equal () throws Exception{
-    //      dateTestFindPaggingData("$[0].positionCode", positionCode[0], positionCode[0], "");
-    //      dateTestFindPaggingSize("size", 1, positionCode[0], "");
-    // }
+    @Test
+    public void select_Star_From_EMPOSITION_Where_PositionCode_Equal () throws Exception{
+         dateTestFindPaggingData("$[0].positionCode", positionCode[0], positionCode[0], "");
+         dateTestFindPaggingSize("size", 1, positionCode[0], "");
+    }
 
-    // @Test
-    // public void select_Star_From_EMPOSITION_Where_PositionName_Equal () throws Exception{
-    //      dateTestFindPaggingData("$[0].positionName", positionName[4], "", positionName[4]);
-    //      dateTestFindPaggingSize("size", 1, "", "positionName[4]");
-    // }
+    @Test
+    public void select_Star_From_EMPOSITION_Where_PositionName_Equal () throws Exception{
+         dateTestFindPaggingData("$[0].positionName", positionName[1], "", positionName[1]);
+         dateTestFindPaggingSize("size", 1, "", positionName[1]);
+    }
 
-    // @Test
-    // public void select_Star_From_EMPOSITION_Where_PositionCode_Equal_And_PositionName_Equal () throws Exception{
-    //      dateTestFindPaggingData("$[0].positionCode" ,positionCode[0] ,positionCode[0] ,positionName[0]);
-    //      dateTestFindPaggingData("$[0].positionName" ,positionName[0] ,positionCode[0] ,positionName[0]);
-    //      dateTestFindPaggingSize("size", 1, positionCode[0], positionName[0]);
-    // }
+    @Test
+    public void select_Star_From_EMPOSITION_Where_PositionCode_Equal_And_PositionName_Equal () throws Exception{
+         dateTestFindPaggingData("$[0].positionCode" ,positionCode[0] ,positionCode[0] ,positionName[0]);
+         dateTestFindPaggingData("$[0].positionName" ,positionName[0] ,positionCode[0] ,positionName[0]);
+         dateTestFindPaggingSize("size", 1, positionCode[0], positionName[0]);
+    }
 
-    // @Test
-    // public void update_From_EMPOSITION_set_PositionName_Equal_Where_PositionCode_Equal () throws Exception{
-    //     editDataTodateBase(positionCode[0], "A");
-    //     dateTestFindPaggingData("$[0].positionName", "A", positionCode[0], "A");
-    // }
+    @Test
+    public void update_From_EMPOSITION_set_PositionName_Equal_Where_PositionCode_Equal () throws Exception{
+        editDataTodateBase(positionCode[0], "A");
+        dateTestFindPaggingData("$[0].positionName", "A", positionCode[0], "A");
+    }
 
-    // @Test
-    // public void delete_From_EMPOSITION_Where_PositionCode_Equal () throws Exception{
-    //     deleteDataTodateBase("1");
-    //     dateTestIsEmpty("$[0].positionCode", "[]", positionCode[0], positionName[0]);
-    // }
+    @Test
+    public void delete_From_EMPOSITION_Where_PositionCode_Equal () throws Exception{
+        deleteDataTodateBase("4");
+        dateTestIsEmpty("$[3].positionCode", "[]", positionCode[3], positionName[3]);
+    }
 
-    // @Test
-    // public void select_Count_PositionCode_EMPOSITION_Where_PositionCode_Equal () throws Exception{
-    //     dateTestFindCheckPositionCode(positionCode[0]);
-    // }
+    @Test
+    public void select_Count_PositionCode_EMPOSITION_Where_PositionCode_Equal () throws Exception{
+        dateTestFindCheckPositionCode(positionCode[0]);
+    }
 
-    // @Test
-    // public void select_Inuse_From_EMPOSITION_Where_PositionCode_Equal () throws Exception{
-    //     MvcResult mvcResult = this.mockMvc.perform(get("/empositions/findPaggingData")
-    //         .param("positionCode", positionCode[0])
-    //         .param("positionName", "")
-    //         .param("firstResult","0")
-    //         .param("maxResult","15")
-    //     ).andDo(print())
-    //         .andExpect(status().isOk())
-    //         .andExpect(content().contentType("application/json;charset=UTF-8"))
-    //         .andExpect(jsonPath("$[0].inUse", is(0)))
-    //         .andReturn();
-    // }
+    @Test
+    public void select_Inuse_From_EMPOSITION_Where_PositionCode_Equal () throws Exception{
+        MvcResult mvcResult = this.mockMvc.perform(get("/empositions/findPaggingData")
+            .param("positionCode", positionCode[0])
+            .param("positionName", "")
+            .param("firstResult","0")
+            .param("maxResult","15")
+        ).andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(content().contentType("application/json;charset=UTF-8"))
+            .andExpect(jsonPath("$[0].inUse", is(0)))
+            .andReturn();
+    }
 }

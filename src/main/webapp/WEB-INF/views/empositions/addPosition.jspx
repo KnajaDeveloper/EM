@@ -38,7 +38,7 @@
     <c:set var="MSG_DELETE_FAILED" scope="request"><spring:message code="M0006"/></c:set>
     <c:set var="MSG_LIST" scope="request"><spring:message code="M0019"/></c:set>
     <c:set var="MSG_INUSE" scope="request"><spring:message code="M0020"/></c:set>
-    <c:set var="MSG_WANT_TO_CANCEL_EDITING_THE_DATA_HAS_CHANGED_OR_NOT" scope="request"><spring:message code="M0031"/></c:set>
+    <c:set var="MSG_WANT_TO_CANCEL_EDITING_THE_DATA_HAS_CHANGED_OR_NOT" scope="request"><spring:message code="M0038"/></c:set>
 
     <script type="text/javascript">
         var Label = {};
@@ -124,7 +124,7 @@
                 <div class="modal-footer">
                     <button id="btnModalAdd" type="button" class="btn btn-primary">${BUTTON_SAVE}</button>
                     <button id="btnModalNext" type="button" class="btn btn-primary">${BUTTON_NEXT}</button>
-                    <button id="btnModalCancel" type="button" class="btn btn-danger">${BUTTON_CANCEL}</button>
+                    <button id="btnModalCancel" type="button" class="btn btn-primary">${BUTTON_CANCEL}</button>
                 </div>
             </div>
         </div>
