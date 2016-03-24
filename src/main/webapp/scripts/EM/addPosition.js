@@ -96,8 +96,6 @@ $('[id^=btnModal]').click(function() {
             $('#txtPositionCode').val(null);
             $('#txtPositionName').val(null);
         }
-
-        check = 0;
 	}else{
 		if($('#txtPositionCode').val() === ""){
 			$('#txtPositionCode').attr("data-content" , Message.MSG_PLEASE_FILL).popover('show');
@@ -160,7 +158,6 @@ $('[id^=btnModal]').click(function() {
 									$('#txtPositionCode').val(null);
 									$('#txtPositionName').val(null);
 									searchData();
-									check = 0;
 								}else if(xhr.status === 500){
 									bootbox.alert(Message.MSG_EDIT_FAILED);
 								}
@@ -175,6 +172,7 @@ $('[id^=btnModal]').click(function() {
 });
 
 $('#btnAdd').click(function() {
+	check = 0;
 	$(".modal-title").text(Label.LABEL_ADD_POSITION);
 	$('#btnModalNext').show();
 	$('#txtPositionCode').attr('disabled', false).popover('hide');
