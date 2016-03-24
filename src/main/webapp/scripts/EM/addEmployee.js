@@ -7,7 +7,11 @@ $('#btnAdd').click(function(){
 		$('#empFirstName').popover('show');
 	}else if($('#empLastName').val() === ""){
 		$('#empLastName').popover('show');
-	}else if($('#email').val() === ""){
+	}else if($("#emPosition").val()=="0"){
+		$('#emPosition').popover('show');
+	}else if($("#emTeam").val()=="0"){
+		$('#emTeam').popover('show');
+	} else if($('#email').val() === ""){
 		$('#email').popover('show');
 	}else if($('#userName').val() === ""){
 		$('#userName').popover('show');
@@ -17,10 +21,6 @@ $('#btnAdd').click(function(){
 		$('#emConpass').popover('show');
 	}else if($('#emConpass').val() != $("#password").val()){
 		bootbox.alert(Message.MSG_PLEASE_CONFIRM_YOUR_PASSWORD_AGAIN);
-	}else if($("#emPosition").val()=="0"){
-	 	bootbox.alert(Message.MSG_PLEASE_SELECT_POSITION);
-	}else if($("#emTeam").val()=="0"){
-	 	bootbox.alert(Message.MSG_PLESE_SELECT_TEAM);
 	}else if($('#password').val().length < 8){
 		bootbox.alert(Message.MSG_PLESE_ENTER_YOUR_PASSWORD_AT_LAST_8_CHAR);
 	}else{
