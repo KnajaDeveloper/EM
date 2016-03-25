@@ -21,6 +21,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.*;
 import org.springframework.expression.spel.ast.Projection;
+import org.springframework.test.annotation.DirtiesContext;
 import javax.persistence.EntityManager;
 
 import java.text.SimpleDateFormat;
@@ -36,6 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 @Transactional
 @ContextConfiguration({"classpath:META-INF/spring/applicationContext*.xml", "file:src/main/webapp/WEB-INF/spring/webmvc-config.xml"})
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class AddPositionTest {
 
     private Logger LOGGER = LoggerFactory.getLogger(AddPositionTest.class);
