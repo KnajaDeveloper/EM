@@ -263,5 +263,19 @@ public ResponseEntity<String> EMEmployeeController.findEmpNameByEmpCode(
         }
     }
 
+    @RequestMapping(value = "/findRoleCode", method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> EMEmployeeController.findRoleCode() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json;charset=UTF-8");
+        try {
+            List<String> listRoleCode = EMEmployee.findDistinctRoleCode();
+            return new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(listRoleCode), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            LOGGER.error("=============> findRoleCode :{}", e);
+            return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
 }
