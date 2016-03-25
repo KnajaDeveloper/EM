@@ -132,7 +132,7 @@
                             <div >
                             <button id="save" type="button" class="btn btn-primary">${BUTTON_SAVE_ADD}</button>
 
-                            <button style="margin-left: 5px" id="canCel"  type="button" class=" btn btn-danger">${BUTTON_CANCEL}</button></div>
+                            <button style="margin-left: 5px" id="canCel"  type="button" class=" btn btn-primary">${BUTTON_CANCEL}</button></div>
                         </div>
                     </div>
                 </div>
