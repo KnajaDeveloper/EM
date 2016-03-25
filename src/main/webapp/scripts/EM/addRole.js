@@ -79,12 +79,14 @@ $("#save").click(function () {
             arrRoleCode.push(roleCode)
         }
     });
-    for(var i= 0 ; arrRoleChang.length > i ; i++) {
+    for(var i= 0 ; arrRoleChang.length >= i ; i++) {
         if (arrRoleCode[i] != arrRoleChang[i]) {
             role = true ; break;
         }
     }
-    if (arrEmpCode.length > 0 ) {
+    //console.log(arrRoleCode);console.log(arrRoleChang);
+    //console.log(arrEmpCode.length); console.log(role);
+    if (arrEmpCode.length > 0  ) {
         if(role == true)
         {
             bootbox.confirm(Message.MESSAGE_SAVE, function (result) {
@@ -96,14 +98,16 @@ $("#save").click(function () {
                     }
                     bootbox.alert(Message.MESSAGE_SAVE_SUCCESS);
                     $('input[name=radioAll_]').prop('checked', false);
+                    arrRoleChang=[];
                     searchData();
-                    arrRoleChang=[];arrEmpCode=[];arrRoleCode=[];
+                    arrEmpCode=[];arrRoleCode=[];
                 }
             });
         }
         else { bootbox.alert(Message.MESSAGE_NO__DATA_HAS_CHANGED);  arrRoleChang=[];arrEmpCode=[];arrRoleCode=[];role=false;searchData();}
 
     }
+    else { bootbox.alert(Message.MESSAGE_NO__DATA_HAS_CHANGED); }
 
 
 }); //-- --//
@@ -121,7 +125,7 @@ $("#canCel").click(function () {
         }
     });
     //console.log(">"+arrRoleCode); console.log("<"+arrRoleChang);
-    for(var i= 0 ; arrRoleChang.length > i ; i++) {
+    for(var i= 0 ; arrRoleChang.length >= i ; i++) {
         if (arrRoleCode[i] != arrRoleChang[i]) {
             role = true ; break;
         }
