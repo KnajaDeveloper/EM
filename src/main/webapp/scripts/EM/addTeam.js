@@ -185,7 +185,7 @@ paggination.loadTable = function loadTable(jsonData) {
                 + '<input  id="' + (parseInt(value.inUse) > 0 ? 'checkDisableDelete' : 'chDelete')+ key + '" class="check" type="checkbox"  name="checkdDelete" '+(parseInt(value.inUse) > 0 ? '':'teamCode="code_'+value.teamCode+'" status="check"')+' />'
                 + '</td>'
                 + '<td class="text-center">'
-                + '<button id="btnEdit' + key + '" type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalEdit" data-backdrop="static" ><span name="editClick" class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>'
+                + '<button id="btnEdit' + key + '" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#ModalEdit" data-backdrop="static" ><span name="editClick" class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>'
                 + '</td>'
                 + '<td id="tdTeamCode' + key + '" class="text-center" style="color: #000">'
                 + value.teamCode
