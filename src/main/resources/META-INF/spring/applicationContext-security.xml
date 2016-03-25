@@ -18,6 +18,8 @@
         <intercept-url pattern="/ememployees/findEMNameByUserName/**" access="permitAll or isAuthenticated()" />
         <intercept-url pattern="/ememployees/findAppRoleByUserName/**" access="permitAll or isAuthenticated()" />
         <intercept-url pattern="/ememployees/findEmployeeByUserName/**" access="permitAll or isAuthenticated()" />
+        <intercept-url pattern="/ememployees/findRoleCode/**" access="permitAll or isAuthenticated()" />
+
         <!-- <intercept-url pattern="/caevauserforms/findFormFormEvaOrApprove/**" access="permitAll or isAuthenticated()" />
         <intercept-url pattern="/caevauserforms/findCaEvaUserFormByEmpCode/**" access="permitAll or isAuthenticated()" />
         <intercept-url pattern="/caevauserforms/findCaEvaTemplateMinerByYear/**" access="permitAll or isAuthenticated()" />

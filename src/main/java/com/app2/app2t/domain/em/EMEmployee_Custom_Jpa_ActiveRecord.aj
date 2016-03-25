@@ -135,4 +135,12 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
         criteria.setProjection(Projections.rowCount());
         return (Long) criteria.uniqueResult();
     }
+
+    public static List<String> EMEmployee.findDistinctRoleCode() {
+        Session session = (Session) EMEmployee.entityManager().getDelegate();
+        Criteria criteria = session.createCriteria(EMEmployee.class);
+        criteria.add(Restrictions.isNotNull("roleCode"));
+        criteria.setProjection(Projections.distinct(Projections.property("roleCode")));
+        return criteria.list();
+    }
 }
