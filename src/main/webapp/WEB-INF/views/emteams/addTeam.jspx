@@ -89,6 +89,7 @@
                     <button style="margin-left: 5px" id="btnDelete" type="button" class="btn btn-danger">${BUTTON_DELETE}</button>
                     
                     <div class="form-group">
+                        <div class="table-stripted table-responsive">
                         <table id="data" class="table table-bordered table-stripted ">
                             <tdead>
                                 <tr>
@@ -100,6 +101,7 @@
                             </tdead>
                             <tbody id="ResualtSearch" style="cursor:pointer"></tbody>
                         </table>
+                        </div>
                         <div class="form-horizontal">
                             <div class="form-group">
                                 <component:pagging id="paggingSimple"/>
