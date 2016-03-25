@@ -1,7 +1,7 @@
 var resultEmployee;
 
 function searchLovEmployee(text){
-    $("#waitId").attr('empCode',"");
+    $("#"+txtId).attr('empCode',"");
     var dataJsonData = {
         text:text
     };
@@ -34,15 +34,11 @@ function addResultToDDL(){
             var empFirstName = resultEmployee.responseJSON[i].empFirstName;
             var empLastName = resultEmployee.responseJSON[i].empLastName;
             var empNickName = resultEmployee.responseJSON[i].empNickName;
-            var showText = ""+empCode+" : "+empFirstName+" "+empLastName+" ("+empNickName+")";
+            var showText = ""+empFirstName+" "+empLastName+" ("+empNickName+")";
             html += "<div id='resultData"+i+"' onmouseover='dataOver(this)' onclick='clickData(this)' onmouseout='dataOut()'"+
                 "class='sbsb_c' role='presentation' style='text-align: left;' empCode='"+empCode+"' showData='"+showText+"'>"+
                 "<div role='option' class='textResult'>"+
-                "<font>"+showText+"</font></div></div>";
-            //html += "<div id='resultData"+i+"' onmouseover='dataOver(this)' onclick='clickData(this)' onmouseout='dataOut()'"+
-            //            "class='sbsb_c' role='presentation' style='text-align: left;' empCode='"+empCode+"' showData='"+showText+"'>"+
-            //            "<div role='option' class='textResult'>"+
-            //            "<font>"+showText+"</font></div></div>";
+                "<font>"+showText+"</font></div></div></ui>";
         }
         $("#resultSearch").append(html);
     }
