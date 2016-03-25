@@ -220,7 +220,7 @@ public ResponseEntity<String> EMEmployeeController.findEmpNameByEmpCode(
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json;charset=UTF-8");
         try {
-            List<Map> list = emRestService.getSecurityService();
+            List<Map> list = securityRestService.getAppRoleService();
             return  new ResponseEntity<String>(new JSONSerializer().exclude("*.class" ).deepSerialize(list), headers, HttpStatus.OK);
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);

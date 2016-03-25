@@ -1,15 +1,38 @@
 package com.app2.app2t.util;
 
-/**
- * Created by k on 3/2/2559.
- */
-public class AuthorizeUtil {
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
 
-    public static String getUserName(){
-        String userName = "em001_kittisuk";
-        // String userName = "em002_kosit";
-        // String userName = "em003_chayanut";
-        return userName;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+
+@Component
+@Scope(value = "session",proxyMode = ScopedProxyMode.TARGET_CLASS)
+public class AuthorizeUtil {
+	
+	Map empData = new HashMap();
+    List<Map> listMenu = new ArrayList<>();
+
+    public static String getUserName() {
+       String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+       return userName;
     }
 
+    public Map getEmpData() {
+    	return empData;
+    }
+    public void setEmpDate(List<Map> empDataList) {
+    	empData = empDataList.get(0);	// get first if more than 1 record
+    }
+
+    public List<Map> getMenuList(){
+        return listMenu;
+    }
+    public void setMenuList(List<Map> menuList){
+        listMenu = menuList;
+    }
 }
