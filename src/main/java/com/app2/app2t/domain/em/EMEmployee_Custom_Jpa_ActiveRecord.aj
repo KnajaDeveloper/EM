@@ -136,6 +136,18 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
         return (Long) criteria.uniqueResult();
     }
 
+    public static List<EMEmployee> EMEmployee.findEmployeeByTextLov(String text) {
+        Session session = (Session) EMEmployee.entityManager().getDelegate();
+        Criteria criteria = session.createCriteria(EMEmployee.class);
+        criteria.add(Restrictions.disjunction()
+        .add(Restrictions.ilike("empCode","%"+text+"%"))
+        .add(Restrictions.ilike("empName","%"+text+"%"))
+        .add(Restrictions.ilike("empFirstName","%"+text+"%"))
+        .add(Restrictions.ilike("empLastName","%"+text+"%"))
+        .add(Restrictions.ilike("empNickName","%"+text+"%")));
+        return criteria.list();
+    }
+
     public static List<String> EMEmployee.findDistinctRoleCode() {
         Session session = (Session) EMEmployee.entityManager().getDelegate();
         Criteria criteria = session.createCriteria(EMEmployee.class);
