@@ -5,6 +5,7 @@ var checkBoxDisable = [] ;
 var json = [];
 var ob ;
 var edit = '' ;
+var first = false ;
 //////////////////////////////////////////////////////////////////////////////////////////////////
 var paggination = Object.create(UtilPaggination);
 $(document).ready(function () {
@@ -75,7 +76,8 @@ $("#cancelEdit").click(function () {
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $("#search").click(function () {
     $("#checkAll").attr('checked', false);
-    searchData();
+
+    searchData(); first = true ;
     if (json.length <= 0) {
         bootbox.alert(Message.MESSAGE_DATA_NOT_FOUND);
     }
@@ -162,18 +164,14 @@ $('#data').on("click", "[id^=checkDisableDelete]", function () {
 
 }); //--checkDataDelete--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
-$("[id^=paggingSimpleBtn]").click(function () {
-    if ($('#checkAll').prop('checked') == true){
-        $('input[type=checkbox]').prop('checked', false);
-    }
-}); //--paggingSimpleBtn--//
-//////////////////////////////////////////////////////////////////////////////////////////////////
+
 paggination.setEventPaggingBtn("paggingSimple", paggination);
 paggination.loadTable = function loadTable(jsonData) {
     json = jsonData;
     if (jsonData.length <= 0) {
 
     }
+     $('input[type=checkbox]').prop('checked', false);
     $('#ResualtSearch').empty();
     var tableData = "";
     var key = 1;
@@ -322,7 +320,13 @@ function checkCode(id) {
         else {
             bootbox.alert(Message.MESSAGE_CODE_DUPLICATE);
         }
+        if(first == false){
+
+        }
+        else
+        {
         searchData();
+        }
     // }
 }; //--functionCheck a-z --//
 /////////////////////////////////////////////////////////////////////////////////////////////////
