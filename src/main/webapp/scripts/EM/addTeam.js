@@ -277,12 +277,12 @@ function EditData(teamCode, teamName) {
 /////////////////////////////////////////////////////////////////////////////////////////////////
 function checkCode(id) {
     var elem = $("#teamCode").val();
-    if (!elem.match(/^([a-z0-9\_])+$/i)) {
-        bootbox.alert(Message.MESSAGE_PLEASE_ENTER_A_Z);
-        $("#teamCode").val("");
-    }
-    else
-    {
+    // if (!elem.match(/^([a-z0-9\_])+$/i)) {
+    //     bootbox.alert(Message.MESSAGE_PLEASE_ENTER_A_Z);
+    //     $("#teamCode").val("");
+    // }
+    // else
+    // {
         if (ob == "") {
             var addTeams = {
                 teamCode: $("#teamCode").val(),
@@ -323,7 +323,7 @@ function checkCode(id) {
             bootbox.alert(Message.MESSAGE_CODE_DUPLICATE);
         }
         searchData();
-    }
+    // }
 }; //--functionCheck a-z --//
 /////////////////////////////////////////////////////////////////////////////////////////////////
 //function checkIdKey(emTeam) {
