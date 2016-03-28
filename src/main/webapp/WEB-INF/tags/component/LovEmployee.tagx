@@ -14,6 +14,7 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
      -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     cursor: default;
+        width: 100%;
     }
     .sbsb_c {
     line-height: 25px;
@@ -29,9 +30,9 @@
     }
     </style>
 
-    <div class="col-sm-3" id="LOVEmployee">
+    <div class="col-sm-12" id="LOVEmployee">
         <div class='input-group'>
-            <input class="form-control" id="${id}" type="text" onkeypress="runScript(event)" empCode="">
+            <input class="form-control" id="${id}" type="text" onkeypress="runScript(event)" empCode="" >
             <span class="input-group-addon" style="background: white; cursor:pointer;" onclick="searchLovEmployee($('#'+txtId).val())">
                 <span class="fa fa-search">
                     <jsp:text/>
@@ -46,6 +47,7 @@
 
     <script>
         var txtId = '${id}';
+        $('#resultSearch').css("width",""+$("#LOVEmployee").width());
         $('#LOVEmployee').focusout(function(){
             $("#resultSearch").hide();
         });
