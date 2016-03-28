@@ -1,7 +1,9 @@
 var paggination = Object.create(UtilPaggination);
+var checkSearch = false;
 
 $('#btnSearch').click(function() {
 	searchData();
+	checkSearch = true;
 });
 
 function searchData() {
@@ -62,15 +64,15 @@ function openModalEdit(element){
     $('#txtPositionName').val(positionName).popover('hide');
 }
 
-function checkEMPositionCode() {
-  	var elem = document.getElementById('txtPositionCode').value;
-  	if(!elem.match(/^([a-z0-9\_])+$/i)){
-  		$('#txtPositionCode').attr("data-content" , Message.PLEASE_ENTER_THE_CODE_AS_a_TO_z_OR_A_TO_Z_OR_0_TO_9).popover('show');
-  		return false;
-  	}else{
-  		return true;
-  	}
- };
+// function checkEMPositionCode() {
+//   	var elem = document.getElementById('txtPositionCode').value;
+//   	if(!elem.match(/^([a-z0-9\_])+$/i)){
+//   		$('#txtPositionCode').attr("data-content" , Message.PLEASE_ENTER_THE_CODE_AS_a_TO_z_OR_A_TO_Z_OR_0_TO_9).popover('show');
+//   		return false;
+//   	}else{
+//   		return true;
+//   	}
+//  };
 
 var check = 0;
 
@@ -97,74 +99,71 @@ $('[id^=btnModal]').click(function() {
             $('#txtPositionName').val(null);
         }
 	}else{
-		if($('#txtPositionCode').val() === ""){
+		if($('#txtPositionCode').val() == ""){
 			$('#txtPositionCode').attr("data-content" , Message.MSG_PLEASE_FILL).popover('show');
-		}else if($('#txtPositionName').val()  === ""){
-			if(checkEMPositionCode() === true){
-				$('#txtPositionName').popover('show');
-			}
+		}else if($('#txtPositionName').val()  == ""){
+			$('#txtPositionName').popover('show');
 		}else{
-			if(checkEMPositionCode() === true){
-				var emPosition = {
-					positionCode: $('#txtPositionCode').val(),
-					positionName: $('#txtPositionName').val()
-				};
-				var responseHeader = null;
-				if(check == 0){
-					if(checkData() == 0){
-						$.ajax({
-							contentType: "application/json; charset=utf-8",
-							dataType: "json",
-							headers: {
-								Accept: "application/json"
-							},
-							type: "POST",
-							url: contextPath + '/empositions',
-							data : JSON.stringify(emPosition),
-							complete: function(xhr){
-								if(xhr.status == 201){
-									if(id == 'Add'){
-										bootbox.alert(Message.MSG_ADD_MORE_SUCCESS);
-										$('#add').modal('hide');
-									}
-									$('#txtPositionCode').val(null);
-									$('#txtPositionName').val(null);
-								}else if(xhr.status == 500){
-									bootbox.alert(Message.MSG_ADD_FAILED);
-								}
-							},
-							async: false
-						});
-					}else{
-						bootbox.alert(Message.MSG_PLEASE_ENTER_A_NEW_POSITION_CODE);
-					}
-				}else if(check == 1){
-					if($('#txtPositionName').val() == positionName){
-						bootbox.alert(Message.MSG_NO_INFORMATION_CHANGED);
-					}else{
-						$.ajax({
-							contentType: "application/json; charset=utf-8",
-							dataType: "json",
-							headers: {
-								Accept: "application/json"
-							},
-							type: "GET",
-							url: contextPath + '/empositions/findeditEMPosition',
-							data : emPosition,
-							complete: function(xhr){
-								if(xhr.status === 200){
-									bootbox.alert(Message.MSG_EDIT_SUCCESSFULLY);
+			var emPosition = {
+				positionCode: $('#txtPositionCode').val(),
+				positionName: $('#txtPositionName').val()
+			};
+			var responseHeader = null;
+			if(check == 0){
+				if(checkData() == 0){
+					$.ajax({
+						contentType: "application/json; charset=utf-8",
+						dataType: "json",
+						headers: {
+							Accept: "application/json"
+						},
+						type: "POST",
+						url: contextPath + '/empositions',
+						data : JSON.stringify(emPosition),
+						complete: function(xhr){
+							if(xhr.status == 201){
+								if(id == 'Add'){
+									bootbox.alert(Message.MSG_ADD_MORE_SUCCESS);
 									$('#add').modal('hide');
-									$('#txtPositionCode').val(null);
-									$('#txtPositionName').val(null);
-									searchData();
-								}else if(xhr.status === 500){
-									bootbox.alert(Message.MSG_EDIT_FAILED);
 								}
-							},
-							async: false
-						});
-					}
+								$('#txtPositionCode').val(null);
+								$('#txtPositionName').val(null);
+								if(checkSearch == true){searchData();}
+							}else if(xhr.status == 500){
+								bootbox.alert(Message.MSG_ADD_FAILED);
+							}
+						},
+						async: false
+					});
+				}else{
+					bootbox.alert(Message.MSG_PLEASE_ENTER_A_NEW_POSITION_CODE);
+				}
+			}else if(check == 1){
+				if($('#txtPositionName').val() == positionName){
+					bootbox.alert(Message.MSG_NO_INFORMATION_CHANGED);
+				}else{
+					$.ajax({
+						contentType: "application/json; charset=utf-8",
+						dataType: "json",
+						headers: {
+							Accept: "application/json"
+						},
+						type: "GET",
+						url: contextPath + '/empositions/findeditEMPosition',
+						data : emPosition,
+						complete: function(xhr){
+							if(xhr.status === 200){
+								bootbox.alert(Message.MSG_EDIT_SUCCESSFULLY);
+								$('#add').modal('hide');
+								$('#txtPositionCode').val(null);
+								$('#txtPositionName').val(null);
+								searchData();
+							}else if(xhr.status === 500){
+								bootbox.alert(Message.MSG_EDIT_FAILED);
+							}
+						},
+						async: false
+					});
 				}
 			}
 		}
