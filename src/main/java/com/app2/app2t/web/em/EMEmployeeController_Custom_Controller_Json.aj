@@ -302,20 +302,4 @@ public ResponseEntity<String> EMEmployeeController.findEmpNameByEmpCode(
         }
     }
 
-    @RequestMapping(value = "/findEmployeeByText", method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
-    @ResponseBody
-    public ResponseEntity<String> EMEmployeeController.findEmployeeByText(
-            @RequestParam(value = "text", required = false) String text
-    ) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "application/json;charset=UTF-8");
-        try {
-            List<Map> employee = emRestService.findEmployeeByTextLov(text);
-            return new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(employee), headers, HttpStatus.OK);
-        } catch (Exception e) {
-            LOGGER.error("findEvaPeriodTime :{}", e);
-            return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
 }
