@@ -10,7 +10,7 @@ function searchLovEmployee(text){
             Accept: "application/json"
         },
         type: "GET",
-        url: contextPath + '/ememployees/findEmployeeByText',
+        url: contextPath + '/central/findEmployeeByText',
         data : dataJsonData,
         complete: function(xhr){
             if(xhr.status === 201 || xhr.status === 200){
