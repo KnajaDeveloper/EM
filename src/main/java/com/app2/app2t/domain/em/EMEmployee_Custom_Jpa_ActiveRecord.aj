@@ -155,4 +155,13 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
         criteria.setProjection(Projections.distinct(Projections.property("roleCode")));
         return criteria.list();
     }
+
+    //----------GetEmpByTeamID------------------------------------------------------------------------
+
+    public static List<EMEmployee> EMEmployee.GetEmpByTeamID(Long teamID) {
+        EntityManager ent = EMEmployee.entityManager();
+        Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class);
+        criteria.add(Restrictions.eq("emTeam.id", teamID));
+        return criteria.list();
+    }
 }

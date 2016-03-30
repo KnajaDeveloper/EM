@@ -121,4 +121,10 @@ privileged aspect EMTeam_Custom_Jpa_ActiveRecord {
         return (long) criteria.uniqueResult();
     }
 
+    public static List<EMTeam> EMTeam.findTeamAll() {
+        EntityManager ent = EMTeam.entityManager();
+        Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMTeam.class);
+        return criteria.list();
+    }
+
 }
