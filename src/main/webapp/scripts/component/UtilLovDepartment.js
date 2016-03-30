@@ -161,7 +161,7 @@ function LovDepartmentToQueryEvent(inputId, inputIdTargetLovFrom) {
     var targetData = $(inputIdTargetLovFrom).data(LovEmployeeDataCode);
     if (targetData == null || targetData.length == 0) targetData = "*";
     var data = {
-        find: LovDepartmentSplitSpaceAndRetrunFirstIdentity(inputData),
+        find: LovEmpSplitSpaceAndRetrunFirstIdentity(inputData),
         departmentCodeFrom: LovDepartmentSplitSpaceAndRetrunFirstIdentity(targetData)
     };
     var jsonData = AjaxUtil.get({
