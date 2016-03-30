@@ -3,9 +3,15 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
 
-	<div class="col-sm-4">
-		<component:LovEmployee id="lovemployee"/>
+	<div class="form-horizontal">
+		<div class="col-sm-6">
+			<component:LovEmployee id="lovemployee" controller="findEmployeeByText"/>
+		</div>
+		<div class="col-sm-6">
+			<component:LovEmployee id="lovemployee1" controller="findEmployeeByText"/>
+		</div>
 	</div>
+
 
     <button id="btnAlert" type="button" class="btn btn-primary">Alert</button>
     <button id="btnConfirm" type="button" class="btn btn-success" style='margin:10px'>Confirm</button>
@@ -31,7 +37,7 @@
 	        </div>
 	    </div>
 	</div>
-	
+
 	<div class="form-horizontal">
 		<div class="form-group">
 			<component:pagging id="paggingSimple"/>
@@ -58,6 +64,6 @@
     			 message: "Alert Dialog",
     			 size : "small"
     		});
-    	}); 	    		
+    	});
     </script>
 </div>
