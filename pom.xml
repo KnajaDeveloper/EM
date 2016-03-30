@@ -31,6 +31,11 @@
             <name>Spring Roo Repository</name>
             <url>http://spring-roo-repository.springsource.org/release</url>
         </repository>
+        <repository>
+            <id>spring-snapshot</id>
+            <name>Spring Snapshot Repository</name>
+            <url>http://repo.springsource.org/snapshot</url>
+        </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
