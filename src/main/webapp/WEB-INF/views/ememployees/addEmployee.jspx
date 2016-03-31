@@ -95,8 +95,8 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label required">${LABEL_POSTION}</label>
 							<div class="col-sm-3">
-							<select class="form-control" id ="emPosition" data-content="${MSG_PLEASE_SELECT_POSITION}" ><jsp:text/>
-									<option value="0" >${MSG_PLESE_SELECT_POSITION}</option>
+							<select class="form-control" id ="emPosition" data-content="${MSG_PLESE_FALL}" ><jsp:text/>
+									<option value="0" ></option>
 									<c:forEach var="emposition" items="${listEmpost}"> 
 								 <option value="${emposition.id}${LABEL_DELIMETER}${emposition.version}"> 
 									 ${emposition.positionName} 
@@ -107,8 +107,8 @@
 						</div>
 						<label class="col-sm-2 control-label required">${LABEL_TEAM}</label>
 						<div class="col-sm-3">
-							<select class="form-control" id="emTeam" data-content="${MSG_PLEASE_SELECT_POSITION}"><jsp:text/>
-								<option value="0">${MSG_PLESE_SELECT_TEAM}</option>
+							<select class="form-control" id="emTeam" data-content="${MSG_PLESE_FALL}"><jsp:text/>
+								<option value="0"></option>
 								<c:forEach var="emTeam" items="${listEmteam}">
 								<option value="${emTeam.id}${LABEL_DELIMETER}${emTeam.version}" >
 									${emTeam.teamName}
@@ -117,13 +117,20 @@
 						</select>
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label required">${LABEL_EMAIL}</label>
-					<div class="col-sm-3">
-						<input type="" class="form-control" id="email"   data-content="${MSG_PLESE_FALL}" data-placement="bottom"
-						placeholder="${LABEL_EMAIL}"/>
-					</div>
-				</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label required">กำหนดสิทธิ์</label>
+							<div class="col-sm-3">
+								<select class="form-control" id="role" data-content="${MSG_PLESE_FALL}"><jsp:text/>
+									<option value="0"></option>
+									<option value="1">Administator</option>
+									<option value="2">User</option>
+								</select>
+							</div>
+							<label class="col-sm-2 control-label required">${LABEL_EMAIL}</label>
+							<div class="col-sm-3">
+								<input type="" class="form-control" id="email" data-content="${MSG_PLESE_FALL}" data-placement="bottom" placeholder="${LABEL_EMAIL}"/>
+							</div>
+						</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label required">${LABEL_USERNAME}</label>
 					<div class="col-sm-3">

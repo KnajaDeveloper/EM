@@ -168,7 +168,56 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
     public static List<EMEmployee> EMEmployee.findEmployeeByEmpCodeArray(String[] empCode) {
         Session session = (Session) EMEmployee.entityManager().getDelegate();
         Criteria criteria = session.createCriteria(EMEmployee.class);
-        criteria.add(Restrictions.in("empCode",empCode));
+        criteria.add(Restrictions.in("empCode", empCode));
         return criteria.list();
+    }
+
+    //--------------------------------------------------------------------------------------
+    public static Criteria EMEmployee.queryEmployeePagging(
+            String empCode
+            ,String empName
+            ,String userName
+            ,String empNickName
+            ,String emTeam
+            ,String emPosition
+    ){
+        Session session = (Session) EMEmployee.entityManager().getDelegate();
+        Criteria criteria = session.createCriteria(EMEmployee.class);
+        criteria.add(Restrictions.like("empCode", "%" + empCode + "%"));
+        criteria.add(Restrictions.like("empName", "%" + empName + "%"));
+        criteria.add(Restrictions.like("userName", "%" + userName + "%"));
+        criteria.add(Restrictions.like("empNickName", "%" + empNickName + "%"));
+        criteria.add(Restrictions.like("emTeam", "%" + emTeam + "%"));
+        criteria.add(Restrictions.like("emPosition", "%" + emPosition + "%"));
+        return criteria;
+    }
+
+    public static  List<EMEmployee> EMEmployee.findEmployeeDataPagingData(
+            String empCode
+            ,String empName
+            ,String userName
+            ,String empNickName
+            ,String emTeam
+            ,String emPosition
+            ,Integer firstResult
+            ,Integer maxResult
+    ){
+        Criteria criteria = EMEmployee.queryEmployeePagging(empCode, empName,userName,empNickName,emTeam,emPosition)
+                .setFirstResult(firstResult)
+                .setMaxResults(maxResult);
+        return criteria.list();
+    }
+
+    public static  Long EMEmployee.findEmployeeDataPagingSize(
+            String empCode
+            ,String empName
+            ,String userName
+            ,String empNickName
+            ,String emTeam
+            ,String emPosition
+    ){
+        Criteria criteria = EMEmployee.queryEmployeePagging(empCode, empName,userName,empNickName,emTeam,emPosition)
+                .setProjection(Projections.rowCount());
+        return (Long) criteria.uniqueResult();
     }
 }

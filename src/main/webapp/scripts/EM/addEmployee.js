@@ -11,7 +11,9 @@ $('#btnAdd').click(function(){
 		$('#emPosition').popover('show');
 	}else if($("#emTeam").val()=="0"){
 		$('#emTeam').popover('show');
-	} else if($('#email').val() === ""){
+	}else if($("#role").val()=="0"){
+		$('#role').popover('show');
+	}else if($('#email').val() === ""){
 		$('#email').popover('show');
 	}else if($('#userName').val() === ""){
 		$('#userName').popover('show');
@@ -24,7 +26,6 @@ $('#btnAdd').click(function(){
 	}else if($('#password').val().length < 8){
 		bootbox.alert(Message.MSG_PLESE_ENTER_YOUR_PASSWORD_AT_LAST_8_CHAR);
 	}else{
-
 	var ememployees = {
 		empCode : $("#empCode").val() ,
 		empNickName : $("#empNickName").val() ,
@@ -41,7 +42,9 @@ $('#btnAdd').click(function(){
 		 	id : $("#emPosition").val().split("#")[0],
 		 	version : $("#emPosition").val().split("#")[1],
 		 } ,
+		roleCode : $("#role").val() == 1?"ADMIN":"USER",
 		emConpass : $("#emConpass").val()
+
 	}
 	checkData();
 	if(chkDb===0){
@@ -67,6 +70,7 @@ $('#btnAdd').click(function(){
 	$("#emConpass").val("");
 	$("#emPosition").val("0");
 	$("#emTeam").val("0");
+	$("#role").val("0");
 		} ,
 		  async: false
 	});
