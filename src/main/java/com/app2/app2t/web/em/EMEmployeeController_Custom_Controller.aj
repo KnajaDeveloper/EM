@@ -41,6 +41,14 @@ public String EMEmployeeController.addRole( Model uiModel) {
         uiModel.addAttribute("listEmteam",emTeam);
         return "ememployees/addRole";
         }
+    @RequestMapping(value = "/editEmployee" , produces = "text/html")
+    public String EMEmployeeController.editEmployee( Model uiModel) {
+        List<EMPosition> emposition1 =  EMPosition.findAllEMPositions();
+        List<EMTeam> emTeam = EMTeam.findAllEMTeams();
+        uiModel.addAttribute("listEmpost",emposition1);
+        uiModel.addAttribute("listEmteam",emTeam);
+        return "ememployees/editEmployee";
+    }
 
 }
 

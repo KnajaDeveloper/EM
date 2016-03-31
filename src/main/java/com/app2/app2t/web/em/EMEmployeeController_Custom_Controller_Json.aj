@@ -300,6 +300,52 @@ privileged aspect EMEmployeeController_Custom_Controller_Json {
             return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    //--------------------------------------------------------------------------------------------------------------------------------------
+    @RequestMapping(value = "/findPaggingData",method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> EMEmployeeController.findPaggingData(
+            @RequestParam(value = "empCode", required = false) String empCode
+            ,@RequestParam(value = "empName", required = false) String empName
+            ,@RequestParam(value = "userName", required = false) String userName
+            ,@RequestParam(value = "empNickName", required = false) String empNickName
+            ,@RequestParam(value = "emTeam", required = false) String emTeam
+            ,@RequestParam(value = "emPosition", required = false) String emPosition
+            ,@RequestParam(value = "firstResult",required = false) Integer firstResult
+            ,@RequestParam(value = "maxResult",required = false) Integer maxResult
+    ){
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json;charset=UTF-8");
+        try{
+            List<EMEmployee> resultSearch = EMEmployee.findEmployeeDataPagingData(empCode, empName, userName,empNickName,emTeam,emPosition ,firstResult, maxResult);
+
+            return new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(resultSearch), headers, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/findPaggingSize",method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> EMEmployeeController.findPaggingSize(
+            @RequestParam(value = "empCode", required = false) String empCode
+            ,@RequestParam(value = "empName", required = false) String empName
+            ,@RequestParam(value = "userName", required = false) String userName
+            ,@RequestParam(value = "empNickName", required = false) String empNickName
+            ,@RequestParam(value = "emTeam", required = false) String emTeam
+            ,@RequestParam(value = "emPosition", required = false) String emPosition
+    ){
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json;charset=UTF-8");
+        try{
+            Long size = EMEmployee.findEmployeeDataPagingSize(empCode, empName,userName, empNickName, emTeam, emPosition );
+            Map dataSendToFront = new HashMap();
+            dataSendToFront.put("size",size);
+            return new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(dataSendToFront), headers, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     //----------GetEmpByTeamID------------------------------------------------------------------------
     @RequestMapping(value = "/GetEmpByTeamID", method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
