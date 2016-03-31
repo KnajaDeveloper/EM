@@ -39,6 +39,7 @@
     <c:set var="MSG_LIST" scope="request"><spring:message code="M0019"/></c:set>
     <c:set var="MSG_INUSE" scope="request"><spring:message code="M0020"/></c:set>
     <c:set var="MSG_WANT_TO_CANCEL_EDITING_THE_DATA_HAS_CHANGED_OR_NOT" scope="request"><spring:message code="M0038"/></c:set>
+    <c:set var="MSG_DATA_ALL_IN_USED" scope="request"><spring:message text="M0039"/></c:set>
 
     <script type="text/javascript">
         var Label = {};
@@ -66,6 +67,7 @@
         Message.MSG_LIST = '${MSG_LIST}';
         Message.MSG_INUSE = '${MSG_INUSE}';
         Message.MSG_WANT_TO_CANCEL_EDITING_THE_DATA_HAS_CHANGED_OR_NOT = '${MSG_WANT_TO_CANCEL_EDITING_THE_DATA_HAS_CHANGED_OR_NOT}';
+        Message.MSG_DATA_ALL_IN_USED = '${MSG_DATA_ALL_IN_USED}';
     </script>
 
     <div class="row">
@@ -146,8 +148,8 @@
                                         <input id="checkboxAll" type="checkbox" name="checkdDelete" />
                                     </th>
                                     <th class="text-center" width="5%">${LABEL_EDIT}</th>
-                                    <th class="text-center" width="45%">${LABEL_POSITION_CODE}</th>
-                                    <th class="text-center" width="45%">${LABEL_POSITION_NAME}</th>
+                                    <th class="text-center" width="20%">${LABEL_POSITION_CODE}</th>
+                                    <th class="text-center" width="75%">${LABEL_POSITION_NAME}</th>
                                 </tr>
                             </thead>
                             <tbody id="ResualtSearch" style="cursor:pointer"></tbody>
