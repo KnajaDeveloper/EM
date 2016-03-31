@@ -9,7 +9,6 @@ import org.hibernate.criterion.*;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.persistence.EntityManager;
 import java.util.List;
 
@@ -85,16 +84,14 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
             criteria.add(Restrictions.like("emPosition.positionName", "%" + emPosition + "%"));
             criteria.add(Restrictions.like("emTeam.teamName", "%" + emTeam + "%"));
             return criteria;
-        }
-        catch (Exception e)
-        {
-            LOGGER.error("{}:"+e);
+        } catch (Exception e) {
+            LOGGER.error("{}:" + e);
         }
         return null;
     }
 
 
-    public static List<EMEmployee> EMEmployee.findSaveOrUpdateAppRoleCode(String empCode,String roleCode) {
+    public static List<EMEmployee> EMEmployee.findSaveOrUpdateAppRoleCode(String empCode, String roleCode) {
         EntityManager ent = EMEmployee.entityManager();
         Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class);
         criteria.add(Restrictions.eq("empCode", empCode));
@@ -106,23 +103,23 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
         return criteria.list();
     }
 
-    public static List<EMEmployee> EMEmployee.findselectDataAddRole(String empCode,String empFirstName,
-                                                                         String empLastName,String emPosition,
-                                                                         String emTeam,String appRoleHave,
-                                                                         Integer maxResult,Integer firstResult
+    public static List<EMEmployee> EMEmployee.findselectDataAddRole(String empCode, String empFirstName,
+                                                                    String empLastName, String emPosition,
+                                                                    String emTeam, String appRoleHave,
+                                                                    Integer maxResult, Integer firstResult
 
-    ){
-        Criteria criteria = EMEmployee.findselectDataAddRole(empCode,empFirstName,empLastName,emPosition,emTeam,appRoleHave)
+    ) {
+        Criteria criteria = EMEmployee.findselectDataAddRole(empCode, empFirstName, empLastName, emPosition, emTeam, appRoleHave)
                 .setFirstResult(firstResult)
                 .setMaxResults(maxResult);
         return criteria.list();
     }
 
-    public static  Long EMEmployee.finProjectOfDataPagingSize(String empCode,String empFirstName,
-                                                              String empLastName,String emPosition,
-                                                              String emTeam,String appRoleHave
-    ){
-        Criteria criteria = EMEmployee.findselectDataAddRole(empCode,empFirstName,empLastName,emPosition,emTeam,appRoleHave)
+    public static Long EMEmployee.finProjectOfDataPagingSize(String empCode, String empFirstName,
+                                                             String empLastName, String emPosition,
+                                                             String emTeam, String appRoleHave
+    ) {
+        Criteria criteria = EMEmployee.findselectDataAddRole(empCode, empFirstName, empLastName, emPosition, emTeam, appRoleHave)
                 .setProjection(Projections.rowCount());
         return (Long) criteria.uniqueResult();
     }
@@ -140,11 +137,11 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
         Session session = (Session) EMEmployee.entityManager().getDelegate();
         Criteria criteria = session.createCriteria(EMEmployee.class);
         criteria.add(Restrictions.disjunction()
-        .add(Restrictions.ilike("empCode","%"+text+"%"))
-        .add(Restrictions.ilike("empName","%"+text+"%"))
-        .add(Restrictions.ilike("empFirstName","%"+text+"%"))
-        .add(Restrictions.ilike("empLastName","%"+text+"%"))
-        .add(Restrictions.ilike("empNickName","%"+text+"%")));
+                .add(Restrictions.ilike("empCode", "%" + text + "%"))
+                .add(Restrictions.ilike("empName", "%" + text + "%"))
+                .add(Restrictions.ilike("empFirstName", "%" + text + "%"))
+                .add(Restrictions.ilike("empLastName", "%" + text + "%"))
+                .add(Restrictions.ilike("empNickName", "%" + text + "%")));
         return criteria.list();
     }
 
@@ -161,7 +158,9 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
     public static List<EMEmployee> EMEmployee.GetEmpByTeamID(Long teamID) {
         EntityManager ent = EMEmployee.entityManager();
         Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class);
-        criteria.add(Restrictions.eq("emTeam.id", teamID));
+        if (teamID != null) {
+            criteria.add(Restrictions.eq("emTeam.id", teamID));
+        }
         return criteria.list();
     }
 
