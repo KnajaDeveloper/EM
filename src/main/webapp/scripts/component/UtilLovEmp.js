@@ -4,6 +4,7 @@ var LovEmployeeDataCode = "data-code";
 var LovEmployeeDataDescription = "data-description";
 
 UtilLov.onChangeInputLovEmp = function (input,e) {
+    $("[data-toggle='popover']").popover('destroy');
     var inputId = "#" + input.id;
     $(inputId).data(LovEmployeeDataItem, "");
     $(inputId).data(LovEmployeeDataCode, "");
@@ -14,7 +15,12 @@ UtilLov.onChangeInputLovEmp = function (input,e) {
     }
 };
 
+UtilLov.onFocus = function (input){
+    $("[data-toggle='popover']").popover('destroy');
+};
+
 UtilLov.lovEmp = function (btn) {
+    $("[data-toggle='popover']").popover('destroy');
     var inputId = "#" + $("#" + btn.id).attr("target");
     LovEmpQueryEvent(inputId);
 };
@@ -36,13 +42,25 @@ function LovEmpAfterCheckEmpty(inputId) {
 
 function LovEmpQueryEvent(inputId) {
     var inputData = $(inputId).val();
-    var data = {
-        text: LovEmpSplitSpaceAndRetrunFirstIdentity(inputData)
+    if(team=="") {
+        var data = {
+            text: LovEmpSplitSpaceAndRetrunFirstIdentity(inputData)
+        }
+        var jsonData = AjaxUtil.get({
+            url: contextPath + "/central/" + controller,
+            data: data
+        })
     }
-    var jsonData = AjaxUtil.get({
-        url: contextPath + "/central/"+controller,
-        data: data
-    })
+    else{
+        var data = {
+            teamID : $("#"+team).val()
+            //teamID : 100001
+        }
+        var jsonData = AjaxUtil.get({
+            url: contextPath + "/central/" + controller,
+            data: data
+        })
+    }
     LovEmpAfterQuery(inputId, jsonData, inputData);
     LovEmpKeyDownEvent(inputId);
     LovEmpKeyUpEvent(inputId) ;
@@ -104,57 +122,3 @@ function LovEmpKeyUpEvent(inputId) {
         }
     });
 };
-
-
-
-
-//var resultEmployee;
-//
-//function searchLovEmployee(text){
-//    $("#"+txtId).attr('empCode',"");
-//    var dataJsonData = {
-//        text:text
-//    };
-//    resultEmployee = $.ajax({
-//        headers: {
-//            Accept: "application/json"
-//        },
-//        type: "GET",
-//        url: contextPath + '/central/findEmployeeByText',
-//        data : dataJsonData,
-//        complete: function(xhr){
-//            if(xhr.status === 201 || xhr.status === 200){
-//
-//            }else if(xhr.status === 500){
-//                resultProject = null ;
-//            }
-//        },
-//        async: false
-//    });
-//    addResultToDDL();
-//}
-//
-//function addResultToDDL(){
-//    removeDataResultSearch();
-//    if(resultEmployee.responseJSON.length > 0){
-//        $('#resultSearch-'+txtId).addClass("sbdd_b");
-//        var html = "<ui role='listbox'>";
-//        for(var i = 0 ; i < resultEmployee.responseJSON.length ; i++){
-//            var empCode = resultEmployee.responseJSON[i].empCode ;
-//            var empFirstName = resultEmployee.responseJSON[i].empFirstName;
-//            var empLastName = resultEmployee.responseJSON[i].empLastName;
-//            var empNickName = resultEmployee.responseJSON[i].empNickName;
-//            var showText = ""+empFirstName+" "+empLastName+" ("+empNickName+")";
-//            html += "<div id='resultData"+txtId+""+i+"' onmouseover='dataOver(this)' onclick='clickData(this)' onmouseout='dataOut()'"+
-//                "class='sbsb_c' role='presentation' style='text-align: left;' empCode='"+empCode+"' showData='"+showText+"'>"+
-//                "<div role='option' class='textResult'>"+
-//                "<font>"+showText+"</font></div></div></ui>";
-//        }
-//        $('#resultSearch-'+txtId).append(html);
-//    }
-//}
-//
-//function removeDataResultSearch(){
-//    $('#resultSearch-'+txtId).empty();
-//    $('#resultSearch-'+txtId).removeClass("sbdd_b");
-//}
