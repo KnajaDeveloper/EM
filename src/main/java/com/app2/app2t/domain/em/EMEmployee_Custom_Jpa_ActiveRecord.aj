@@ -142,6 +142,7 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
                 .add(Restrictions.ilike("empFirstName", "%" + text + "%"))
                 .add(Restrictions.ilike("empLastName", "%" + text + "%"))
                 .add(Restrictions.ilike("empNickName", "%" + text + "%")));
+        criteria.addOrder(Order.asc("empCode"));
         return criteria.list();
     }
 
