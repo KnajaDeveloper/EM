@@ -121,12 +121,37 @@ privileged aspect EMEmployeeController_Custom_Controller_Json {
     public ResponseEntity<String> EMEmployeeController.findEmployeeByUserName(
             @RequestParam(value = "userName", required = false) String userName
     ) {
-
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json;charset=UTF-8");
         try {
             List<EMEmployee> empList = EMEmployee.findEMNameByUserName(userName);
-            return new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(empList), headers, HttpStatus.OK);
+            List<Map> listMap = new ArrayList<>();
+
+            List<Map> listAppRole = new ArrayList<>();
+            listAppRole = securityRestService.getAppRoleService();
+            Map mapRole = new HashMap();
+            for(Map m : listAppRole){
+                mapRole.put(m.get("roleCode"), m.get("roleName"));
+            }
+
+            for(EMEmployee employee : empList){
+                Map map = new HashMap();
+                map.put("empCode", employee.getEmpCode());
+                map.put("empNickName", employee.getEmpNickName());
+                map.put("empFirstName", employee.getEmpFirstName());
+                map.put("empLastName", employee.getEmpLastName());
+                map.put("email", employee.getEmail());
+                map.put("userName", employee.getUserName());
+                map.put("password", employee.getPassword());
+                map.put("emPosition", employee.getEmPosition());
+                map.put("emTeam", employee.getEmTeam());
+                map.put("roleCode", employee.getRoleCode());
+                map.put("roleName", mapRole.get(employee.getRoleCode()));
+                
+                listMap.add(map);
+            }
+
+            return new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(listMap), headers, HttpStatus.OK);
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
             return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
