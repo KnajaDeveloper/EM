@@ -224,7 +224,7 @@ $('#btnDelete').click(function() {
 				paggination.loadPage(pageNumber, paggination);
 
 				$('#checkboxAll').prop('checked', false);
-				if(status500 === 0){
+				if(status500 == 0){
 					bootbox.alert(Message.MSG_DELETE_SUCCESS + " " + status200 + " " + Message.MSG_LIST);
 				}else{
 					bootbox.alert(Message.MSG_DELETE_SUCCESS + " " + status200 + " " + Message.MSG_LIST + " " + Message.MSG_DELETE_FAILED + " " + status500 + " " + Message.MSG_LIST);
