@@ -175,34 +175,43 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
     //--------------------------------------------------------------------------------------
     public static Criteria EMEmployee.queryEmployeePagging(
             String empCode
-            ,String empName
+            ,String empFirstName
             ,String userName
             ,String empNickName
-            ,String emTeam
-            ,String emPosition
+            ,Long emTeam
+            ,Long emPosition
     ){
         Session session = (Session) EMEmployee.entityManager().getDelegate();
-        Criteria criteria = session.createCriteria(EMEmployee.class);
+        Criteria criteria = session.createCriteria(EMEmployee.class ,"employee");
+        criteria.createAlias("employee.emTeam","emTeam");
+        criteria.createAlias("employee.emPosition","emPosition");
         criteria.add(Restrictions.like("empCode", "%" + empCode + "%"));
-        criteria.add(Restrictions.like("empName", "%" + empName + "%"));
+        criteria.add(Restrictions.like("empFirstName", "%" + empFirstName + "%"));
         criteria.add(Restrictions.like("userName", "%" + userName + "%"));
         criteria.add(Restrictions.like("empNickName", "%" + empNickName + "%"));
-        criteria.add(Restrictions.like("emTeam", "%" + emTeam + "%"));
-        criteria.add(Restrictions.like("emPosition", "%" + emPosition + "%"));
+        if(emTeam != 0) {
+            criteria.add(Restrictions.eq("emTeam.id", emTeam));
+
+        }
+        if (emPosition !=0){
+            criteria.add(Restrictions.eq("emPosition.id", emPosition));
+        }
+
         return criteria;
     }
 
     public static  List<EMEmployee> EMEmployee.findEmployeeDataPagingData(
             String empCode
-            ,String empName
+            ,String empFirstName
             ,String userName
             ,String empNickName
-            ,String emTeam
-            ,String emPosition
+            ,Long emTeam
+            ,Long emPosition
             ,Integer firstResult
             ,Integer maxResult
     ){
-        Criteria criteria = EMEmployee.queryEmployeePagging(empCode, empName,userName,empNickName,emTeam,emPosition)
+        Criteria criteria = EMEmployee.queryEmployeePagging(empCode, empFirstName,userName,empNickName,emTeam,emPosition)
+
                 .setFirstResult(firstResult)
                 .setMaxResults(maxResult);
         return criteria.list();
@@ -210,21 +219,44 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
 
     public static  Long EMEmployee.findEmployeeDataPagingSize(
             String empCode
-            ,String empName
+            ,String empFirstName
             ,String userName
             ,String empNickName
-            ,String emTeam
-            ,String emPosition
+            ,Long emTeam
+            ,Long emPosition
     ){
-        Criteria criteria = EMEmployee.queryEmployeePagging(empCode, empName,userName,empNickName,emTeam,emPosition)
+       Criteria criteria = EMEmployee.queryEmployeePagging(empCode, empFirstName,userName,empNickName,emTeam,emPosition)
                 .setProjection(Projections.rowCount());
         return (Long) criteria.uniqueResult();
     }
-
-    public static List<EMEmployee> EMEmployee.findEmployeeByEmpCode(String empCode) {
+    public static List<EMEmployee> EMEmployee.findEmployeeByID(Long id) {
         Session session = (Session) EMEmployee.entityManager().getDelegate();
         Criteria criteria = session.createCriteria(EMEmployee.class);
+        criteria.add(Restrictions.eq("id",id));
+        return criteria.list();
+    }
+    public static List<EMEmployee> EMEmployee.findeditEmployee(String empCode, String empFirstName,String empLastName, String empNickName,String email, String userName,String password, EMPosition emPosition,EMTeam emTeam,String roleCode) {
+        EntityManager ent = EMEmployee.entityManager();
+        Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class);
         criteria.add(Restrictions.eq("empCode", empCode));
+        List<EMEmployee> em = criteria.list();
+        EMEmployee emEmployee = em.get(0);
+        emEmployee.setEmpFirstName(empFirstName);
+        emEmployee.setEmpLastName(empLastName);
+        emEmployee.setEmpNickName(empNickName);
+        emEmployee.setEmail(email);
+        emEmployee.setUserName(userName);
+        emEmployee.setPassword(password);
+        emEmployee.setEmPosition(emPosition);
+        emEmployee.setEmTeam(emTeam);
+        emEmployee.setRoleCode(roleCode);
+        emEmployee.merge();
+        return criteria.list();
+    }
+    public static List<EMEmployee> EMEmployee.findCheckEMCodeByID(Long id) {
+        Session session = (Session) EMEmployee.entityManager().getDelegate();
+        Criteria criteria = session.createCriteria(EMEmployee.class);
+        criteria.add(Restrictions.eq("id",id));
         return criteria.list();
     }
 }
