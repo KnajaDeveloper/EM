@@ -32,17 +32,17 @@ paggination.loadTable = function loadTable(jsonData) {
     jsonData.forEach(function (value) {
 
             tableData = ''
-                + '<tr id="tr_'+num+'" style="background-color: #fff">'
+                + '<tr id="tr_'+num+'" >'
                 + '<td id="tdEmpCode_' + num + '" class="text-center" style="color: #000">'
                 + value.empCode
                 + '</td>'
-                + '<td id="tdName_' + num + '" class="text-center" style="color: #000">'
+                + '<td id="tdName_' + num + '" class="text-left" style="color: #000">'
                 + value.empFirstName +"  "+ value.empLastName
                 + '</td>'
-                + '<td id="tdPosition_' + num + '" class="text-center" style="color: #000">'
+                + '<td id="tdPosition_' + num + '" class="text-left" style="color: #000">'
                 + value.emPosition.positionName
                 + '</td>'
-                + '<td id="tdEmTeam_' + num + '" class="text-center" style="color: #000">'
+                + '<td id="tdEmTeam_' + num + '" class="text-left" style="color: #000">'
                 + value.emTeam.teamName
                 + '</td>'
                 + '</tr>';

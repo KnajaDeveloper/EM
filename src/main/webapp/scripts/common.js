@@ -38,7 +38,7 @@ $( document).ajaxStart(function() {
 });
 $(document).ajaxComplete(function(){
     NProgress.done();
-    $('#wait').hide();
+    //$('#wait').hide();
     //setTimeout(function (){$('#wait').hide();},5000);
 
 });

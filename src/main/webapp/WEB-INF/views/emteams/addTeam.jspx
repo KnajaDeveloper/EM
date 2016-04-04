@@ -93,16 +93,16 @@
                     <button style="margin-left: 5px" id="btnDelete" type="button" class="btn btn-danger">${BUTTON_DELETE}</button>
                     
                     <div class="form-group">
-                        <div class="table-stripted table-responsive">
-                        <table id="data" class="table table-bordered table-stripted ">
-                            <tdead>
+                        <div class="table-responsive">
+                        <table id="data" class="table table-bordered table-stripted table-hover">
+                            <thead>
                                 <tr>
                                     <th class="text-center"><input class="check" type="checkbox" id="checkAll"/></th>
                                     <th class="text-center">${LABEL_EDIT}</th>
                                     <th class="text-center">${LABEL_CODE_TEAM}</th>
                                     <th class="text-center">${LABEL_NAME_TEAM}</th>
                                 </tr>
-                            </tdead>
+                            </thead>
                             <tbody id="ResualtSearch" style="cursor:pointer"></tbody>
                         </table>
                         </div>
