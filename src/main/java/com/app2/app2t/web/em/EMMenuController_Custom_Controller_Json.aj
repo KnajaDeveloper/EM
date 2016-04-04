@@ -54,6 +54,7 @@ privileged aspect EMMenuController_Custom_Controller_Json {
             map.put("email", employee.get("email"));
             map.put("empFirstName", employee.get("empFirstName"));
             map.put("empLastName", employee.get("empLastName"));
+            map.put("empRole", employee.get("roleName"));
 
             return  new ResponseEntity<String>(new JSONSerializer().exclude("*.class" ).deepSerialize(map), headers, HttpStatus.OK);
         } catch (Exception e) {
