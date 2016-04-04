@@ -109,7 +109,12 @@ $("#btnDelete").click(function () {
                 for (var i=0; checkedRows.length > i; i++) {
                     DeleteData(i);
                 }
-                bootbox.alert(Message.MESSAGE_DELETE_SUCCESS+" " + DeSuccess +" "+ Message.MESSAGE_DELETE_FAIL + DeFail);
+                if(DeFail === 0){
+                    bootbox.alert(Message.MESSAGE_DELETE_SUCCESS +" " + DeSuccess + " " + Message.MESSAGE_LIST);
+                }else{
+                    bootbox.alert(Message.MESSAGE_DELETE_SUCCESS+ " " + DeSuccess +" "+ Message.MESSAGE_LIST + " " + Message.MESSAGE_DELETE_FAIL + DeFail + " " + Message.MESSAGE_LIST);
+                }
+
                 DeSuccess = 0;
                 DeFail = 0;
                 checkedRows = [];
@@ -124,7 +129,14 @@ $("#btnDelete").click(function () {
 }); //-- deleteData--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $('#data').on("click", "#checkAll", function () {
-        $('[id^=chDelete]').prop('checked', $(this).prop('checked'));
+    $('[id^=chDelete]').prop('checked', $(this).prop('checked'));
+    var num =  $('input[status=check]:checked').length;
+    var status =  $('input[checkBox=check]').length;
+    console.log(status); console.log(num+"ss");
+    if (status > 0 && num <= 0 && $('#checkAll').prop('checked') == true ){
+        $('#checkAll').prop('checked', false);
+        bootbox.alert(Message.MESSAGE_DATA_ALL_IN_USE);
+    }
 }); //--checkAllData--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
 $('#data').on("click", "[id^=chDelete]", function () {
@@ -164,7 +176,6 @@ $('#data').on("click", "[id^=checkDisableDelete]", function () {
 
 }); //--checkDataDelete--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
-
 paggination.setEventPaggingBtn("paggingSimple", paggination);
 paggination.loadTable = function loadTable(jsonData) {
     json = jsonData;
@@ -180,7 +191,7 @@ paggination.loadTable = function loadTable(jsonData) {
 
                 + '<tr  style="background-color: #fff">'
                 + '<td class="text-center">'
-                + '<input  id="' + (parseInt(value.inUse) > 0 ? 'checkDisableDelete' : 'chDelete')+ key + '" class="check" type="checkbox"  name="checkdDelete" '+(parseInt(value.inUse) > 0 ? '':'teamCode="code_'+value.teamCode+'" status="check"')+' />'
+                + '<input  id="' + (parseInt(value.inUse) > 0 ? 'checkDisableDelete' : 'chDelete')+ key + '" class="check" checkBox="check" type="checkbox"  name="checkdDelete" '+(parseInt(value.inUse) > 0 ? '':'teamCode="code_'+value.teamCode+'" status="check"')+' />'
                 + '</td>'
                 + '<td class="text-center">'
                 + '<button id="btnEdit' + key + '" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#ModalEdit" data-backdrop="static" ><span name="editClick" class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>'

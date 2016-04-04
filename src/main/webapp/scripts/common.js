@@ -29,6 +29,19 @@ $(document).ready(function () {
     $( ".datepicker" ).datepicker( "option", "yearRange", '1950:2050' );
 
 });
+/**
+ * AJAX Loading ################################################################
+ * **/
+$( document).ajaxStart(function() {
+    NProgress.start();
+    $('#wait').show();
+});
+$(document).ajaxComplete(function(){
+    NProgress.done();
+    $('#wait').hide();
+    //setTimeout(function (){$('#wait').hide();},5000);
+
+});
 
 /**
  * ## Ajax Pattern ##########################################################################################
