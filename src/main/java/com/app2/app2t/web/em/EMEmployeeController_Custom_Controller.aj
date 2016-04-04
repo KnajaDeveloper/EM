@@ -23,13 +23,12 @@ import java.util.List;
 privileged aspect EMEmployeeController_Custom_Controller {
     
     @RequestMapping(value = "/addEmployee" , produces = "text/html")
-    public String EMEmployeeController.addEmployee( Model uiModel) {
+    public String EMEmployeeController.addEmployee( Model uiModel,@RequestParam(value = "id", required = false) Long id) {
     	List<EMPosition> emposition =  EMPosition.findAllEMPositions();
     	List<EMTeam> emTeam = EMTeam.findAllEMTeams();
     	uiModel.addAttribute("listEmpost",emposition);
     	uiModel.addAttribute("listEmteam",emTeam);
-    	//System.out.println("emposition : >>>>> "+emposition);
-    	//System.out.println("emTeam : >>>>>>>"+emTeam);
+        uiModel.addAttribute("EmployeeID", id);
         return "ememployees/addEmployee";
         }
     

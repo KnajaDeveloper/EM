@@ -73,4 +73,10 @@ privileged aspect EMPosition_Custom_Jpa_ActiveRecord {
         criteria.add(Restrictions.eq("positionCode", positionCode));
         return criteria.list();
     }
+    public static List<EMPosition> EMPosition.findPositionByID(Long emPosition) {
+        EntityManager ent = EMPosition.entityManager();
+        Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMPosition.class);
+        criteria.add(Restrictions.eq("id", emPosition));
+        return criteria.list();
+    }
 }

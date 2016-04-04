@@ -58,7 +58,9 @@
 
 	</script>
 
-
+	<script>
+		var id = '${EmployeeID}';
+	</script>
 
 
 	<div class="container-fluid">
@@ -70,7 +72,7 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label required">${LABEL_EMPLOYEE_CODE}</label>
 							<div class="col-sm-2">
-								<input type="" class="form-control" id="empCode"  data-content= "${MSG_PLESE_FALL}" data-placement="bottom"
+								<input type="" class="form-control" id="empCode" data-content= "${MSG_PLESE_FALL}" data-placement="bottom"
 								placeholder="${LABEL_EMPLOYEE_CODE}"/>
 							</div>
 							<label class="col-sm-3 control-label required" >${LABEL_NICKNAME}</label>
