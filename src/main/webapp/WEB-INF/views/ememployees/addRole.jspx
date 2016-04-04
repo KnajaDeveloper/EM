@@ -107,16 +107,16 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
-                        <div class="table-stripted table-responsive">
-                        <table id="data" class="table table-bordered table-stripted ">
-                            <tdead>
+                        <div class=" table-responsive">
+                        <table id="data" class="table table-bordered table-stripted table-hover">
+                            <thead>
                                 <tr id="column">
                                     <th class="text-center" style="width: 50px;">${LABEL_CODE_EMP}</th>
-                                    <th class="text-center" style="width: 200px;">${LABEL_FIRST_LAST_NAME}</th>
+                                    <th class="text-center" style="width: 150px;">${LABEL_FIRST_LAST_NAME}</th>
                                     <th class="text-center" style="width: 100px;">${LABEL_POSITION}</th>
                                     <th class="text-center" style="width: 100px;">${LABEL_TEAM}</th>
                                 </tr>
-                            </tdead>
+                            </thead>
                             <tbody id="ResualtSearch" style="cursor:pointer"></tbody>
                         </table>
                         </div>

@@ -189,7 +189,7 @@ paggination.loadTable = function loadTable(jsonData) {
     jsonData.forEach(function (value) {
             tableData = ''
 
-                + '<tr  style="background-color: #fff">'
+                + '<tr>'
                 + '<td class="text-center">'
                 + '<input  id="' + (parseInt(value.inUse) > 0 ? 'checkDisableDelete' : 'chDelete')+ key + '" class="check" checkBox="check" type="checkbox"  name="checkdDelete" '+(parseInt(value.inUse) > 0 ? '':'teamCode="code_'+value.teamCode+'" status="check"')+' />'
                 + '</td>'
@@ -199,7 +199,7 @@ paggination.loadTable = function loadTable(jsonData) {
                 + '<td id="tdTeamCode' + key + '" class="text-center" style="color: #000">'
                 + value.teamCode
                 + '</td>'
-                + '<td id="tdTeamName' + key++ + '" class="text-center" style="color: #000">'
+                + '<td id="tdTeamName' + key++ + '" class="text-left" style="color: #000">'
                 + value.teamName
                 + '</td>'
                 + '</tr>';

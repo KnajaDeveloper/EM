@@ -144,12 +144,12 @@
                         <table id="Table" class="table table-bordered table-stripted table-hover">
                             <thead>
                                 <tr>
-                                    <th class="text-center" width="5%">
+                                    <th class="text-center" >
                                         <input id="checkboxAll" type="checkbox" name="checkdDelete" />
                                     </th>
-                                    <th class="text-center" width="5%">${LABEL_EDIT}</th>
-                                    <th class="text-center" width="20%">${LABEL_POSITION_CODE}</th>
-                                    <th class="text-center" width="75%">${LABEL_POSITION_NAME}</th>
+                                    <th class="text-center" >${LABEL_EDIT}</th>
+                                    <th class="text-center" >${LABEL_POSITION_CODE}</th>
+                                    <th class="text-center" >${LABEL_POSITION_NAME}</th>
                                 </tr>
                             </thead>
                             <tbody id="ResualtSearch" style="cursor:pointer"></tbody>
