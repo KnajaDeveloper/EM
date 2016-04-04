@@ -143,21 +143,21 @@ public class AddPositionTest {
 
     @Test
     public void select_Star_From_EMPOSITION_Where_PositionCode_Equal () throws Exception{
-         dateTestFindPaggingData("$[0].positionCode", positionCode[0], positionCode[0], "");
-         dateTestFindPaggingSize("size", 1, positionCode[0], "");
+        dateTestFindPaggingData("$[0].positionCode", positionCode[0], positionCode[0], "");
+        dateTestFindPaggingSize("size", 1, positionCode[0], "");
     }
 
     @Test
     public void select_Star_From_EMPOSITION_Where_PositionName_Equal () throws Exception{
-         dateTestFindPaggingData("$[0].positionName", positionName[1], "", positionName[1]);
-         dateTestFindPaggingSize("size", 1, "", positionName[1]);
+        dateTestFindPaggingData("$[0].positionName", positionName[1], "", positionName[1]);
+        dateTestFindPaggingSize("size", 1, "", positionName[1]);
     }
 
     @Test
     public void select_Star_From_EMPOSITION_Where_PositionCode_Equal_And_PositionName_Equal () throws Exception{
-         dateTestFindPaggingData("$[0].positionCode" ,positionCode[0] ,positionCode[0] ,positionName[0]);
-         dateTestFindPaggingData("$[0].positionName" ,positionName[0] ,positionCode[0] ,positionName[0]);
-         dateTestFindPaggingSize("size", 1, positionCode[0], positionName[0]);
+        dateTestFindPaggingData("$[0].positionCode" ,positionCode[0] ,positionCode[0] ,positionName[0]);
+        dateTestFindPaggingData("$[0].positionName" ,positionName[0] ,positionCode[0] ,positionName[0]);
+        dateTestFindPaggingSize("size", 1, positionCode[0], positionName[0]);
     }
 
     @Test
