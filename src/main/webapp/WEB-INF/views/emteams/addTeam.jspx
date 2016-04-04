@@ -29,6 +29,8 @@
     <c:set var="MESSAGE_PLEASE_ENTER_A_Z" scope="request"><spring:message code="M0002"/></c:set>
     <c:set var="MESSAGE_NO_INFORMATION_CHANGED" scope="request"><spring:message code="M0016"/></c:set>
     <c:set var="MESSAGE_NO_CANCEL_DATA_HAS_CHANGED" scope="request"><spring:message code="M0038"/></c:set>
+    <c:set var="MESSAGE_LIST" scope="request"><spring:message code="M0019"/></c:set>
+    <c:set var="MESSAGE_DATA_ALL_IN_USE" scope="request"><spring:message code="M0039"/></c:set>
 
     <script>
         var Message = {} ;
@@ -47,6 +49,8 @@
         Message.MESSAGE_PLEASE_ENTER_A_Z='${MESSAGE_PLEASE_ENTER_A_Z}';
         Message.MESSAGE_NO_INFORMATION_CHANGED='${MESSAGE_NO_INFORMATION_CHANGED}';
         Message.MESSAGE_NO_CANCEL_DATA_HAS_CHANGED='${MESSAGE_NO_CANCEL_DATA_HAS_CHANGED}';
+        Message.MESSAGE_LIST='${MESSAGE_LIST}';
+        Message.MESSAGE_DATA_ALL_IN_USE='${MESSAGE_DATA_ALL_IN_USE}';
     </script>
 
     <div class="row">
@@ -197,5 +201,6 @@
 
     <spring:url value="/resources/scripts/EM/addTeam.js" var="addTeam"/>
     <script src="${addTeam}" type="text/javascript"><!--Not Empty --></script>
+
 
 </div>

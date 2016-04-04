@@ -9,14 +9,13 @@
   <spring:message code="button_home" var="home_label" htmlEscape="false" />
 
     <c:set var="lang" value="${fn:toUpperCase(pageContext.response.locale)}" scope="request"/>
-
     <nav class="navbar navbar-default navbar-fixed-top navbar-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-expand-toggle">
                     <i class="fa fa-bars icon"><jsp:text/></i>
                 </button>
-                <ol class="breadcrumb navbar-breadcrumb">
+                <ol id="pathNav" class="breadcrumb navbar-breadcrumb">
                     <li class="active">Plan</li>
                 </ol>
                 <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
@@ -51,10 +50,14 @@
             </ul>
         </div>
     </nav>
+    <div id="wait" class="modal-backdrop" style="opacity: 0;">
+    </div>
 
+    <spring:url var="img" value="/resources/images/loader.gif" />
     <script>
         var contextPath = '${pageContext.request.contextPath}';
         commonData.language = '${lang}';
+        var pathImgLoading = '${img}';
         if(commonData.language == 'TH_TH')
             commonData.language = 'TH';
     </script>
