@@ -1,6 +1,7 @@
 package com.app2.app2t.web.em;
 import com.app2.app2t.domain.em.EMEmployee;
 import com.app2.app2t.service.EmRestService;
+import com.app2.app2t.service.PjmRestService;
 import com.app2.app2t.service.SecurityRestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
@@ -18,6 +19,9 @@ public class EMEmployeeController {
     @Autowired
     SecurityRestService securityRestService;
     @Autowired
+    PjmRestService pjmRestService;
+    @Autowired
     EmRestService emRestService;
     protected Logger LOGGER = LoggerFactory.getLogger(EMEmployeeController.class);
+
 }

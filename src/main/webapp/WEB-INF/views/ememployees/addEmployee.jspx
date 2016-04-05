@@ -16,6 +16,8 @@
 	<c:set var="LABEL_PASSWORD" scope="request"><spring:message code="L0030"/></c:set>
 	<c:set var="LABEL_CONFIRM_PASSWORD" scope="request"><spring:message code="L0031"/></c:set>
 	<c:set var="BONTON_OK" scope="request"><spring:message code="B0007"/></c:set>
+	<c:set var="LABEL_ADD_EMPLOYEE" scope="request"><spring:message code="L0032"/></c:set>
+	<c:set var="LABEL_PERMISSIONS" scope="request"><spring:message code="L0033"/></c:set>
 
 	<c:set var="MSG_PLESE_FALL" scope="request"><spring:message code="M0001"/></c:set>
 	<c:set var="MSG_PLESE_ENTER_YOUR_ID" scope="request"><spring:message code="M0021"/></c:set>
@@ -66,7 +68,7 @@
 	<div class="container-fluid">
 		<div class="col-md-12">
 			<div class="panel panel-primary">
-				<div class="panel-heading">${LABEL_REGISTER}</div>
+				<div class="panel-heading">${LABEL_ADD_EMPLOYEE}</div>
 				<div class="panel-body">	
 					<form class="form-horizontal">
 						<div class="form-group">
@@ -120,7 +122,7 @@
 					</div>
 				</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label required">กำหนดสิทธิ์</label>
+							<label class="col-sm-2 control-label required">${LABEL_PERMISSIONS}</label>
 							<div class="col-sm-3">
 								<select class="form-control" id="role" data-content="${MSG_PLESE_FALL}"><jsp:text/>
 									<option value="0"></option>
