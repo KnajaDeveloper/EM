@@ -482,4 +482,30 @@ privileged aspect EMEmployeeController_Custom_Controller_Json {
         }
     }
 
+    // -----------------------------------------------------------Do not delete------------------------------------------------------//
+    @RequestMapping(value = "/findEmployeeByEmpCode", method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> EMEmployeeController.findEmployeeByEmpCode(
+            @RequestParam(value = "empCode", required = false) String empCode
+    ) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json;charset=UTF-8");
+        try {
+            List<Map> resultSearch = new ArrayList<>();
+            List<EMEmployee> emEmployees = EMEmployee.findEmployeeByEmpCode(empCode);
+            for (EMEmployee emEmployee : emEmployees) {
+                Map buffer = new HashMap();
+                buffer.put("empCode", emEmployee.getEmpCode());
+                buffer.put("empFirstName", emEmployee.getEmpFirstName());
+                buffer.put("empLastName", emEmployee.getEmpLastName());
+                buffer.put("empPositionName", emEmployee.getEmPosition().getPositionName());
+                resultSearch.add(buffer);
+            }
+            return new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(resultSearch), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            LOGGER.error("findEvaPeriodTime :{}", e);
+            return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    // --------------------------------------------------------Do not delete------------------------------------------------------------//
 }
