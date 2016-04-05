@@ -24,7 +24,7 @@ public class PjmRestService extends AbstractAPP2Service {
     public Boolean checkEMCodeInPjm(String empCode) {
         Boolean result = false;
         try {
-            setWebServicesString("http://" + this.APP2Server + "/pjm/findEMNameByEMCode?empCode=" + empCode);
+            setWebServicesString("http://" + this.APP2Server + "/pjm/checkEMCodeInPjm?empCode=" + empCode);
             result =  Boolean.parseBoolean(getResultString()) ;
 
             return result;
