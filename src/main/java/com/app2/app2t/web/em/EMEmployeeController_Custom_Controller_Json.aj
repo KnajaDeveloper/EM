@@ -343,9 +343,24 @@ privileged aspect EMEmployeeController_Custom_Controller_Json {
         headers.add("Content-Type", "application/json;charset=UTF-8");
         try{
            List<EMEmployee> resultSearch = EMEmployee.findEmployeeDataPagingData(empCode, empFirstName, userName,empNickName,emTeam,emPosition ,firstResult, maxResult);
-
-
-            return new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(resultSearch), headers, HttpStatus.OK);
+            List<Map> maps = new ArrayList<>();
+            for(EMEmployee emEmployee : resultSearch){
+                Map map = new HashMap();
+                map.put("id", emEmployee.getId());
+                map.put("empCode", emEmployee.getEmpCode());
+                map.put("empFirstName", emEmployee.getEmpFirstName());
+                map.put("empLastName", emEmployee.getEmpLastName());
+                map.put("empNickName", emEmployee.getEmpNickName());
+                map.put("email", emEmployee.getEmail());
+                map.put("userName", emEmployee.getUserName());
+                map.put("password", emEmployee.getPassword());
+                map.put("emPosition", emEmployee.getEmPosition());
+                map.put("emTeam", emEmployee.getEmTeam());
+                map.put("roleCode", emEmployee.getRoleCode());
+                map.put("inUsed", pjmRestService.checkEMCodeInPjm(emEmployee.getEmpCode()));
+                maps.add(map);
+            }
+            return new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(maps), headers, HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<String>("{\"ERROR\":" + e.getMessage() + "\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -508,4 +523,19 @@ privileged aspect EMEmployeeController_Custom_Controller_Json {
         }
     }
     // --------------------------------------------------------Do not delete------------------------------------------------------------//
+
+    @RequestMapping(value = "/findDeleteEmployee",method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
+    public ResponseEntity<String> EMEmployeeController.findDeleteEmployee(
+            @RequestParam(value = "id", required = false) Long id
+    ) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json;charset=UTF-8");
+        try {
+            EMEmployee employee = EMEmployee.findDeleteEmployee(id);
+            return  new ResponseEntity<String>(headers, HttpStatus.OK);
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

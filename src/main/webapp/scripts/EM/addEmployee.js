@@ -178,7 +178,6 @@ var olderole;
 
 var checkEdit=false;
 $(document).ready(function(){
-	console.log("EM>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+id);
 	if(id!="") {
 		checkEdit=true;
 		labelData = $.ajax({

@@ -260,6 +260,7 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
         return criteria.list();
     }
 
+
     // ------------------------------Do not delete-----------------------------//
     public static List<EMEmployee> EMEmployee.findEmployeeByEmpCode(String empCode) {
         Session session = (Session) EMEmployee.entityManager().getDelegate();
@@ -268,4 +269,16 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
         return criteria.list();
     }
     // ------------------------------Do not delete-----------------------------//
+
+    public static EMEmployee EMEmployee.findDeleteEmployee(Long id) {
+        EntityManager ent = EMEmployee.entityManager();
+        Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class);
+        criteria.add(Restrictions.eq("id", id));
+        List<EMEmployee> em = criteria.list();
+        EMEmployee emEmployee = em.get(0);
+        emEmployee.remove();
+        return emEmployee;
+    }
+
+
 }
