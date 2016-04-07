@@ -172,6 +172,12 @@ privileged aspect EMEmployee_Custom_Jpa_ActiveRecord {
         return criteria.list();
     }
 
+    public static List<EMEmployee> EMEmployee.findAllEmployeeByEmpCodeArray() {
+        Session session = (Session) EMEmployee.entityManager().getDelegate();
+        Criteria criteria = session.createCriteria(EMEmployee.class);
+        return criteria.list();
+    }
+
     //--------------------------------------------------------------------------------------
     public static Criteria EMEmployee.queryEmployeePagging(
             String empCode

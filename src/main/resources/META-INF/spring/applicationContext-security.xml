@@ -24,6 +24,7 @@
         <intercept-url pattern="/emteams/findTeamAll/**" access="permitAll or isAuthenticated()" />
         <intercept-url pattern="/ememployees/findEmployeeByEmpCodeArray/**" access="permitAll or isAuthenticated()" />
         <intercept-url pattern="/ememployees/findEmployeeByEmpCode/**" access="permitAll or isAuthenticated()" />
+        <intercept-url pattern="/ememployees/findAllEmployeeByEmpCodeArray/**" access="permitAll or isAuthenticated()" />
         <!-- <intercept-url pattern="/caevauserforms/findFormFormEvaOrApprove/**" access="permitAll or isAuthenticated()" />
         <intercept-url pattern="/caevauserforms/findCaEvaUserFormByEmpCode/**" access="permitAll or isAuthenticated()" />
         <intercept-url pattern="/caevauserforms/findCaEvaTemplateMinerByYear/**" access="permitAll or isAuthenticated()" />
