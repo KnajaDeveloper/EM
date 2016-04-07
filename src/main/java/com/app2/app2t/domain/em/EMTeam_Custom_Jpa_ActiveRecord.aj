@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Map;
 
 privileged aspect EMTeam_Custom_Jpa_ActiveRecord {
 
@@ -131,6 +132,16 @@ privileged aspect EMTeam_Custom_Jpa_ActiveRecord {
         Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMTeam.class);
         criteria.add(Restrictions.eq("id", emTeam));
         return criteria.list();
+    }
+
+    public static List<EMTeam> EMTeam.findAllEmployeeByTeamId(Long emTeam) {
+        EntityManager ent = EMTeam.entityManager();
+        Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMEmployee.class, "emEmployee");
+        criteria.createAlias("emEmployee.emTeam", "emTeam");
+        criteria.add(Restrictions.eq("emTeam.id", emTeam));
+        criteria.setProjection(Projections.property("emEmployee.empCode"));
+        List<EMTeam> listEm =  criteria.list();
+        return listEm;
     }
 
 }

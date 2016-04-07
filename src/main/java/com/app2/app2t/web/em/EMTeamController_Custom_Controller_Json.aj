@@ -136,6 +136,26 @@ privileged aspect EMTeamController_Custom_Controller_Json {
         }
     }
 
+    @RequestMapping(value = "/findAllEmployeeByTeamId",method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
+    public ResponseEntity<String> EMTeamController.findAllEmployeeByTeamId(
+            @RequestParam(value = "teamId", required = false) String teamId
+    ) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json;charset=UTF-8");
+        try {
+            List<EMTeam> employee = EMTeam.findAllEmployeeByTeamId(Long.parseLong(teamId));
+            List<Map> list = new ArrayList<>();
+            for(int i = 0 ; i < employee.size() ; i++){
+                Map map = new HashMap();
+                map.put("empCode", employee.get(i));
+                list.add(map);
+            }
+            return  new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(list), headers, HttpStatus.OK);
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+            return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 
 
