@@ -549,8 +549,8 @@ public class AppRoleTest {
         ).andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
-                .andExpect(jsonPath("$[0].roleCode",is("RL001")))
-                .andExpect(jsonPath("$[1].roleCode",is("RL002")))
+                .andExpect(jsonPath("$[0].roleCode",is("ADMIN")))
+                .andExpect(jsonPath("$[1].roleCode",is("USER")))
                 .andReturn()
                 ;
 
@@ -559,11 +559,11 @@ public class AppRoleTest {
     public void saveOrUpdateAppRoleCode ()throws Exception{
         MvcResult mvcResult = this.mockMvc.perform(post("/ememployees/saveOrUpdateAppRoleCode")
                 .param("arrEmpCode","EMP001")
-                .param("arrRoleCode","RL002")
+                .param("arrRoleCode","USER")
         ).andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
-                .andExpect(jsonPath("$[0].roleCode",is("RL002")))
+                .andExpect(jsonPath("$[0].roleCode",is("USER")))
                 .andReturn()
                 ;
 
