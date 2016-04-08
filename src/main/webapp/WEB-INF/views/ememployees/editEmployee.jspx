@@ -168,9 +168,9 @@
                                         <th class="text-center"  width="10%">${LABEL_NAME}</th>
                                         <th class="text-center"  width="10%">${LABEL_LAST_NAME}</th>
                                         <th class="text-center"  width="5%">${LABEL_NICKNAME}</th>
-                                        <th class="text-center"  width="15%">${LABEL_POSTION}</th>
+                                        <th class="text-center"  width="12%">${LABEL_POSTION}</th>
                                         <th class="text-center"  width="10%">${LABEL_TEAM}</th>
-                                        <th class="text-center"  width="5%">${LABEL_USE_RIGTH}</th>
+                                        <th class="text-center"  width="7%">${LABEL_USE_RIGTH}</th>
                                         <!--<th class="text-center"  width="10%">${LABEL_USERNAME}</th>-->
                                         <!--<th class="text-center"  width="10%">${LABEL_PASSWORD}</th>-->
                                     </tr>

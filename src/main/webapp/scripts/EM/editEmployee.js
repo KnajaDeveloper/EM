@@ -53,13 +53,13 @@ paggination.loadTable = function loadTable (jsonData) {
             + '<td class="text-center">'
             + '<button onclick="openEdit($(this))" type="button" class="btn btn-xs btn-info" ><span name="editClick" class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>'
             + '</td>'
-            + '<td id="tdEmpCode" class="text-center">' + value.empCode + '</td>'
-            + '<td id="tdEmpName" class="text-center">' + value.empFirstName + '</td>'
-            + '<td id="tdEmpLastname" class="text-center">' + value.empLastName + '</td>'
-            + '<td id="tdEmpNickname" class="text-center">' + value.empNickName + '</td>'
-            + '<td id="tdEmpPosition" class="text-center">' + value.emPosition.positionName + '</td>'
-            + '<td id="tdEmpTeam" class="text-center">' + value.emTeam.teamName + '</td>'
-            + '<td id="tdEmpRole" class="text-center">' + value.roleCode + '</td>'
+            + '<td id="tdEmpCode" class="text-left">' + value.empCode + '</td>'
+            + '<td id="tdEmpName" class="text-left">' + value.empFirstName + '</td>'
+            + '<td id="tdEmpLastname" class="text-left">' + value.empLastName + '</td>'
+            + '<td id="tdEmpNickname" class="text-left">' + value.empNickName + '</td>'
+            + '<td id="tdEmpPosition" class="text-left">' + value.emPosition.positionName + '</td>'
+            + '<td id="tdEmpTeam" class="text-left">' + value.emTeam.teamName + '</td>'
+            + '<td id="tdEmpRole" class="text-left">' + value.roleCode + '</td>'
             + '</tr>';
         $('#ResualtSearch').append(tableData);
     });
