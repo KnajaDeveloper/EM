@@ -15,6 +15,7 @@
     <c:set var="LABEL_USERNAME" scope="request"><spring:message code="L0029"/></c:set>
     <c:set var="LABEL_PASSWORD" scope="request"><spring:message code="L0030"/></c:set>
     <c:set var="LABEL_EDIT" scope="request"><spring:message code="L0005"/></c:set>
+    <c:set var="LABEL_USE_RIGTH" scope="request"><spring:message code="L0035"/></c:set>
     <c:set var="BONTON_OK" scope="request"><spring:message code="B0007"/></c:set>
     <c:set var="BONTON_SEARCH" scope="request"><spring:message code="B0001"/></c:set>
     <c:set var="BONTON_ADD" scope="request"><spring:message code="B0006"/></c:set>
@@ -169,7 +170,7 @@
                                         <th class="text-center"  width="5%">${LABEL_NICKNAME}</th>
                                         <th class="text-center"  width="15%">${LABEL_POSTION}</th>
                                         <th class="text-center"  width="10%">${LABEL_TEAM}</th>
-                                        <th class="text-center"  width="5%">สิทธิ์การใช้งาน</th>
+                                        <th class="text-center"  width="5%">${LABEL_USE_RIGTH}</th>
                                         <!--<th class="text-center"  width="10%">${LABEL_USERNAME}</th>-->
                                         <!--<th class="text-center"  width="10%">${LABEL_PASSWORD}</th>-->
                                     </tr>
