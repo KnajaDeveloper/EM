@@ -32,7 +32,7 @@
     <c:set var="MSG_PLESE_SELECT_POSITION" scope="request"><spring:message code="M0030"/></c:set>
     <c:set var="MSG_PLESE_SELECT_TEAM" scope="request"><spring:message code="M0031"/></c:set>
 
-    <c:set var="MSG_DATA_NOT_FOUND" scope="request"><spring:message code="M0018"/></c:set>
+    <c:set var="MSG_DATA_NOT_FOUND" scope="request"><spring:message code="M0009"/></c:set>
     <c:set var="MSG_PLEASE_ENTER_YOUR_EMID_AGAIN" scope="request"><spring:message code="M0034"/></c:set>
     <c:set var="MSG_SUBSCRIBE_SUCCESSFULLY" scope="request"><spring:message code="M0033"/></c:set>
     <c:set var="MSG_PLESE_ENTER_YOUR_PASSWORD_AT_LAST_8_CHAR" scope="request"><spring:message code="M0032"/></c:set>
@@ -167,11 +167,11 @@
                                         <th class="text-center"  width="10%">${LABEL_NAME}</th>
                                         <th class="text-center"  width="10%">${LABEL_LAST_NAME}</th>
                                         <th class="text-center"  width="5%">${LABEL_NICKNAME}</th>
-                                        <th class="text-center"  width="10%">${LABEL_POSTION}</th>
+                                        <th class="text-center"  width="15%">${LABEL_POSTION}</th>
                                         <th class="text-center"  width="10%">${LABEL_TEAM}</th>
-                                        <th class="text-center"  width="10%">สิทธิ์การใช้งาน</th>
-                                        <th class="text-center"  width="10%">${LABEL_USERNAME}</th>
-                                        <th class="text-center"  width="10%">${LABEL_PASSWORD}</th>
+                                        <th class="text-center"  width="5%">สิทธิ์การใช้งาน</th>
+                                        <!--<th class="text-center"  width="10%">${LABEL_USERNAME}</th>-->
+                                        <!--<th class="text-center"  width="10%">${LABEL_PASSWORD}</th>-->
                                     </tr>
                                 </tdead>
                                 <tbody id="ResualtSearch" style="cursor:pointer"></tbody>
