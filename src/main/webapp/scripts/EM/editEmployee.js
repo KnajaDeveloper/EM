@@ -60,8 +60,6 @@ paggination.loadTable = function loadTable (jsonData) {
             + '<td id="tdEmpPosition" class="text-center">' + value.emPosition.positionName + '</td>'
             + '<td id="tdEmpTeam" class="text-center">' + value.emTeam.teamName + '</td>'
             + '<td id="tdEmpRole" class="text-center">' + value.roleCode + '</td>'
-            + '<td id="tdEmpUsername" class="text-center">' + value.userName + '</td>'
-            + '<td id="tdEmpPassword" class="text-center">' + value.password + '</td>'
             + '</tr>';
         $('#ResualtSearch').append(tableData);
     });
