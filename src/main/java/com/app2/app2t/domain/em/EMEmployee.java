@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import org.springframework.roo.addon.json.RooJson;
+import javax.validation.constraints.Size;
 
 @RooJavaBean
 @RooToString
@@ -16,34 +17,42 @@ public class EMEmployee extends BaseEntity {
 
     /**
      */
+    @Size(max = 15)
     private String empCode;
 
     /**
      */
+    @Size(max = 40)
     private String empName;
 
     /**
      */
+    @Size(max = 40)
     private String empFirstName;
 
     /**
      */
+    @Size(max = 40)
     private String empLastName;
 
     /**
      */
+    @Size(max = 40)
     private String empNickName;
 
     /**
      */
+    @Size(max = 40)
     private String email;
 
     /**
      */
+    @Size(max = 40)
     private String userName;
 
     /**
      */
+    @Size(max = 40)
     private String password;
 
     /**
@@ -60,5 +69,6 @@ public class EMEmployee extends BaseEntity {
 
     /**
      */
+    @Size(max = 40)
     private String roleCode;
 }
