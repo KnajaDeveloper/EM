@@ -8,8 +8,8 @@
         <field:input field="status" id="c_com_app2_app2t_domain_em_EMTeam_status" z="YlprtBb0etCAjS27bp8f9cSl8dU="/>
         <field:datetime dateTimePattern="${EMTeam__createddate_date_format}" field="createdDate" id="c_com_app2_app2t_domain_em_EMTeam_createdDate" z="RNloeRlHtsKCDIWxb8oi5vQv73g="/>
         <field:datetime dateTimePattern="${EMTeam__updateddate_date_format}" field="updatedDate" id="c_com_app2_app2t_domain_em_EMTeam_updatedDate" z="9SttIu9/S/LdU4VIL56+Ws58gAs="/>
-        <field:input field="teamCode" id="c_com_app2_app2t_domain_em_EMTeam_teamCode" z="rRPpFrO9HoBZdtat19kLQK5xUvM="/>
-        <field:input field="teamName" id="c_com_app2_app2t_domain_em_EMTeam_teamName" z="xNhVjdkyyYhmIJlgp68GOL3Wyig="/>
+        <field:input field="teamCode" id="c_com_app2_app2t_domain_em_EMTeam_teamCode" max="15" z="rNPMtW/k2wd7XOTf/xUWexY2Tis="/>
+        <field:textarea field="teamName" id="c_com_app2_app2t_domain_em_EMTeam_teamName" z="0bUP+mvpOrHhjpUkeC6c5nYKpNY="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_com_app2_app2t_domain_em_EMTeam" render="${not empty dependencies}" z="ZDVbxAIc/IesqHLYpNqg50a+Rws="/>
 </div>

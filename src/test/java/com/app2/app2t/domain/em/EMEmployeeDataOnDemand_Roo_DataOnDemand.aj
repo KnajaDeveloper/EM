@@ -65,41 +65,65 @@ privileged aspect EMEmployeeDataOnDemand_Roo_DataOnDemand {
     
     public void EMEmployeeDataOnDemand.setEmail(EMEmployee obj, int index) {
         String email = "foo" + index + "@bar.com";
+        if (email.length() > 40) {
+            email = email.substring(0, 40);
+        }
         obj.setEmail(email);
     }
     
     public void EMEmployeeDataOnDemand.setEmpCode(EMEmployee obj, int index) {
         String empCode = "empCode_" + index;
+        if (empCode.length() > 15) {
+            empCode = empCode.substring(0, 15);
+        }
         obj.setEmpCode(empCode);
     }
     
     public void EMEmployeeDataOnDemand.setEmpFirstName(EMEmployee obj, int index) {
         String empFirstName = "empFirstName_" + index;
+        if (empFirstName.length() > 40) {
+            empFirstName = empFirstName.substring(0, 40);
+        }
         obj.setEmpFirstName(empFirstName);
     }
     
     public void EMEmployeeDataOnDemand.setEmpLastName(EMEmployee obj, int index) {
         String empLastName = "empLastName_" + index;
+        if (empLastName.length() > 40) {
+            empLastName = empLastName.substring(0, 40);
+        }
         obj.setEmpLastName(empLastName);
     }
     
     public void EMEmployeeDataOnDemand.setEmpName(EMEmployee obj, int index) {
         String empName = "empName_" + index;
+        if (empName.length() > 40) {
+            empName = empName.substring(0, 40);
+        }
         obj.setEmpName(empName);
     }
     
     public void EMEmployeeDataOnDemand.setEmpNickName(EMEmployee obj, int index) {
         String empNickName = "empNickName_" + index;
+        if (empNickName.length() > 40) {
+            empNickName = empNickName.substring(0, 40);
+        }
         obj.setEmpNickName(empNickName);
     }
     
     public void EMEmployeeDataOnDemand.setPassword(EMEmployee obj, int index) {
         String password = "password_" + index;
+        if (password.length() > 40) {
+            password = password.substring(0, 40);
+        }
         obj.setPassword(password);
     }
     
     public void EMEmployeeDataOnDemand.setRoleCode(EMEmployee obj, int index) {
         String roleCode = "roleCode_" + index;
+        if (roleCode.length() > 40) {
+            roleCode = roleCode.substring(0, 40);
+        }
         obj.setRoleCode(roleCode);
     }
     
@@ -120,6 +144,9 @@ privileged aspect EMEmployeeDataOnDemand_Roo_DataOnDemand {
     
     public void EMEmployeeDataOnDemand.setUserName(EMEmployee obj, int index) {
         String userName = "userName_" + index;
+        if (userName.length() > 40) {
+            userName = userName.substring(0, 40);
+        }
         obj.setUserName(userName);
     }
     

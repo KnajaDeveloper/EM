@@ -16,12 +16,15 @@ import org.slf4j.LoggerFactory;
 @RooWebScaffold(path = "ememployees", formBackingObject = EMEmployee.class)
 @RooWebJson(jsonObject = EMEmployee.class)
 public class EMEmployeeController {
+
     @Autowired
     SecurityRestService securityRestService;
+
     @Autowired
     PjmRestService pjmRestService;
+
     @Autowired
     EmRestService emRestService;
-    protected Logger LOGGER = LoggerFactory.getLogger(EMEmployeeController.class);
 
+    protected Logger LOGGER = LoggerFactory.getLogger(EMEmployeeController.class);
 }
