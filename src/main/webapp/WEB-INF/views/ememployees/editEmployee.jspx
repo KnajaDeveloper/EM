@@ -86,25 +86,25 @@
                             <div class="form-group col-sm-6">
                                 <label class="control-label col-sm-3">${LABEL_EMPLOYEE_CODE}</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="empCode" placeholder="${LABEL_EMPLOYEE_CODE}"/>
+                                    <input type="text" class="form-control" id="empCode" placeholder="${LABEL_EMPLOYEE_CODE}" maxlength="19"/>
                                 </div>
                             </div>
                             <div class="form-group col-sm-6">
                             <label class="control-label col-sm-3">${LABEL_NAME}</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="empFirstName" placeholder="${LABEL_NAME}"/>
+                                <input type="text" class="form-control" id="empFirstName" placeholder="${LABEL_NAME}" maxlength="255"/>
                             </div>
                         </div>
                             <div class="form-group col-sm-6">
                                 <label class="control-label col-sm-3">${LABEL_USERNAME}</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="userName" placeholder="${LABEL_USERNAME}"/>
+                                    <input type="text" class="form-control" id="userName" placeholder="${LABEL_USERNAME}" maxlength="255"/>
                                 </div>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label class="control-label col-sm-3">${LABEL_NICKNAME}</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="empNickName" placeholder="${LABEL_NICKNAME}"/>
+                                    <input type="text" class="form-control" id="empNickName" placeholder="${LABEL_NICKNAME}" maxlength="255"/>
                                 </div>
                             </div>
                         </form>
