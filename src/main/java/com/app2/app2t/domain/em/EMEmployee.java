@@ -17,42 +17,42 @@ public class EMEmployee extends BaseEntity {
 
     /**
      */
-    @Size(max = 15)
+    @Size(max = 255)
     private String empCode;
 
     /**
      */
-    @Size(max = 40)
+    @Size(max = 255)
     private String empName;
 
     /**
      */
-    @Size(max = 40)
+    @Size(max = 255)
     private String empFirstName;
 
     /**
      */
-    @Size(max = 40)
+    @Size(max = 255)
     private String empLastName;
 
     /**
      */
-    @Size(max = 40)
+    @Size(max = 255)
     private String empNickName;
 
     /**
      */
-    @Size(max = 40)
+    @Size(max = 255)
     private String email;
 
     /**
      */
-    @Size(max = 40)
+    @Size(max = 255)
     private String userName;
 
     /**
      */
-    @Size(max = 40)
+    @Size(max = 255)
     private String password;
 
     /**
@@ -69,6 +69,6 @@ public class EMEmployee extends BaseEntity {
 
     /**
      */
-    @Size(max = 40)
+    @Size(max = 255)
     private String roleCode;
 }
