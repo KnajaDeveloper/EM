@@ -37,7 +37,7 @@
 	<c:set var="MSG_PLESE_SELECT_TEAM" scope="request"><spring:message code="M0031"/></c:set>
 	<c:set var="MSG_PLEASE_SELECT_POSITION" scope="request"><spring:message code="M0030"/></c:set>
 	<c:set var="MSG_PLEASE_CONFIRM_YOUR_PASSWORD_AGAIN" scope="request"><spring:message code="M0029"/></c:set>
-
+	<c:set var="MSG_PLEASE_EDIT_SUCCESSFULLY" scope="request"><spring:message code="M0007"/></c:set>
 
 	<script type="text/javascript">
 		var Label = {};
@@ -56,7 +56,7 @@
 		Message.MSG_PLESE_SELECT_TEAM = '${MSG_PLESE_SELECT_TEAM}';
 		Message.MSG_PLEASE_SELECT_POSITION = '${MSG_PLEASE_SELECT_POSITION}';
 		Message.MSG_PLEASE_CONFIRM_YOUR_PASSWORD_AGAIN = '${MSG_PLEASE_CONFIRM_YOUR_PASSWORD_AGAIN}';
-
+		Message.MSG_PLEASE_EDIT_SUCCESSFULLY = '${MSG_PLEASE_EDIT_SUCCESSFULLY}';
 
 	</script>
 
@@ -75,25 +75,25 @@
 							<label class="col-sm-2 control-label required">${LABEL_EMPLOYEE_CODE}</label>
 							<div class="col-sm-2">
 								<input type="" class="form-control" id="empCode" data-content= "${MSG_PLESE_FALL}" data-placement="bottom"
-									   placeholder="${LABEL_EMPLOYEE_CODE}"/>
+									   placeholder="${LABEL_EMPLOYEE_CODE}" maxlength="19"/>
 							</div>
 							<label class="col-sm-3 control-label required" >${LABEL_NICKNAME}</label>
 							<div class="col-sm-3">
 								<input type="" class="form-control" id="empNickName" data-content="${MSG_PLESE_FALL}" data-placement="bottom"
-									   placeholder="${LABEL_NICKNAME}"/>
+									   placeholder="${LABEL_NICKNAME}" maxlength="255"/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label required" >${LABEL_NAME}</label>
 							<div class="col-sm-3">
 								<input type="" class="form-control" id="empFirstName" data-content="${MSG_PLESE_FALL}" data-placement="bottom"
-									   placeholder="${LABEL_FIRSTNAME}"/>
+									   placeholder="${LABEL_FIRSTNAME}" maxlength="255"/>
 
 							</div>
 							<label class="col-sm-2 control-label required">${LABEL_LAST_NAME}</label>
 							<div class="col-sm-3">
 								<input type="" class="form-control" id="empLastName" data-content="${MSG_PLESE_FALL}" data-placement="bottom"
-									   placeholder="${LABEL_LAST_NAME}"/>
+									   placeholder="${LABEL_LAST_NAME}" maxlength="255"/>
 							</div>
 						</div>
 						<div class="form-group">
@@ -130,25 +130,25 @@
 							</div>
 							<label class="col-sm-2 control-label required">${LABEL_EMAIL}</label>
 							<div class="col-sm-3">
-								<input type="" class="form-control" id="email" data-content="${MSG_PLESE_FALL}" data-placement="bottom" placeholder="${LABEL_EMAIL}"/>
+								<input type="" class="form-control" id="email" data-content="${MSG_PLESE_FALL}" data-placement="bottom" placeholder="${LABEL_EMAIL}" maxlength="255"/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label required">${LABEL_USERNAME}</label>
 							<div class="col-sm-3">
 								<input type="" class="form-control" id="userName"  data-content="${MSG_PLESE_FALL}" data-placement="bottom"
-									   placeholder="${LABEL_USERNAME}"/>
+									   placeholder="${LABEL_USERNAME}" maxlength="255"/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label required">${LABEL_PASSWORD}</label>
 							<div class="col-sm-3">
 								<input type="password" class="form-control" id="password" data-content="${MSG_PLESE_FALL}" data-placement="bottom"
-									   placeholder="${LABEL_PASSWORD}"/>
+									   placeholder="${LABEL_PASSWORD}" maxlength="255"/>
 							</div>
 							<label class="col-sm-2 control-label required">${LABEL_CONFIRM_PASSWORD}</label>
 							<div class="col-sm-3">
-								<input type="password" class="form-control" id="emConpass" data-content="${MSG_PLESE_FALL}" data-placement="bottom" placeholder="${LABEL_CONFIRM_PASSWORD}"/>
+								<input type="password" class="form-control" id="emConpass" data-content="${MSG_PLESE_FALL}" data-placement="bottom" placeholder="${LABEL_CONFIRM_PASSWORD}" maxlength="255"/>
 							</div>
 						</div>
 						<div class="form-group">
