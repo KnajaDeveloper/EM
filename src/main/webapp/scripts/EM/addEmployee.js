@@ -50,7 +50,7 @@ $('#btnAdd').click(function(){
 					id: $("#emPosition").val().split("#")[0],
 					version: $("#emPosition").val().split("#")[1],
 				},
-				roleCode: $("#role").val() == 1 ? "ADMIN" : "USER",
+				roleCode: $("#role").val() ,
 				emConpass: $("#emConpass").val()
 
 			}
@@ -111,7 +111,7 @@ $('#btnAdd').click(function(){
 					password: $("#password").val(),
 					emTeam: $("#emTeam").val().split("#")[0],
 					emPosition: $("#emPosition").val().split("#")[0],
-					roleCode: $("#role").val() == 1 ? "ADMIN" : "USER",
+					roleCode: $("#role").val() ,
 					emConpass: $("#emConpass").val()
 
 				}
@@ -178,44 +178,64 @@ var olderole;
 
 var checkEdit=false;
 $(document).ready(function(){
-	if(id!="") {
-		checkEdit=true;
-		labelData = $.ajax({
-			headers: {
-				Accept: "application/json"
-			},
-			type: "GET",
-			url: contextPath + '/ememployees/findEmployeeByID',
-			data: {id: id},
-			complete: function (xhr) {
-				//console.log(xhr)
-				var labelData = xhr.responseJSON;
-				$('#empCode').val(labelData[0].empCode).attr('disabled', true);
-				$('#empNickName').val(labelData[0].empNickName);
-				oldNickName = labelData[0].empNickName;
-				$("#empFirstName").val(labelData[0].empFirstName);
-				oldempFirstName = labelData[0].empFirstName
-				$("#empLastName").val(labelData[0].empLastName);
-				oldempLastName = labelData[0].empLastName;
-				$("#email").val(labelData[0].email);
-				oldemail = labelData[0].email
-				$("#userName").val(labelData[0].userName);
-				olduserName = labelData[0].userName;
-				$("#password").val(labelData[0].password);
-				oldpassword = labelData[0].password;
-				$("#emConpass").val(labelData[0].password);
-				oldemConpass = labelData[0].password;
-				document.getElementById("emPosition").value = labelData[0].emPosition.id + "#0";
-				oldememPosition = labelData[0].emPosition.id + "#0";
-				document.getElementById("emTeam").value = labelData[0].emTeam.id + "#0";
-				oldememTeam = labelData[0].emTeam.id + "#0";
-				document.getElementById("role").value = labelData[0].roleCode == "ADMIN" ? 1 : 2;
-				olderole = labelData[0].roleCode == "ADMIN" ? 1 : 2;
-			},
-			async: false
-		});
+	$.ajax({
+		headers: {
+			Accept: "application/json"
+		},
+		type: "GET",
+		url: contextPath + '/ememployees/findappRoleName',
+		success: function (data,status,xhr) {
+			if(xhr.status==200){
+				$.each(data,function(key,val){
+					$("#role").append('<option value="'+val.roleCode+'">'+val.roleName+'</option>')
+				})
+				if(id!="") {
+					checkEdit=true;
+					labelData = $.ajax({
+						headers: {
+							Accept: "application/json"
+						},
+						type: "GET",
+						url: contextPath + '/ememployees/findEmployeeByID',
+						data: {id: id},
+						complete: function (xhr) {
+							//console.log(xhr)
+							var labelData = xhr.responseJSON;
+							$('#empCode').val(labelData[0].empCode).attr('disabled', true);
+							$('#empNickName').val(labelData[0].empNickName);
+							$("#empFirstName").val(labelData[0].empFirstName);
+							$("#empLastName").val(labelData[0].empLastName);
+							$("#email").val(labelData[0].email);
+							$("#userName").val(labelData[0].userName);
+							$("#password").val(labelData[0].password);
+							$("#emConpass").val(labelData[0].password);
+							//document.getElementById("emPosition").value = labelData[0].emPosition.id + "#0";
+							$("#emPosition").val(labelData[0].emPosition.id + "#0");
+							//document.getElementById("emTeam").value = labelData[0].emTeam.id + "#0";
+							$("#emTeam").val(labelData[0].emTeam.id + "#0");
+							//document.getElementById("role").value = labelData[0].roleCode;
+							//console.log(">"+labelData[0].roleCode);
 
-	}
+							oldNickName = labelData[0].empNickName;
+							oldempFirstName = labelData[0].empFirstName
+							oldempLastName = labelData[0].empLastName;
+							oldemail = labelData[0].email
+							olduserName = labelData[0].userName;
+							oldpassword = labelData[0].password;
+							oldemConpass = labelData[0].password;
+							oldememPosition = labelData[0].emPosition.id + "#0";
+							oldememTeam = labelData[0].emTeam.id + "#0";
+							olderole = labelData[0].roleCode ;
+							$("#role").val(labelData[0].roleCode);
+							//alert(""+labelData[0].roleCode)
+						},
+						async: false
+					});
+
+				}
+			}
+		}
+	});
 });
 
 

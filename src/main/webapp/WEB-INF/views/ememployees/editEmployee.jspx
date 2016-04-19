@@ -3,7 +3,7 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <c:set var="LABEL_DELIMETER" scope="request">#</c:set>
-    <c:set var="LABEL_EDIT_EMPLOYEE" scope="request"><spring:message code="L0032"/></c:set>
+    <c:set var="LABEL_EDIT_EMPLOYEE" scope="request"><spring:message code="L0034"/></c:set>
     <c:set var="LABEL_EMPLOYEE_CODE" scope="request"><spring:message code="L0009"/></c:set>
     <c:set var="LABEL_NICKNAME" scope="request"><spring:message code="L0027"/></c:set>
     <c:set var="LABEL_NAME" scope="request"><spring:message code="L0012"/></c:set>

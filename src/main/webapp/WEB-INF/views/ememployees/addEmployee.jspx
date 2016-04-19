@@ -69,65 +69,63 @@
 		<div class="col-md-12">
 			<div class="panel panel-primary">
 				<div class="panel-heading">${LABEL_ADD_EMPLOYEE}</div>
-				<div class="panel-body">	
+				<div class="panel-body">
 					<form class="form-horizontal">
 						<div class="form-group">
 							<label class="col-sm-2 control-label required">${LABEL_EMPLOYEE_CODE}</label>
 							<div class="col-sm-2">
 								<input type="" class="form-control" id="empCode" data-content= "${MSG_PLESE_FALL}" data-placement="bottom"
-								placeholder="${LABEL_EMPLOYEE_CODE}"/>
+									   placeholder="${LABEL_EMPLOYEE_CODE}"/>
 							</div>
 							<label class="col-sm-3 control-label required" >${LABEL_NICKNAME}</label>
 							<div class="col-sm-3">
 								<input type="" class="form-control" id="empNickName" data-content="${MSG_PLESE_FALL}" data-placement="bottom"
-								placeholder="${LABEL_NICKNAME}"/>
+									   placeholder="${LABEL_NICKNAME}"/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label required" >${LABEL_NAME}</label>
 							<div class="col-sm-3">
 								<input type="" class="form-control" id="empFirstName" data-content="${MSG_PLESE_FALL}" data-placement="bottom"
-								placeholder="${LABEL_FIRSTNAME}"/>
+									   placeholder="${LABEL_FIRSTNAME}"/>
 
 							</div>
 							<label class="col-sm-2 control-label required">${LABEL_LAST_NAME}</label>
 							<div class="col-sm-3">
 								<input type="" class="form-control" id="empLastName" data-content="${MSG_PLESE_FALL}" data-placement="bottom"
-								placeholder="${LABEL_LAST_NAME}"/>
+									   placeholder="${LABEL_LAST_NAME}"/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label required">${LABEL_POSTION}</label>
 							<div class="col-sm-3">
-							<select class="form-control" id ="emPosition" data-content="${MSG_PLESE_FALL}" ><jsp:text/>
+								<select class="form-control" id ="emPosition" data-content="${MSG_PLESE_FALL}" ><jsp:text/>
 									<option value="0" ></option>
-									<c:forEach var="emposition" items="${listEmpost}"> 
-								 <option value="${emposition.id}${LABEL_DELIMETER}${emposition.version}"> 
-									 ${emposition.positionName} 
-								 </option>                                            
-								</c:forEach> 
-							
-							</select>
+									<c:forEach var="emposition" items="${listEmpost}">
+										<option value="${emposition.id}${LABEL_DELIMETER}${emposition.version}">
+											${emposition.positionName}
+										</option>
+									</c:forEach>
+
+								</select>
+							</div>
+							<label class="col-sm-2 control-label required">${LABEL_TEAM}</label>
+							<div class="col-sm-3">
+								<select class="form-control" id="emTeam" data-content="${MSG_PLESE_FALL}"><jsp:text/>
+									<option value="0"></option>
+									<c:forEach var="emTeam" items="${listEmteam}">
+										<option value="${emTeam.id}${LABEL_DELIMETER}${emTeam.version}" >
+											${emTeam.teamName}
+										</option>
+									</c:forEach>
+								</select>
+							</div>
 						</div>
-						<label class="col-sm-2 control-label required">${LABEL_TEAM}</label>
-						<div class="col-sm-3">
-							<select class="form-control" id="emTeam" data-content="${MSG_PLESE_FALL}"><jsp:text/>
-								<option value="0"></option>
-								<c:forEach var="emTeam" items="${listEmteam}">
-								<option value="${emTeam.id}${LABEL_DELIMETER}${emTeam.version}" >
-									${emTeam.teamName}
-								</option>
-							</c:forEach>					
-						</select>
-					</div>
-				</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label required">${LABEL_PERMISSIONS}</label>
 							<div class="col-sm-3">
 								<select class="form-control" id="role" data-content="${MSG_PLESE_FALL}"><jsp:text/>
 									<option value="0"></option>
-									<option value="1">Administator</option>
-									<option value="2">User</option>
 								</select>
 							</div>
 							<label class="col-sm-2 control-label required">${LABEL_EMAIL}</label>
@@ -135,38 +133,38 @@
 								<input type="" class="form-control" id="email" data-content="${MSG_PLESE_FALL}" data-placement="bottom" placeholder="${LABEL_EMAIL}"/>
 							</div>
 						</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label required">${LABEL_USERNAME}</label>
-					<div class="col-sm-3">
-						<input type="" class="form-control" id="userName"  data-content="${MSG_PLESE_FALL}" data-placement="bottom"
-						placeholder="${LABEL_USERNAME}"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label required">${LABEL_PASSWORD}</label>
-					<div class="col-sm-3">
-						<input type="password" class="form-control" id="password" data-content="${MSG_PLESE_FALL}" data-placement="bottom"
-						placeholder="${LABEL_PASSWORD}"/>
-					</div>
-					<label class="col-sm-2 control-label required">${LABEL_CONFIRM_PASSWORD}</label>
-					<div class="col-sm-3">
-						<input type="password" class="form-control" id="emConpass" data-content="${MSG_PLESE_FALL}" data-placement="bottom" placeholder="${LABEL_CONFIRM_PASSWORD}"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-md-12 col-md-offset-5">
-						 <button id="btnAdd" type="button" data-target="#add" class="btn btn-primary ">${BONTON_OK}
-					</button> 
+						<div class="form-group">
+							<label class="col-sm-2 control-label required">${LABEL_USERNAME}</label>
+							<div class="col-sm-3">
+								<input type="" class="form-control" id="userName"  data-content="${MSG_PLESE_FALL}" data-placement="bottom"
+									   placeholder="${LABEL_USERNAME}"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label required">${LABEL_PASSWORD}</label>
+							<div class="col-sm-3">
+								<input type="password" class="form-control" id="password" data-content="${MSG_PLESE_FALL}" data-placement="bottom"
+									   placeholder="${LABEL_PASSWORD}"/>
+							</div>
+							<label class="col-sm-2 control-label required">${LABEL_CONFIRM_PASSWORD}</label>
+							<div class="col-sm-3">
+								<input type="password" class="form-control" id="emConpass" data-content="${MSG_PLESE_FALL}" data-placement="bottom" placeholder="${LABEL_CONFIRM_PASSWORD}"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-12 col-md-offset-5">
+								<button id="btnAdd" type="button" data-target="#add" class="btn btn-primary ">${BONTON_OK}
+								</button>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
-		</form>
+		</div>
 	</div>
-</div>
-</div>
-</div>
-<script>
-var contextPath = '${pageContext.request.contextPath}';
-</script>
-<spring:url value="/resources/scripts/EM/addEmployee.js" var="addEmployee" />
-<script src="${addEmployee}" type="text/javascript"><!--Not Empty --></script>
+	<script>
+		var contextPath = '${pageContext.request.contextPath}';
+	</script>
+	<spring:url value="/resources/scripts/EM/addEmployee.js" var="addEmployee" />
+	<script src="${addEmployee}" type="text/javascript"><!--Not Empty --></script>
 </div>
