@@ -8,16 +8,16 @@
         <field:input field="status" id="c_com_app2_app2t_domain_em_EMEmployee_status" z="+HMjPg73dtrlM90HgZPoeb2uEps="/>
         <field:datetime dateTimePattern="${EMEmployee__createddate_date_format}" field="createdDate" id="c_com_app2_app2t_domain_em_EMEmployee_createdDate" z="gurA+7ayna5a8RGj2yIaq3HCyVk="/>
         <field:datetime dateTimePattern="${EMEmployee__updateddate_date_format}" field="updatedDate" id="c_com_app2_app2t_domain_em_EMEmployee_updatedDate" z="wsxgk8oYg/XaqLeK1wDeoPs7rNA="/>
-        <field:input field="empCode" id="c_com_app2_app2t_domain_em_EMEmployee_empCode" z="dhWNa9I/HraSPCLBeyS//knRACU="/>
-        <field:input field="empName" id="c_com_app2_app2t_domain_em_EMEmployee_empName" z="jVobmRQLH9Nmt5WmXxtKkAu9Hkw="/>
-        <field:input field="empFirstName" id="c_com_app2_app2t_domain_em_EMEmployee_empFirstName" z="fK2In3SQd2p0DxYpV9wYlC7PYac="/>
-        <field:input field="empLastName" id="c_com_app2_app2t_domain_em_EMEmployee_empLastName" z="vw4KV0DCkMkEeud+qsPGC0lVg+M="/>
-        <field:input field="empNickName" id="c_com_app2_app2t_domain_em_EMEmployee_empNickName" z="icxbBk9KDw7oPXQSwFpdkSckyV8="/>
-        <field:input field="email" id="c_com_app2_app2t_domain_em_EMEmployee_email" validationMessageCode="field_invalid_email" z="h56YnLRKClFWxAEQlI7vyipFefQ="/>
-        <field:input field="userName" id="c_com_app2_app2t_domain_em_EMEmployee_userName" z="eieGdtF+qh/Js39Cum3xIF1kVIE="/>
-        <field:input field="password" id="c_com_app2_app2t_domain_em_EMEmployee_password" z="+OEwcxU374Yd25eKjEJHDd+CvW0="/>
+        <field:input field="empCode" id="c_com_app2_app2t_domain_em_EMEmployee_empCode" max="15" z="8eJ8SRRlH2EZIm0VyODjlxZHTc8="/>
+        <field:textarea field="empName" id="c_com_app2_app2t_domain_em_EMEmployee_empName" z="CmyZ9WBTy5TAokTGgp8PElNMTsI="/>
+        <field:textarea field="empFirstName" id="c_com_app2_app2t_domain_em_EMEmployee_empFirstName" z="stjLv4EjLMPqw8vQfrkqNPCR8dA="/>
+        <field:textarea field="empLastName" id="c_com_app2_app2t_domain_em_EMEmployee_empLastName" z="9SEZzU++S7SlWQp3q/CwCWsHu3Y="/>
+        <field:textarea field="empNickName" id="c_com_app2_app2t_domain_em_EMEmployee_empNickName" z="+SVZb7mP0bE3RqYrBI+Px4wSG0c="/>
+        <field:textarea field="email" id="c_com_app2_app2t_domain_em_EMEmployee_email" validationMessageCode="field_invalid_email" z="vexzZgmzo1sHFPPBzH1LGgwCvcQ="/>
+        <field:textarea field="userName" id="c_com_app2_app2t_domain_em_EMEmployee_userName" z="gZbvl6Vspb/4xQVh/T5npAzeho0="/>
+        <field:textarea field="password" id="c_com_app2_app2t_domain_em_EMEmployee_password" z="HpuPw59yRrANJjUMjdOjfMO5is0="/>
         <field:select field="emPosition" id="c_com_app2_app2t_domain_em_EMEmployee_emPosition" itemValue="id" items="${empositions}" path="/empositions" z="OONNiNOxNkTnwQ44EIfSKdwPYAE="/>
         <field:select field="emTeam" id="c_com_app2_app2t_domain_em_EMEmployee_emTeam" itemValue="id" items="${emteams}" path="/emteams" z="e39HlWdcfUUM+5sCw1+gg0thRHo="/>
-        <field:input field="roleCode" id="c_com_app2_app2t_domain_em_EMEmployee_roleCode" z="0uy7GSDtYewhvN+pyOL1VsrxLE8="/>
+        <field:textarea field="roleCode" id="c_com_app2_app2t_domain_em_EMEmployee_roleCode" z="34TG2cbbBFD9ckOQzH5z8BzbYhE="/>
     </form:update>
 </div>

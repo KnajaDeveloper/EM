@@ -8,7 +8,7 @@
         <field:input field="status" id="c_com_app2_app2t_domain_em_EMPosition_status" z="OZbkqPEdXiB4gEjsfGc078hKOJY="/>
         <field:datetime dateTimePattern="${EMPosition__createddate_date_format}" field="createdDate" id="c_com_app2_app2t_domain_em_EMPosition_createdDate" z="W9J/0h/uzG8CJneGbUXUHF6P/2s="/>
         <field:datetime dateTimePattern="${EMPosition__updateddate_date_format}" field="updatedDate" id="c_com_app2_app2t_domain_em_EMPosition_updatedDate" z="VjX6ReX2/mJttj8b9Vo8aEir6OE="/>
-        <field:input field="positionCode" id="c_com_app2_app2t_domain_em_EMPosition_positionCode" z="4LMi46zy9Ix0G0QUukf+0mkzOn0="/>
-        <field:input field="positionName" id="c_com_app2_app2t_domain_em_EMPosition_positionName" z="bO/enCINekqtfz4JOEtyvSmQ1bI="/>
+        <field:input field="positionCode" id="c_com_app2_app2t_domain_em_EMPosition_positionCode" max="15" z="66HogDWGJgaxHBiCqmnUYgttcmk="/>
+        <field:textarea field="positionName" id="c_com_app2_app2t_domain_em_EMPosition_positionName" z="5jARzsX+mJ4H9cyHnrtimDqBsgg="/>
     </form:update>
 </div>

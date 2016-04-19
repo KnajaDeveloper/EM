@@ -54,11 +54,17 @@ privileged aspect EMTeamDataOnDemand_Roo_DataOnDemand {
     
     public void EMTeamDataOnDemand.setTeamCode(EMTeam obj, int index) {
         String teamCode = "teamCode_" + index;
+        if (teamCode.length() > 15) {
+            teamCode = teamCode.substring(0, 15);
+        }
         obj.setTeamCode(teamCode);
     }
     
     public void EMTeamDataOnDemand.setTeamName(EMTeam obj, int index) {
         String teamName = "teamName_" + index;
+        if (teamName.length() > 40) {
+            teamName = teamName.substring(0, 40);
+        }
         obj.setTeamName(teamName);
     }
     
