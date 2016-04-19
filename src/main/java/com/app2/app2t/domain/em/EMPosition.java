@@ -14,11 +14,11 @@ public class EMPosition extends BaseEntity {
 
     /**
      */
-    @Size(max = 15)
+    @Size(max = 255)
     private String positionCode;
 
     /**
      */
-    @Size(max = 40)
+    @Size(max = 255)
     private String positionName;
 }
