@@ -13,10 +13,6 @@ $("#search").click(function () {
     $('input[name=radioAll_]').prop('checked', false);
     arrRoleChang=[];
     searchData();
-    //console.log(json+"555");
-    if (json.length <= 0) {
-        bootbox.alert(Message.MESSAGE_DATA_NOT_FOUND);
-    }
 }); //-- --//
 //////////////////////////////////////////////////////////////////////////////
 paggination.setEventPaggingBtn("paggingSimple", paggination);
@@ -29,6 +25,7 @@ paggination.loadTable = function loadTable(jsonData) {
     var tableData = "";
     var num = 1;
 
+    if(jsonData.length > 0 ) {
     jsonData.forEach(function (value) {
 
             tableData = ''
@@ -57,6 +54,7 @@ paggination.loadTable = function loadTable(jsonData) {
                 + '</td>'
             $('#tr_'+num).append(tableData);
         };
+
         num++;
         if(value.roleCode != null && value.roleCode !='')
         {
@@ -65,6 +63,18 @@ paggination.loadTable = function loadTable(jsonData) {
             $('input[status=roleCodeCheck_'+value.roleCode+'][name=radio_'+value.empCode+']').prop('checked', true);
         }
     });
+    }
+    else {
+        tableData = ''
+            + '<tr class="text-center" >'
+            + '<td colspan="10" style="color: #000">'
+            + Message.MESSAGE_DATA_NOT_FOUND
+            + '</td>'
+            + '</tr>';
+        $('#ResualtSearch').append(
+            tableData
+        );
+    }
 
 };
 //////////////////////////////////////////////////////////////////////////////
