@@ -99,7 +99,7 @@ $('#btnAdd').click(function(){
 				oldememTeam == $("#emTeam").val() &&
 				olderole == $("#role").val()
 			) {
-				bootbox.alert("ข้อมูลไม่มีการเปลี่ยนแปลง");
+				bootbox.alert(Message.MSG_DATA_NO_EDIT);
 			} else{
 				var ememployees = {
 					empCode: $("#empCode").val(),

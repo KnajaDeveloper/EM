@@ -38,7 +38,7 @@
 	<c:set var="MSG_PLEASE_SELECT_POSITION" scope="request"><spring:message code="M0030"/></c:set>
 	<c:set var="MSG_PLEASE_CONFIRM_YOUR_PASSWORD_AGAIN" scope="request"><spring:message code="M0029"/></c:set>
 	<c:set var="MSG_PLEASE_EDIT_SUCCESSFULLY" scope="request"><spring:message code="M0007"/></c:set>
-
+	<c:set var="MSG_DATA_NO_EDIT" scope="request"><spring:message code="M0016"/></c:set>
 	<script type="text/javascript">
 		var Label = {};
 		var Button = {};
@@ -57,7 +57,7 @@
 		Message.MSG_PLEASE_SELECT_POSITION = '${MSG_PLEASE_SELECT_POSITION}';
 		Message.MSG_PLEASE_CONFIRM_YOUR_PASSWORD_AGAIN = '${MSG_PLEASE_CONFIRM_YOUR_PASSWORD_AGAIN}';
 		Message.MSG_PLEASE_EDIT_SUCCESSFULLY = '${MSG_PLEASE_EDIT_SUCCESSFULLY}';
-
+		Message.MSG_DATA_NO_EDIT = '${MSG_DATA_NO_EDIT}';
 	</script>
 
 	<script>

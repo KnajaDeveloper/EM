@@ -35,12 +35,12 @@ function searchData() {
 
 paggination.setEventPaggingBtn("paggingSimple",paggination);
 paggination.loadTable = function loadTable (jsonData) {
-
+    $('#ResualtSearch').empty();
     if(jsonData.length <= 0)
-        bootbox.alert(Message.MSG_DATA_NOT_FOUND);
+        $('#ResualtSearch').append('<tr><td colspan = 9 class="text-center">' + Message.MSG_DATA_NOT_FOUND + '</td></tr>');
 
     $('#checkboxAll').prop('checked', false);
-    $('#ResualtSearch').empty();
+
 
     var tableData = "";
 
