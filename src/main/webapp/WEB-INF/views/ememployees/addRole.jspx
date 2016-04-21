@@ -47,7 +47,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label ">${LABEL_CODE_EMP}</label>
                             <div class="col-sm-2">
-                                <input type="" class="form-control" id="empCode"
+                                <input type="" class="form-control" id="empCode" maxlength="255"
                                        placeholder="${LABEL_CODE_EMP}"/>
                             </div>
                             <label class="col-sm-3 control-label " >${LABEL_POSITION}</label>
@@ -65,7 +65,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label " >${LABEL_NAME}</label>
                             <div class="col-sm-3">
-                                <input type="" class="form-control" id="empFirstName"
+                                <input type="" class="form-control" id="empFirstName" maxlength="255"
                                        placeholder="${LABEL_FIRST_NAME}"/>
                             </div>
                             <label class="col-sm-2 control-label ">${LABEL_TEAM}</label>
@@ -83,7 +83,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label ">${LABEL_LAST_NAME}</label>
                             <div class="col-sm-3">
-                                <input type="" class="form-control" id="empLastName"
+                                <input type="" class="form-control" id="empLastName" maxlength="255"
                                        placeholder="${LABEL_LAST_NAME}"/>
                             </div>
                                 <label  class="col-md-offset-2 col-sm-1  radio-inline" ><input  id="appRole" type="radio" name="optradio"/>${LABEL_ADDED_ROLE}</label>

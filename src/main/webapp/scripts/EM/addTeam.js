@@ -78,9 +78,9 @@ $("#search").click(function () {
     $("#checkAll").attr('checked', false);
 
     searchData(); first = true ;
-    if (json.length <= 0) {
-        bootbox.alert(Message.MESSAGE_DATA_NOT_FOUND);
-    }
+    //if (json.length <= 0) {
+    //    bootbox.alert(Message.MESSAGE_DATA_NOT_FOUND);
+    //}
 
 }); //--searchData--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -186,6 +186,7 @@ paggination.loadTable = function loadTable(jsonData) {
     $('#ResualtSearch').empty();
     var tableData = "";
     var key = 1;
+    if(jsonData.length > 0 ) {
     jsonData.forEach(function (value) {
             tableData = ''
 
@@ -206,6 +207,18 @@ paggination.loadTable = function loadTable(jsonData) {
             $('#ResualtSearch').append(tableData
             );
     });
+    }
+    else {
+        tableData = ''
+            + '<tr class="text-center" >'
+            + '<td colspan="4" style="color: #000">'
+            + Message.MESSAGE_DATA_NOT_FOUND
+            + '</td>'
+            + '</tr>';
+        $('#ResualtSearch').append(
+            tableData
+        );
+    }
 
 };
 function searchData() {
