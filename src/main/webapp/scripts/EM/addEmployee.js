@@ -127,7 +127,7 @@ $('#btnAdd').click(function(){
 					url: contextPath + '/ememployees/findeditEmployee',
 					data: ememployees,
 					complete: function (xhr) {
-						bootbox.alert(MSG_PLEASE_EDIT_SUCCESSFULLY, function(){
+						bootbox.alert(Message.MSG_PLEASE_EDIT_SUCCESSFULLY, function(){
 							window.location.href = contextPath + '/ememployees/editEmployee';
 						});
 

@@ -29,10 +29,9 @@
 	<c:set var="MSG_PLESE_ENTER_CONFIRM_PASSWORD" scope="request"><spring:message code="M0027"/></c:set>
 	<c:set var="MSG_PLESE_SELECT_POSITION" scope="request"><spring:message code="M0030"/></c:set>
 	<c:set var="MSG_PLESE_SELECT_TEAM" scope="request"><spring:message code="M0031"/></c:set>
-
-	<c:set var="MSG_DATA_NOT_FOUND" scope="request"><spring:message code="M0018"/></c:set>
-	<c:set var="MSG_PLEASE_ENTER_YOUR_EMID_AGAIN" scope="request"><spring:message code="M0034"/></c:set>
+    <c:set var="MSG_DATA_NOT_FOUND" scope="request"><spring:message code="M0018"/></c:set>
 	<c:set var="MSG_SUBSCRIBE_SUCCESSFULLY" scope="request"><spring:message code="M0033"/></c:set>
+	<c:set var="MSG_PLEASE_ENTER_YOUR_EMID_AGAIN" scope="request"><spring:message code="M0034"/></c:set>
 	<c:set var="MSG_PLESE_ENTER_YOUR_PASSWORD_AT_LAST_8_CHAR" scope="request"><spring:message code="M0032"/></c:set>
 	<c:set var="MSG_PLESE_SELECT_TEAM" scope="request"><spring:message code="M0031"/></c:set>
 	<c:set var="MSG_PLEASE_SELECT_POSITION" scope="request"><spring:message code="M0030"/></c:set>
