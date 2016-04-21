@@ -513,6 +513,7 @@ privileged aspect EMEmployeeController_Custom_Controller_Json {
                 buffer.put("empCode", emEmployee.getEmpCode());
                 buffer.put("empFirstName", emEmployee.getEmpFirstName());
                 buffer.put("empLastName", emEmployee.getEmpLastName());
+                buffer.put("empNickName", emEmployee.getEmpNickName());
                 buffer.put("empPositionName", emEmployee.getEmPosition().getPositionName());
                 resultSearch.add(buffer);
             }
