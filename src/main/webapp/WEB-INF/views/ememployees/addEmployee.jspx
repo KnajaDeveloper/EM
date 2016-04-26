@@ -64,6 +64,7 @@
 	</script>
 
 
+
 	<div class="container-fluid">
 		<div class="col-md-12">
 			<div class="panel panel-primary">
@@ -137,6 +138,18 @@
 							<div class="col-sm-3">
 								<input type="" class="form-control" id="userName"  data-content="${MSG_PLESE_FALL}" data-placement="bottom"
 									   placeholder="${LABEL_USERNAME}" maxlength="255"/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label id="laPassword" class="col-sm-2 control-label required" style="display:none;">${LABEL_PASSWORD}</label>
+							<div class="col-sm-3">
+								<input type="password" class="form-control" id="password" data-content="${MSG_PLESE_FALL}" data-placement="bottom"
+						placeholder="${LABEL_PASSWORD}" style="display:none;"/>
+							</div>
+							<label id="laEmConpass" class="col-sm-2 control-label required" style="display:none;">${LABEL_CONFIRM_PASSWORD}</label>
+							<div class="col-sm-3">
+							<input type="password" class="form-control" id="emConpass" data-content="${MSG_PLESE_FALL}" data-placement="bottom" placeholder="${LABEL_CONFIRM_PASSWORD}" style="display:none;"/>
 							</div>
 						</div>
 						
