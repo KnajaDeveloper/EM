@@ -27,6 +27,8 @@ import javax.persistence.EntityManager;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import com.app2.app2t.util.AuthorizeUtil;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -48,6 +50,7 @@ public class AddPositionTest {
 
     @Before
     public void setup()throws Exception{
+        AuthorizeUtil.setUserName("POTE");
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
         EMPosition position1 = insertDataTodateBaseEMPosition("P001", "Software Developer Trainee");
         EMPosition position2 = insertDataTodateBaseEMPosition("P002", "Business Analysis");
