@@ -16,10 +16,17 @@ public class AuthorizeUtil {
 	
 	Map empData = new HashMap();
     List<Map> listMenu = new ArrayList<>();
+    static String userName = null;
 
     public static String getUserName() {
-       String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(userName == null){
+            userName = SecurityContextHolder.getContext().getAuthentication().getName();
+        }
        return userName;
+    }
+
+     public static void setUserName(String userNameInput) {
+        userName = userNameInput;
     }
 
     public Map getEmpData() {
