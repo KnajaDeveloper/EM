@@ -139,17 +139,7 @@
 									   placeholder="${LABEL_USERNAME}" maxlength="255"/>
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label required">${LABEL_PASSWORD}</label>
-							<div class="col-sm-3">
-								<input type="password" class="form-control" id="password" data-content="${MSG_PLESE_FALL}" data-placement="bottom"
-									   placeholder="${LABEL_PASSWORD}" maxlength="255"/>
-							</div>
-							<label class="col-sm-2 control-label required">${LABEL_CONFIRM_PASSWORD}</label>
-							<div class="col-sm-3">
-								<input type="password" class="form-control" id="emConpass" data-content="${MSG_PLESE_FALL}" data-placement="bottom" placeholder="${LABEL_CONFIRM_PASSWORD}" maxlength="255"/>
-							</div>
-						</div>
+						
 						<div class="form-group">
 							<div class="col-md-12 col-md-offset-5">
 								<button id="btnAdd" type="button" data-target="#add" class="btn btn-primary ">${BONTON_OK}
