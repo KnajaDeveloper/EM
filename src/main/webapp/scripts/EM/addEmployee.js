@@ -178,6 +178,12 @@ var olderole;
 
 var checkEdit=false;
 $(document).ready(function(){
+	
+	$("#laPassword").hide();
+	$("#laEmConpass").hide();
+	$("#password").hide();
+	$("#emConpass").hide();
+
 	$.ajax({
 		headers: {
 			Accept: "application/json"
