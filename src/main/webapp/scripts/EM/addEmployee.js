@@ -113,24 +113,25 @@ $('#btnAdd').click(function(){
 					emPosition: $("#emPosition").val().split("#")[0],
 					roleCode: $("#role").val() ,
 					emConpass: $("#emConpass").val()
-
 				}
 				checkData();
 				var responseHeader = null;
+
 				$.ajax({
-					type: "GET",
-					contentType: "application/json; charset=utf-8",
-					dataType: "json",
 					headers: {
 						Accept: "application/json"
 					},
+					type: "POST",
 					url: contextPath + '/ememployees/findeditEmployee',
-					data: ememployees,
-					complete: function (xhr) {
-						bootbox.alert(Message.MSG_PLEASE_EDIT_SUCCESSFULLY, function(){
-							window.location.href = contextPath + '/ememployees/editEmployee';
-						});
-
+					data : ememployees,
+					success : function (data, status, xhr) {
+						if(xhr.status === 200){
+							bootbox.alert(Message.MSG_PLEASE_EDIT_SUCCESSFULLY, function(){
+								window.location.href = contextPath + '/ememployees/editEmployee';
+							});
+						}else{
+							bootbox.alert(Message.MSG_EDIT_FAILED);
+						}
 					},
 					async: false
 				});
