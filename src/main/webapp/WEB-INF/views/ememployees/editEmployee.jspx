@@ -47,6 +47,8 @@
     <c:set var="MSG_DELETE_FAILED" scope="request"><spring:message code="M0006"/></c:set>
     <c:set var="MSG_INUSE" scope="request"><spring:message code="M0020"/></c:set>
     <c:set var="MSG_DATA_ALL_IN_USED" scope="request"><spring:message code="M0039"/></c:set>
+    <c:set var="MSG_EDIT_FAILED" scope="request"><spring:message code="M0013"/></c:set>
+
     <script type="text/javascript">
         var Label = {};
         var Button = {};
@@ -71,6 +73,7 @@
         Message.MSG_DELETE_FAILED = '${MSG_DELETE_FAILED}';
         Message.MSG_DATA_ALL_IN_USED = '${MSG_DATA_ALL_IN_USED}';
         Message.MSG_INUSE = '${MSG_INUSE}';
+        Message.MSG_EDIT_FAILED = '${MSG_EDIT_FAILED}';
 
     </script>
 

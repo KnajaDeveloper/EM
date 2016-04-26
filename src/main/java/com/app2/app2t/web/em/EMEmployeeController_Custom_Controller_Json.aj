@@ -342,7 +342,7 @@ privileged aspect EMEmployeeController_Custom_Controller_Json {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json;charset=UTF-8");
         try{
-           List<EMEmployee> resultSearch = EMEmployee.findEmployeeDataPagingData(empCode, empFirstName, userName,empNickName,emTeam,emPosition ,firstResult, maxResult);
+           List<EMEmployee> resultSearch = EMEmployee.findEmployeeDataPagingData(empCode, empFirstName, userName, empNickName, emTeam, emPosition, firstResult, maxResult);
             List<Map> maps = new ArrayList<>();
             for(EMEmployee emEmployee : resultSearch){
                 Map map = new HashMap();
@@ -379,7 +379,7 @@ privileged aspect EMEmployeeController_Custom_Controller_Json {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json;charset=UTF-8");
         try{
-            Long size = EMEmployee.findEmployeeDataPagingSize(empCode, empFirstName,userName, empNickName, emTeam, emPosition );
+            Long size = EMEmployee.findEmployeeDataPagingSize(empCode, empFirstName, userName, empNickName, emTeam, emPosition);
             Map dataSendToFront = new HashMap();
             dataSendToFront.put("size", size);
             return new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(dataSendToFront), headers, HttpStatus.OK);
@@ -455,8 +455,7 @@ privileged aspect EMEmployeeController_Custom_Controller_Json {
         }
     }
 
-
-    @RequestMapping(value = "/findeditEmployee",method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
+    @RequestMapping(value = "/findeditEmployee",method = RequestMethod.POST, produces = "text/html", headers = "Accept=application/json")
     public ResponseEntity<String> EMEmployeeController.findeditEmployee(
             @RequestParam(value = "empCode", required = false) String empCode
             ,@RequestParam(value = "empFirstName", required = false) String empFirstName
@@ -481,6 +480,7 @@ privileged aspect EMEmployeeController_Custom_Controller_Json {
             return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     @RequestMapping(value = "/findCheckEMCodeByID", method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
     @ResponseBody
     public ResponseEntity<String> EMEmployeeController.findCheckEMCodeByID(
