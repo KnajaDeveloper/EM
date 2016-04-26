@@ -13,27 +13,25 @@ import java.util.HashMap;
 @Component
 @Scope(value = "session",proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class AuthorizeUtil {
-	
-	Map empData = new HashMap();
-    List<Map> listMenu = new ArrayList<>();
-    static String userName = null;
+    private static String userName = null;
+    private Map empData = new HashMap();
+    private List<Map> listMenu = new ArrayList<>();
 
     public static String getUserName() {
-        if(userName == null){
+        if(userName == null) {
             userName = SecurityContextHolder.getContext().getAuthentication().getName();
         }
-       return userName;
+        return userName;
     }
-
-     public static void setUserName(String userNameInput) {
-        userName = userNameInput;
+    public static void setUserName(String name){
+        userName = name;
     }
 
     public Map getEmpData() {
-    	return empData;
+        return empData;
     }
     public void setEmpDate(List<Map> empDataList) {
-    	empData = empDataList.get(0);	// get first if more than 1 record
+        empData = empDataList.get(0);   // get first if more than 1 record
     }
 
     public List<Map> getMenuList(){
