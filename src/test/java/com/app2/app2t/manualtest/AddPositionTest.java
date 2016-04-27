@@ -26,12 +26,14 @@ import javax.persistence.EntityManager;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.io.*;
 
 import com.app2.app2t.util.AuthorizeUtil;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 

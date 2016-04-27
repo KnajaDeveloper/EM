@@ -23,8 +23,9 @@ public class AuthorizeUtil {
         }
         return userName;
     }
-    public static void setUserName(String name){
-        userName = name;
+
+    public static void setUserName(String userNameInput) {
+        userName = userNameInput;
     }
 
     public Map getEmpData() {
