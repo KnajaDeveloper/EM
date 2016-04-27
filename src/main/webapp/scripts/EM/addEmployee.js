@@ -22,12 +22,7 @@ $('#btnAdd').click(function(){
 		$('#email').popover('show');
 	}else if($('#userName').val() === ""){
 		$('#userName').popover('show');
-	}else if($('#password').val() === ""){
-		$('#password').popover('show');
-	}else if($('#emConpass').val() === ""){
-		$('#emConpass').popover('show');
-	}else if($('#emConpass').val() != $("#password").val()){
-		bootbox.alert(Message.MSG_PLEASE_CONFIRM_YOUR_PASSWORD_AGAIN);}
+	}
 	//}else if($('#password').val().length < 8){
 	//	bootbox.alert(Message.MSG_PLESE_ENTER_YOUR_PASSWORD_AT_LAST_8_CHAR);
 	//}
