@@ -46,6 +46,7 @@ privileged aspect EMTeamController_Custom_Controller_Json {
                 map.put("teamName",emTeam.getTeamName());
                 map.put("id",emTeam.getId().toString());
                 map.put("inUse", String.valueOf(EMEmployee.findEMEmployeeCheckID(emTeam.getId())));
+                map.put("version",emTeam.getVersion().toString());
                 list.add(map);
 
             }
@@ -95,13 +96,22 @@ privileged aspect EMTeamController_Custom_Controller_Json {
     @RequestMapping(value = "/editTeam",method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
     public ResponseEntity<String> EMTeamController.findEditTeam(
             @RequestParam(value = "editCode", required = false) String editCode,
-            @RequestParam(value = "editName", required = false) String editName
+            @RequestParam(value = "editName", required = false) String editName,
+            @RequestParam(value = "version", required = false) Integer version
     ) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json;charset=UTF-8");
         try {
-            List<EMTeam> result = EMTeam.editTeam(editCode,editName);
-            return  new ResponseEntity<String>(new JSONSerializer().exclude("*.class").deepSerialize(result), headers, HttpStatus.OK);
+            boolean result = EMTeam.editTeam(editCode,editName,version);
+            if(result)
+            {
+                return  new ResponseEntity<String>(headers, HttpStatus.OK);
+            }
+            else
+            {
+                return  new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
+            }
+
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
             return new ResponseEntity<String>("{\"ERROR\":"+e.getMessage()+"\"}", headers, HttpStatus.INTERNAL_SERVER_ERROR);

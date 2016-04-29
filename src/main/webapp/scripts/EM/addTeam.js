@@ -6,6 +6,7 @@ var json = [];
 var ob ;
 var edit = '' ;
 var first = false ;
+var version ;
 //////////////////////////////////////////////////////////////////////////////////////////////////
 var paggination = Object.create(UtilPaggination);
 $(document).ready(function () {
@@ -33,13 +34,16 @@ $('[id^=btnM]').click(function () {
             url: contextPath + '/emteams/findCheck',
             data: dataJsonData,
             complete: function (xhr) {
-
+                if (xhr.status === 0 ){
+                    bootbox.alert(Message.MESSAGE_ADD_FAIL);
+                    sessionError = true ;
+                }
             },
             async: false
         });
 
          ob = jQuery.parseJSON(responseResult.responseText);
-
+        console.log(ob);
         checkCode(id);
 
     }
@@ -90,9 +94,11 @@ $('#data').on("click", "[id^=btnEdit]", function () {
     $('#editCode').val($('#tdTeamCode' + id).text());
     $('#editName').val($('#tdTeamName' + id).text());
     edit=$('#editName').val();
+    version = $(this).attr('version');
 
 }) //--getDataEdit--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
+var sessionError = false;
 $("#btnDelete").click(function () {
     checkedRows = [];
     $('input[status^=check]:checked').each(function () {
@@ -108,18 +114,25 @@ $("#btnDelete").click(function () {
             if (result === true) {
                 for (var i=0; checkedRows.length > i; i++) {
                     DeleteData(i);
+                    if(sessionError){break;}
                 }
-                if(DeFail === 0){
+                if(DeSuccess > 0 && sessionError == false){
                     bootbox.alert(Message.MESSAGE_DELETE_SUCCESS +" " + DeSuccess + " " + Message.MESSAGE_LIST);
-                }else{
+                    DeSuccess = 0;
+                    DeFail = 0;
+                    checkedRows = [];
+                    $("#checkAll").attr('checked', false);
+                    searchData();
+                }else if(DeFail >0 && sessionError == false){
                     bootbox.alert(Message.MESSAGE_DELETE_SUCCESS+ " " + DeSuccess +" "+ Message.MESSAGE_LIST + " " + Message.MESSAGE_DELETE_FAIL + DeFail + " " + Message.MESSAGE_LIST);
+                    DeSuccess = 0;
+                    DeFail = 0;
+                    checkedRows = [];
+                    $("#checkAll").attr('checked', false);
+                    searchData();
                 }
+                sessionError = false;
 
-                DeSuccess = 0;
-                DeFail = 0;
-                checkedRows = [];
-                $("#checkAll").attr('checked', false);
-                searchData();
             }
         });
     } else if (checkedRows.length == 0) {
@@ -132,7 +145,7 @@ $('#data').on("click", "#checkAll", function () {
     $('[id^=chDelete]').prop('checked', $(this).prop('checked'));
     var num =  $('input[status=check]:checked').length;
     var status =  $('input[checkBox=check]').length;
-    console.log(status); console.log(num+"ss");
+    //console.log(status); console.log(num+"ss");
     if (status > 0 && num <= 0 && $('#checkAll').prop('checked') == true ){
         $('#checkAll').prop('checked', false);
         bootbox.alert(Message.MESSAGE_DATA_ALL_IN_USE);
@@ -162,8 +175,9 @@ $("#saveEdit").click(function () {
     {
         var teamCode = $('#editCode').val();
         var teamName = $('#editName').val();
-        EditData(teamCode, teamName);
-        searchData();
+        EditData(teamCode, teamName,version);
+        version = '';
+
     }
 
 
@@ -192,10 +206,10 @@ paggination.loadTable = function loadTable(jsonData) {
 
                 + '<tr>'
                 + '<td class="text-center">'
-                + '<input  id="' + (parseInt(value.inUse) > 0 ? 'checkDisableDelete' : 'chDelete')+ key + '" class="check" checkBox="check" type="checkbox"  name="checkdDelete" '+(parseInt(value.inUse) > 0 ? '':'teamCode="code_'+value.teamCode+'" status="check"')+' />'
+                + '<input  id="' + (parseInt(value.inUse) > 0 ? 'checkDisableDelete' : 'chDelete')+ key + '"  class="check" checkBox="check" type="checkbox"  name="checkdDelete" '+(parseInt(value.inUse) > 0 ? '':'teamCode="code_'+value.teamCode+'" status="check"')+' />'
                 + '</td>'
                 + '<td class="text-center">'
-                + '<button id="btnEdit' + key + '" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#ModalEdit" data-backdrop="static" ><span name="editClick" class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>'
+                + '<button id="btnEdit' + key + '" type="button" version="'+value.version+'" class="btn btn-info btn-xs" data-toggle="modal" data-target="#ModalEdit" data-backdrop="static" ><span name="editClick" class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>'
                 + '</td>'
                 + '<td id="tdTeamCode' + key + '" class="text-center" style="color: #000">'
                 + value.teamCode
@@ -261,6 +275,9 @@ function DeleteData(i) {
             } else if (xhr.status === 500) {
                 DeFail++;
 
+            }else if (xhr.status === 0 ){
+                bootbox.alert(Message.MESSAGE_DELETE_FAIL);
+                sessionError = true ;
             }
         },
 
@@ -270,10 +287,11 @@ function DeleteData(i) {
 
 } //--functionDelete--//
 //////////////////////////////////////////////////////////////////////////////////////////////////
-function EditData(teamCode, teamName) {
+function EditData(teamCode, teamName,version) {
     var dataJsonData = {
         editCode: teamCode,
-        editName: teamName
+        editName: teamName,
+        version : version
     }
     $.ajax({
         type: "GET",
@@ -288,9 +306,16 @@ function EditData(teamCode, teamName) {
             if (xhr.status === 200) {
                 $('#ModalEdit').modal('hide');
                 bootbox.alert(Message.MESSAGE_EDIT_SUCCESS);
+                searchData();
 
             } else if (xhr.status === 500) {
                 bootbox.alert( Message.MESSAGE_EDIT_FAIL);
+            }
+            else if (xhr.status === 0) {
+                bootbox.alert( Message.MESSAGE_EDIT_FAIL);
+            }
+            else if (xhr.status === 404) {
+                bootbox.alert( Message.MESSAGE_PLEASE_REFRESH);
             }
         },
         async: false
@@ -305,10 +330,11 @@ function checkCode(id) {
     // }
     // else
     // {
+    //console.log(ob);
         if (ob == "") {
             var addTeams = {
                 teamCode: $("#teamCode").val(),
-                teamName: $("#teamName").val()
+                teamName: $("#teamName").val(),
             }
             $.ajax({
                 type: "POST",
@@ -321,7 +347,7 @@ function checkCode(id) {
                 data: JSON.stringify(addTeams),
 
                 complete: function (xhr) {
-
+                    //console.log(xhr.status);
                     if (xhr.status === 201) {
 
                         if (id === 'save') {
@@ -335,6 +361,9 @@ function checkCode(id) {
                         }
 
                     } else if (xhr.status === 500) {
+                        bootbox.alert(Message.MESSAGE_ADD_FAIL);
+                    }
+                    else if (xhr.status === 0) {
                         bootbox.alert(Message.MESSAGE_ADD_FAIL);
                     }
                 },

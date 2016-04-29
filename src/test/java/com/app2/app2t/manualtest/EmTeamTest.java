@@ -1,6 +1,7 @@
 package com.app2.app2t.manualtest;
 
 import com.app2.app2t.domain.em.EMTeam;
+import com.app2.app2t.util.AuthorizeUtil;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -46,6 +47,7 @@ public class EmTeamTest {
     public void setup()throws Exception
     {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+        AuthorizeUtil.setUserName("admin");
         insertDataTodateBase("T001","Lomanoi");
         insertDataTodateBase("T002","Soft Soft");
         insertDataTodateBase("T003","Changnoimommam");

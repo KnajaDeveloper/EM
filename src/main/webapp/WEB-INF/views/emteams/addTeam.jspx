@@ -31,6 +31,7 @@
     <c:set var="MESSAGE_NO_CANCEL_DATA_HAS_CHANGED" scope="request"><spring:message code="M0038"/></c:set>
     <c:set var="MESSAGE_LIST" scope="request"><spring:message code="M0019"/></c:set>
     <c:set var="MESSAGE_DATA_ALL_IN_USE" scope="request"><spring:message code="M0039"/></c:set>
+    <c:set var="MESSAGE_PLEASE_REFRESH" scope="request"><spring:message code="M0043"/></c:set>
 
     <script>
         var Message = {} ;
@@ -51,6 +52,7 @@
         Message.MESSAGE_NO_CANCEL_DATA_HAS_CHANGED='${MESSAGE_NO_CANCEL_DATA_HAS_CHANGED}';
         Message.MESSAGE_LIST='${MESSAGE_LIST}';
         Message.MESSAGE_DATA_ALL_IN_USE='${MESSAGE_DATA_ALL_IN_USE}';
+        Message.MESSAGE_PLEASE_REFRESH='${MESSAGE_PLEASE_REFRESH}';
     </script>
 
     <div class="row">

@@ -3,6 +3,7 @@ package com.app2.app2t.manualtest;
 import com.app2.app2t.domain.em.EMEmployee;
 import com.app2.app2t.domain.em.EMPosition;
 import com.app2.app2t.domain.em.EMTeam;
+import com.app2.app2t.util.AuthorizeUtil;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -61,6 +62,7 @@ public class AppRoleTest {
     public void setup()throws Exception
     {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+        AuthorizeUtil.setUserName("admin");
         insertDataTodateBase("T001","Lomanoi","P001","DEV","EMP001","Pote","Burn","RL001");
         insertDataTodateBase("T002","Soft Soft","P002","DEV","EMP002","Jai","Burn",null);
         insertDataTodateBase("T003","Changnoimommam","P003","DEV","EMP003","Mas","Burn","RL002");
