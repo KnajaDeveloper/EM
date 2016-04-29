@@ -65,15 +65,20 @@ privileged aspect EMTeam_Custom_Jpa_ActiveRecord {
 
 
     @Transactional
-    public static List<EMTeam> EMTeam.editTeam(String editCode,String editName) {
+    public static boolean EMTeam.editTeam(String editCode,String editName,Integer version) {
+        boolean status = false;
         EntityManager ent = EMTeam.entityManager();
         Criteria criteria = ((Session) ent.getDelegate()).createCriteria(EMTeam.class);
         criteria.add(Restrictions.eq("teamCode", editCode));
         List<EMTeam> emTeams = criteria.list();
         EMTeam emTeam = emTeams.get(0);
-        emTeam.setTeamName(editName);
-        emTeam.merge();
-        return criteria.list();
+        if(emTeam.getVersion() == version){
+            emTeam.setTeamName(editName);
+            emTeam.merge();
+            status = true ;
+        }
+
+        return status ;
     }
 
     @Transactional
