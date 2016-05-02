@@ -129,7 +129,7 @@ public class AddPositionTest {
     }
 
     public void editDataTodateBase (String positionCode, String positionName)throws Exception{
-        MvcResult mvcResult = this.mockMvc.perform(get("/empositions/findeditEMPosition")
+        MvcResult mvcResult = this.mockMvc.perform(post("/empositions/findeditEMPosition")
             .param("positionCode", positionCode)
             .param("positionName", positionName)
         ).andDo(print())
@@ -139,7 +139,7 @@ public class AddPositionTest {
     }
 
     public void deleteDataTodateBase (String positionID)throws Exception{
-        MvcResult mvcResult = this.mockMvc.perform(get("/empositions/findDeletePosition")
+        MvcResult mvcResult = this.mockMvc.perform(post("/empositions/findDeletePosition")
             .param("positionID", positionID)
         ).andDo(print())
             .andExpect(status().isOk())
