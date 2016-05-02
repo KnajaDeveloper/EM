@@ -57,7 +57,7 @@ privileged aspect EMPositionController_Custom_Controller_Json {
         }
     }
 
-    @RequestMapping(value = "/findeditEMPosition",method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
+    @RequestMapping(value = "/findeditEMPosition",method = RequestMethod.POST, produces = "text/html", headers = "Accept=application/json")
     public ResponseEntity<String> EMPositionController.findeditEMPosition(
         @RequestParam(value = "positionCode", required = false) String positionCode
         ,@RequestParam(value = "positionName", required = false) String positionName
@@ -73,7 +73,7 @@ privileged aspect EMPositionController_Custom_Controller_Json {
         }
     }
 
-    @RequestMapping(value = "/findDeletePosition",method = RequestMethod.GET, produces = "text/html", headers = "Accept=application/json")
+    @RequestMapping(value = "/findDeletePosition",method = RequestMethod.POST, produces = "text/html", headers = "Accept=application/json")
     public ResponseEntity<String> EMPositionController.findDeletePosition(
         @RequestParam(value = "positionID", required = false) Long positionID
     ) {

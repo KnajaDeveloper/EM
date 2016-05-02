@@ -114,12 +114,12 @@ $('[id^=btnModal]').click(function() {
 			if(check == 0){
 				if(checkData() == 0){
 					$.ajax({
-						contentType: "application/json; charset=utf-8",
-						dataType: "json",
+						type: "POST",
 						headers: {
 							Accept: "application/json"
 						},
-						type: "POST",
+						contentType: "application/json; charset=utf-8",
+						dataType: "json",
 						url: contextPath + '/empositions',
 						data : JSON.stringify(emPosition),
 						complete: function(xhr){
@@ -135,7 +135,7 @@ $('[id^=btnModal]').click(function() {
 									searchData();
 									paggination.loadPage(pageNumber, paggination);
 								}
-							}else if(xhr.status == 500){
+							}else if(xhr.status == 500 || xhr.status == 0){
 								bootbox.alert(Message.MSG_ADD_FAILED);
 							}
 						},
@@ -149,12 +149,10 @@ $('[id^=btnModal]').click(function() {
 					bootbox.alert(Message.MSG_NO_INFORMATION_CHANGED);
 				}else{
 					$.ajax({
-						contentType: "application/json; charset=utf-8",
-						dataType: "json",
+						type: "POST",
 						headers: {
 							Accept: "application/json"
 						},
-						type: "GET",
 						url: contextPath + '/empositions/findeditEMPosition',
 						data : emPosition,
 						complete: function(xhr){
@@ -165,7 +163,7 @@ $('[id^=btnModal]').click(function() {
 								$('#txtPositionName').val(null);
 								var pageNumber = $("#paggingSimpleCurrentPage").val();
 								paggination.loadPage(pageNumber, paggination);
-							}else if(xhr.status === 500){
+							}else if(xhr.status === 500 || xhr.status == 0){
 								bootbox.alert(Message.MSG_EDIT_FAILED);
 							}
 						},
@@ -185,15 +183,14 @@ $('#btnAdd').click(function() {
 	$('#txtPositionName').popover('hide');
 });
 
+var status0 = 0;
 var status200 = 0;
 var status500 = 0;
 
 function deleteData() {
 	$.each($(".checkboxTable:checked"),function(index,value){
 	    $.ajax({
-			type: "GET",
-			contentType: "application/json; charset=utf-8",
-			dataType: "json",
+			type: "POST",
 			headers: {
 				Accept: "application/json"
 			},
@@ -202,10 +199,13 @@ function deleteData() {
 				positionID: $(this).attr("id")
 			},
 			complete: function(xhr){
-				if(xhr.status === 200)
+				if(xhr.status == 0)
+					status0++;
+				if(xhr.status == 200)
 					status200++;
-				if(xhr.status === 500)
+				if(xhr.status == 500)
 					status500++;
+
 			},
 			async: false
 		});
@@ -221,19 +221,23 @@ $('#btnDelete').click(function() {
 			if(result == true){
 				deleteData();
 
-				var pageNumber = $("#paggingSimpleCurrentPage").val();
-				searchData();
-				paggination.loadPage(pageNumber, paggination);
-
-				$('#checkboxAll').prop('checked', false);
-				if(status500 == 0){
+				if(status0 > 0){
+					bootbox.alert(Message.MSG_DELETE_FAILED);
+				}else if(status500 == 0){
 					bootbox.alert(Message.MSG_DELETE_SUCCESS + " " + status200 + " " + Message.MSG_LIST);
 				}else{
 					bootbox.alert(Message.MSG_DELETE_SUCCESS + " " + status200 + " " + Message.MSG_LIST + " " + Message.MSG_DELETE_FAILED + " " + status500 + " " + Message.MSG_LIST);
 				}
 
+				status0 = 0;
 				status200 = 0;
 				status500 = 0;
+
+				var pageNumber = $("#paggingSimpleCurrentPage").val();
+				searchData();
+				paggination.loadPage(pageNumber, paggination);
+
+				$('#checkboxAll').prop('checked', false);
 			}
 		});
     }
@@ -255,6 +259,11 @@ function checkData() {
 		},
 		async: false
 	});
+
+	if(checkdDb.responseJSON == null){
+		return 0;
+	}
+
     return checkdDb.responseJSON;
 }
 
