@@ -337,6 +337,7 @@ public class EmTeamTest {
         MvcResult mvcResult = this.mockMvc.perform(get("/emteams/editTeam")
                 .param("editCode","T005")
                 .param("editName","YennoyCpe")
+                .param("version","0")
         ).andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
@@ -353,6 +354,19 @@ public class EmTeamTest {
                 .andExpect(jsonPath("$[0].teamName",is("YennoyCpe")))
                 .andReturn()
         ;
+    }
+    @Test
+    public void editTeamVersionChange ()throws Exception{
+        MvcResult mvcResult = this.mockMvc.perform(get("/emteams/editTeam")
+                .param("editCode","T005")
+                .param("editName","YennoyCpe")
+                .param("version","1")
+        ).andDo(print())
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andReturn()
+                ;
+
     }
     //////////////////
     @Test
