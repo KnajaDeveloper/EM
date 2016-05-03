@@ -260,7 +260,10 @@ function saveAppRole(i) {
         url: contextPath + '/ememployees/saveOrUpdateAppRoleCode',
         data: dataJsonData,
         complete: function (xhr) {
-
+            //console.log(xhr.status);
+            if (xhr.status === 0) {
+                bootbox.alert(Message.MESSAGE_ADD_FAIL);
+            }
         },
         async: false
     });
